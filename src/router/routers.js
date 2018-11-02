@@ -60,6 +60,63 @@ export default [
       },
     ]
   },
+
+
+  // 广告
+  {
+    path: '/gaikuang',
+    name: '广告列表',
+    component: Main,
+    tabMenu: 'ad',
+    children: [
+      {
+        path: 'gaikuang',
+        name: 'gaikuang',
+        meta: {
+          icon: 'ios-navigate',
+          title: '广告列表'
+        },
+        component: () => import('@/view/report/verify.vue')
+      },
+    ]
+  },
+
+  // 会员
+  {
+    path: '/huiyuan',
+    name: '会员管理',
+    component: Main,
+    tabMenu: 'user',
+    children: [
+      {
+        path: 'huiyuan',
+        name: 'huiyuan',
+        meta: {
+          icon: 'ios-navigate',
+          title: '普通用户'
+        },
+        component: () => import('@/view/report/verify.vue')
+      },
+      {
+        path: 'huiyuan',
+        name: 'huiyuan',
+        meta: {
+          icon: 'ios-navigate',
+          title: '汽车租赁商'
+        },
+        component: () => import('@/view/report/verify.vue')
+      },
+      {
+        path: 'huiyuan',
+        name: 'huiyuan',
+        meta: {
+          icon: 'ios-navigate',
+          title: '广告主'
+        },
+        component: () => import('@/view/report/verify.vue')
+      }
+    ]
+  },
   {
     path: '/report',
     name: 'report',
