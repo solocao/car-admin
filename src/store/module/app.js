@@ -5,10 +5,12 @@ export default {
     breadCrumbList: [],
     tagNavList: [],
     homeRoute: getHomeRoute(routers),
-    local: ''
+    local: '',
+    tabMenu: 'home'
+
   },
   getters: {
-    menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access)
+    menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access, rootState.app.tabMenu)
   },
   mutations: {
     setBreadCrumb (state, routeMetched) {

@@ -43,19 +43,11 @@ export default [
       }
     ]
   },
-  // {
-  //   path: '',
-  //   name: 'doc',
-  //   meta: {
-  //     title: '文档',
-  //     href: 'https://lison16.github.io/iview-admin-doc/#/',
-  //     icon: 'ios-book'
-  //   }
-  // },
   {
     path: '/report',
     name: 'report',
     component: Main,
+    tabMenu: 'home',
     meta: {
       hide: true,
       title: '上报管理',

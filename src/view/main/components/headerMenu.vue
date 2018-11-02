@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div class="header-menu">
     <Menu mode="horizontal" active-name="1">
       <MenuItem name="1">
       <Icon type="ios-paper" />
-      内容管理
+      首页
       </MenuItem>
       <MenuItem name="2">
       <Icon type="ios-people" />
-      用户管理
+      活动
       </MenuItem>
       <Submenu name="3">
         <template slot="title">
           <Icon type="ios-stats" />
-          统计分析
+          车辆
         </template>
         <MenuGroup title="使用">
           <MenuItem name="3-1">新增和启动</MenuItem>
@@ -26,9 +26,26 @@
       </Submenu>
       <MenuItem name="4">
       <Icon type="ios-construct" />
-      综合设置
+      订单
       </MenuItem>
     </Menu>
     <br>
   </div>
 </template>
+<style lang="less" scoped>
+.header-menu {
+  height: 60px;
+  margin-left: 10px;
+
+  .ivu-menu-item-hover {
+    border-bottom: 3px solid #2d8cf0 !important;
+  }
+  .ivu-menu {
+    height: 61px;
+    background: white;
+    border-bottom: 0px solid white;
+  }
+
+  // ivu-menu-light
+}
+</style>

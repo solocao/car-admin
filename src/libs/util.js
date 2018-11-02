@@ -29,10 +29,12 @@ const showThisMenuEle = (item, access) => {
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
  */
-export const getMenuByRouter = (list, access) => {
+export const getMenuByRouter = (list, access, tabMenu) => {
+  console.log('tabMenu:' + tabMenu)
   let res = []
   forEach(list, item => {
-    if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
+    console.log(item.tabMenu)
+    if ((!item.meta || (item.meta && !item.meta.hideInMenu)) && (item.tabMenu === tabMenu)) {
       let obj = {
         icon: (item.meta && item.meta.icon) || '',
         name: item.name,
@@ -45,6 +47,9 @@ export const getMenuByRouter = (list, access) => {
       if (showThisMenuEle(item, access)) res.push(obj)
     }
   })
+
+  console.log(res)
+
   return res
 }
 
