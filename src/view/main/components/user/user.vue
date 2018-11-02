@@ -22,11 +22,10 @@ export default {
     }
   },
   methods: {
-
     ...mapMutations([
       'set'
     ]),
-    handleClick (name) {
+    handleClick(name) {
       switch (name) {
         case 'logout':
           this.set({ login: false })

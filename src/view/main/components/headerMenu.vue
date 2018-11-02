@@ -1,6 +1,6 @@
 <template>
   <div class="header-menu">
-    <Menu mode="horizontal" active-name="1">
+    <Menu mode="horizontal" @on-select="menuSelect" active-name="1">
       <MenuItem name="1">
       <Icon type="ios-paper" />
       首页
@@ -32,6 +32,31 @@
     <br>
   </div>
 </template>
+<script>
+
+import { mapMutations } from 'vuex'
+
+export default {
+  data () {
+    return {}
+  },
+
+  methods: {
+    ...mapMutations([
+      'setApp'
+    ]),
+    menuSelect (name) {
+      switch (parseInt(name)) {
+        case 1: this.setApp({ tabMenu: 'home' }); break
+        case 2: this.setApp({ tabMenu: 'home1' }); break
+        case 3: this.setApp({ tabMenu: 'home2' }); break
+        case 4: this.setApp({ tabMenu: 'home3' }); break
+      }
+    }
+  }
+}
+</script>
+
 <style lang="less" scoped>
 .header-menu {
   height: 60px;

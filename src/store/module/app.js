@@ -10,9 +10,19 @@ export default {
 
   },
   getters: {
-    menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access, rootState.app.tabMenu)
+    menuList: (state, getters, rootState) => {
+      console.log(rootState)
+      return getMenuByRouter(routers, rootState.user.access, rootState.app.tabMenu)
+    }
   },
   mutations: {
+    setApp (state, params) {
+      const keys = Object.keys(params)
+      keys.forEach(x => {
+        const val = params[x]
+        state[x] = val
+      })
+    },
     setBreadCrumb (state, routeMetched) {
       state.breadCrumbList = getBreadCrumbList(routeMetched, state.homeRoute)
     },

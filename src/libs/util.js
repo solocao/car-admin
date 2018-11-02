@@ -30,11 +30,11 @@ const showThisMenuEle = (item, access) => {
  * @returns {Array}
  */
 export const getMenuByRouter = (list, access, tabMenu) => {
-  console.log('tabMenu:' + tabMenu)
+  console.log('看看tabMenu:' + tabMenu)
   let res = []
   forEach(list, item => {
     console.log(item.tabMenu)
-    if ((!item.meta || (item.meta && !item.meta.hideInMenu)) && (item.tabMenu === tabMenu)) {
+    if ((!item.meta || (item.meta && !item.meta.hideInMenu)) && (item.tabMenu == tabMenu)) {
       let obj = {
         icon: (item.meta && item.meta.icon) || '',
         name: item.name,
