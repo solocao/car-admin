@@ -1,0 +1,63 @@
+@import '~iview/src/styles/index.less';
+
+@menu-dark-title: #001529;
+@menu-dark-active-bg: #000c17;
+@layout-sider-background: #001529;
+
+.m-l-8px {
+  margin-left:8px;
+}
+
+.z-name {
+  display: flex;
+  align-items: center;
+  
+  img {
+    width:36px;
+    height:36px;
+    border-radius:50%;
+  }
+  span {
+    margin-left:6px;
+  }
+
+}
+
+
+// 搜索条件
+.z-search {
+  @label-width: 60px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  .z-label {
+    width: @label-width;
+    float: left;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .z-content {
+    margin-left: @label-width + 10px;
+  }
+  .z-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+
+
+.ivu-timeline-item-content {
+  padding-bottom: 0px !important;
+}
+
+
+.text-over-nowarap {
+  // 文本强制不换行
+  white-space: nowrap;
+  // 文本溢出显示省略号
+  text-overflow: ellipsis;
+  // 溢出的部分隐藏
+  overflow: hidden;
+}
