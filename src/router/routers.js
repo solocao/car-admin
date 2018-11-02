@@ -44,6 +44,23 @@ export default [
     ]
   },
   {
+    path: '/gaikuang',
+    name: '概况',
+    component: Main,
+    tabMenu: 'home',
+    children: [
+      {
+        path: 'gaikuang',
+        name: 'gaikuang',
+        meta: {
+          icon: 'ios-navigate',
+          title: '概况'
+        },
+        component: () => import('@/view/report/verify.vue')
+      },
+    ]
+  },
+  {
     path: '/report',
     name: 'report',
     component: Main,

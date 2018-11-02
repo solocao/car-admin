@@ -5,29 +5,108 @@
       <Icon type="ios-paper" />
       首页
       </MenuItem>
-      <MenuItem name="2">
-      <Icon type="ios-people" />
-      活动
-      </MenuItem>
-      <Submenu name="3">
+      <!-- 广告 -->
+      <Submenu name="2">
         <template slot="title">
-          <Icon type="ios-stats" />
-          车辆
+          <span @click="()=>{this.qqqq()}">
+            <Icon type="logo-buffer" />
+            广告
+          </span>
         </template>
-        <MenuGroup title="使用">
+        <MenuGroup title="图片分类">
           <MenuItem name="3-1">新增和启动</MenuItem>
           <MenuItem name="3-2">活跃分析</MenuItem>
           <MenuItem name="3-3">时段分析</MenuItem>
         </MenuGroup>
-        <MenuGroup title="留存">
+        <MenuGroup title="视频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="音频分类">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
-      <MenuItem name="4">
-      <Icon type="ios-construct" />
-      订单
-      </MenuItem>
+      <!-- 会员 -->
+      <Submenu name="3">
+        <template slot="title">
+          <Icon type="ios-people" />
+          会员
+        </template>
+        <MenuGroup title="租赁商">
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="广告主">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="普通用户">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+      </Submenu>
+      <!-- 车辆 -->
+      <Submenu name="4">
+        <template slot="title">
+          <Icon type="ios-car" />
+          车辆
+        </template>
+        <MenuGroup title="图片分类">
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="视频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="音频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+      </Submenu>
+      <!-- 素材 -->
+      <Submenu name="5">
+        <template slot="title">
+          <Icon type="md-images" />
+          素材
+        </template>
+        <MenuGroup title="图片分类">
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="视频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="音频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+      </Submenu>
+      <!-- 账单 -->
+      <Submenu name="6">
+        <template slot="title">
+          <Icon type="ios-list-box" />
+          账单
+        </template>
+        <MenuGroup title="图片分类">
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="视频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="音频分类">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+      </Submenu>
     </Menu>
     <br>
   </div>
@@ -45,7 +124,11 @@ export default {
     ...mapMutations([
       'setApp'
     ]),
+    qqqq () {
+      console.log('qqqq')
+    },
     menuSelect (name) {
+      alert(name)
       switch (parseInt(name)) {
         case 1: this.setApp({ tabMenu: 'home' }); break
         case 2: this.setApp({ tabMenu: 'home1' }); break

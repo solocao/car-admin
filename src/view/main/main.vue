@@ -5,11 +5,11 @@
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
           <div v-show="!collapsed" key="max-logo">
-            <div class="z-max-logo">中交天和管理后台</div>
+            <div class="z-max-logo">汽车广告营销平台</div>
           </div>
           <div v-show="collapsed" key="min-logo">
             <div class="z-min-logo">
-              天
+              车
             </div>
           </div>
         </div>
