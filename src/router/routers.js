@@ -95,6 +95,24 @@ export default [
       },
     ]
   },
+  // 订单管理
+  {
+    path: '/order',
+    component: Main,
+    name: '订单管理',
+    tabMenu: 'ad',
+    children: [
+      {
+        path: 'list124',
+        name: 'list14',
+        meta: {
+          icon: 'ios-navigate',
+          title: '订单列表'
+        },
+        component: () => import('@/view/order/orderList.vue')
+      },
+    ]
+  },
 
   // 会员
   {

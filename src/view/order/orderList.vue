@@ -1,5 +1,5 @@
 <template>
-  <div class="z-verify">
+  <div class="order-list">
     <Card :bordered="false" class="z-search">
       <p slot="title">搜索条件</p>
       <div slot="extra" class="z-btn">
@@ -7,6 +7,19 @@
         <Button type="primary" @click="hitchList" size="small">搜索</Button>
       </div>
       <div>
+        <Row>
+          状态：
+          <button-badge title="激活中" :number="23" :active="true"></button-badge>
+        </Row>
+        <Row>
+          类型
+        </Row>
+        <Row>
+          时间
+        </Row>
+        <Row>
+          编号：
+        </Row>
         <Row>
           <Col :span="6">
           <span class="z-label">标题:</span>
@@ -89,12 +102,14 @@
 <script>
 
 import HitchDetail from '@/components/hitch/HitchDetail.vue'
+import ButtonBadge from '@/components/button/ButtonBadge.vue'
 import { timeS } from '@/libs/help.js'
 
 export default {
   name: 'tables_page',
   components: {
-    HitchDetail
+    HitchDetail,
+    ButtonBadge
   },
   data () {
     return {
@@ -325,7 +340,7 @@ export default {
 }
 </script>
 <style lang="less">
-.z-verify {
+.order-list {
   .z-search {
     margin-bottom: 10px;
   }
