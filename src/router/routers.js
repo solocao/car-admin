@@ -62,19 +62,34 @@ export default [
   },
 
 
-  // 广告
+  // 广告列表
   {
-    path: '/gaikuang',
-    name: '广告列表',
+    path: '/ad',
     component: Main,
     tabMenu: 'ad',
     children: [
       {
-        path: 'gaikuang',
-        name: 'gaikuang',
+        path: 'list',
+        name: 'list',
         meta: {
           icon: 'ios-navigate',
           title: '广告列表'
+        },
+        component: () => import('@/view/ad/adList.vue')
+      },
+    ]
+  },
+  {
+    path: '/ad',
+    component: Main,
+    tabMenu: 'ad',
+    children: [
+      {
+        path: 'class',
+        name: 'class',
+        meta: {
+          icon: 'ios-navigate',
+          title: '广告分类'
         },
         component: () => import('@/view/report/verify.vue')
       },
