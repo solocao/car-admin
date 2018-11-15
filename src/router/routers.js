@@ -60,6 +60,24 @@ export default [
       },
     ]
   },
+  // 首页 设置
+  {
+    path: '/gaikuang',
+    name: '设置',
+    component: Main,
+    tabMenu: 'home',
+    children: [
+      {
+        path: 'gaikuang',
+        name: 'gaikuang',
+        meta: {
+          icon: 'ios-navigate',
+          title: '概况'
+        },
+        component: () => import('@/view/report/verify.vue')
+      },
+    ]
+  },
 
 
   // 广告列表
@@ -74,6 +92,23 @@ export default [
         meta: {
           icon: 'ios-navigate',
           title: '广告列表'
+        },
+        component: () => import('@/view/ad/adList.vue')
+      },
+    ]
+  },
+  // 活动列表
+  {
+    path: '/ad',
+    component: Main,
+    tabMenu: 'ad',
+    children: [
+      {
+        path: 'list',
+        name: 'list',
+        meta: {
+          icon: 'ios-navigate',
+          title: '活动列表'
         },
         component: () => import('@/view/ad/adList.vue')
       },
@@ -116,37 +151,252 @@ export default [
 
   // 会员
   {
-    path: '/huiyuan',
+    path: '/user',
     name: '会员管理',
     component: Main,
     tabMenu: 'user',
     children: [
       {
-        path: 'huiyuan',
-        name: 'huiyuan',
+        path: 'normal',
+        name: 'normal',
         meta: {
           icon: 'ios-navigate',
           title: '普通用户'
         },
-        component: () => import('@/view/report/verify.vue')
+        component: () => import('@/view/user/UserNormal.vue')
       },
       {
-        path: 'huiyuan',
-        name: 'huiyuan',
+        path: 'lease',
+        name: 'lease',
         meta: {
           icon: 'ios-navigate',
-          title: '汽车租赁商'
+          title: '租赁商'
         },
-        component: () => import('@/view/report/verify.vue')
+        component: () => import('@/view/user/UserLease.vue')
       },
       {
-        path: 'huiyuan',
-        name: 'huiyuan',
+        path: 'advertiser',
+        name: 'adnertiser',
         meta: {
           icon: 'ios-navigate',
           title: '广告主'
         },
-        component: () => import('@/view/report/verify.vue')
+        component: () => import('@/view/user/UserAdvertiser.vue')
+      }
+    ]
+  },
+
+  // 车辆
+  {
+    path: '/car',
+    name: '车型库',
+    component: Main,
+    tabMenu: 'car',
+    children: [
+      {
+        path: 'category',
+        name: 'category',
+        meta: {
+          icon: 'ios-navigate',
+          title: '品牌分类'
+        },
+        component: () => import('@/view/car/category.vue')
+      }, {
+        path: 'list',
+        name: 'list',
+        meta: {
+          icon: 'ios-navigate',
+          title: '车型列表'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      }
+    ]
+  },
+  // 车辆 车辆分类
+  {
+    path: '/car',
+    name: '车辆信息',
+    component: Main,
+    tabMenu: 'car',
+    children: [
+      {
+        path: 'class',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '车辆分类'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      }
+    ]
+  },
+  // 财务
+  {
+    path: '/finance',
+    name: '财务操作',
+    component: Main,
+    tabMenu: 'finance',
+    children: [
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '提现申请'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '提现申请'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      }
+    ]
+  },
+  {
+    path: '/finance',
+    name: '财务记录',
+    component: Main,
+    tabMenu: 'finance',
+    children: [
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '充值记录'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '资金管理'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      }
+    ]
+  },
+  // 财务 佣金记录
+  {
+    path: '/finance',
+    name: '拥金记录',
+    component: Main,
+    tabMenu: 'finance',
+    children: [
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '充值记录'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '资金管理'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      }
+    ]
+  },
+  // 小程序
+  {
+    path: '/applet',
+    name: '小程序',
+    component: Main,
+    tabMenu: 'weixin',
+    children: [
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '首页导航按钮'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '首页幻灯片'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '小程序支付配置'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '小程序配置'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      }
+    ]
+  },
+  // 公众号 
+  {
+    path: '/applet',
+    name: '公众号',
+    component: Main,
+    tabMenu: 'weixin',
+    children: [
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '首页导航按钮'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '首页幻灯片'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '小程序支付配置'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
+      },
+      {
+        path: 'normal',
+        name: 'normal',
+        meta: {
+          icon: 'ios-navigate',
+          title: '小程序配置'
+        },
+        component: () => import('@/view/user/UserNormal.vue')
       }
     ]
   },
@@ -157,7 +407,7 @@ export default [
     tabMenu: 'home',
     meta: {
       hide: true,
-      title: '上报管理',
+      title: '统计管理',
       icon: 'ios-list-box'
     },
     children: [

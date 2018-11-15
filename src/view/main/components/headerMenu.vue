@@ -14,17 +14,17 @@
           </span>
         </template>
         <MenuGroup title="图片分类">
-          <MenuItem name="3-1">新增和启动</MenuItem>
-          <MenuItem name="3-2">活跃分析</MenuItem>
-          <MenuItem name="3-3">时段分析</MenuItem>
+          <MenuItem name="2-1">新增和启动</MenuItem>
+          <MenuItem name="2-2">活跃分析</MenuItem>
+          <MenuItem name="2-3">时段分析</MenuItem>
         </MenuGroup>
         <MenuGroup title="视频分类">
-          <MenuItem name="3-4">用户留存</MenuItem>
-          <MenuItem name="3-5">流失用户</MenuItem>
+          <MenuItem name="2-4">用户留存</MenuItem>
+          <MenuItem name="2-5">流失用户</MenuItem>
         </MenuGroup>
         <MenuGroup title="音频分类">
-          <MenuItem name="3-4">用户留存</MenuItem>
-          <MenuItem name="3-5">流失用户</MenuItem>
+          <MenuItem name="2-6">用户留存</MenuItem>
+          <MenuItem name="2-7">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
       <!-- 会员 -->
@@ -52,15 +52,14 @@
       <!-- 车辆 -->
       <Submenu name="4">
         <template slot="title">
-          <span @click="()=>{this.menuSwitch('car')}">
+          <span @click="()=>{this.menuSwitch('car')}" class="menu-hover">
             <Icon type="ios-car" />
             车辆
           </span>
         </template>
-        <MenuGroup title="图片分类">
-          <MenuItem name="3-1">新增和启动</MenuItem>
-          <MenuItem name="3-2">活跃分析</MenuItem>
-          <MenuItem name="3-3">时段分析</MenuItem>
+        <MenuGroup title="车型库">
+          <MenuItem name="4-1">品牌分类</MenuItem>
+          <MenuItem name="4-2">车辆类型</MenuItem>
         </MenuGroup>
         <MenuGroup title="视频分类">
           <MenuItem name="3-4">用户留存</MenuItem>
@@ -91,31 +90,36 @@
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
-      <!-- 账单 -->
+      <!-- 财务 -->
       <Submenu name="6">
         <template slot="title">
-          <Icon type="ios-list-box" />
-          账单
+          <span @click="()=>{this.menuSwitch('finance')}">
+            <Icon type="ios-list-box" />
+            财务
+          </span>
+
         </template>
-        <MenuGroup title="图片分类">
+        <MenuGroup title="财务操作">
           <MenuItem name="3-1">新增和启动</MenuItem>
           <MenuItem name="3-2">活跃分析</MenuItem>
           <MenuItem name="3-3">时段分析</MenuItem>
         </MenuGroup>
-        <MenuGroup title="视频分类">
+        <MenuGroup title="财务记录">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
-        <MenuGroup title="音频分类">
+        <MenuGroup title="佣金记录">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
-      <!-- 小程序 -->
+      <!-- 微信 -->
       <Submenu name="7">
         <template slot="title">
-          <Icon type="md-phone-portrait" />
-          小程序
+          <span @click="()=>{this.menuSwitch('weixin')}">
+            <Icon type="md-phone-portrait" />
+            微信
+          </span>
         </template>
         <MenuGroup title="图片分类">
           <MenuItem name="3-1">新增和启动</MenuItem>
@@ -176,7 +180,9 @@ export default {
     background: white;
     border-bottom: 0px solid white;
   }
+}
 
-  // ivu-menu-light
+.menu-hover {
+  cursor: pointer !important;
 }
 </style>

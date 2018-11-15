@@ -96,7 +96,7 @@ export default {
   components: {
     HitchDetail
   },
-  data () {
+  data() {
     return {
       // 分页
       page: 1,
@@ -243,7 +243,7 @@ export default {
         unit_name: '件',
         vip_price: '0.00',
         visitor: 0,
-        vstock: '91486' }],
+        vstock: '91486'      }],
       searchForm: {
         address: null,
         description: null,
@@ -289,7 +289,7 @@ export default {
   },
   methods: {
 
-    searchClear () {
+    searchClear() {
       this.searchForm = {
         description: null,
         address: null,
@@ -302,22 +302,22 @@ export default {
         date_range: null
       }
     },
-    selectDate (date) {
+    selectDate(date) {
       if (date !== undefined) {
         this.searchForm.date_range = date
       }
     },
-    pageChange (page) {
+    pageChange(page) {
       this.page = page
     },
-    handleDelete (params) {
+    handleDelete(params) {
       console.log(params)
     },
-    detail () {
+    detail() {
       this.modal = true
     }
   },
-  mounted () {
+  mounted() {
   },
   watch: {
 

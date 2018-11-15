@@ -1,7 +1,7 @@
 <template>
   <button class="button-badge" :class="classObject">
-    {{title}}{{active}}
-    <span class="badge" :style="{background:badgeColor}">{{number}}</span>
+    {{title}}
+    <span v-if="number!==0" class="badge" :style="{background:badgeColor}">{{number}}</span>
   </button>
 </template>
 <script>
@@ -51,6 +51,7 @@ export default {
   white-space: nowrap;
   text-align: center;
   border-radius: 2px;
+  margin-right: 10px;
   cursor: pointer;
   &:focus {
     outline: none;

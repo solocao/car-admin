@@ -9,13 +9,15 @@
       <div>
         <Row>
           状态：
-          <button-badge title="激活中" :number="23" :active="true"></button-badge>
+          <button-badge v-for="item in stateBadgeList" :title="item.title" :number="item.number" :key="item.title"></button-badge>
         </Row>
-        <Row>
-          类型
+        <Row style="marginTop:10px">
+          类型:
+          <button-badge v-for="item in classBadgeList" :title="item.title" :number="item.number" :key="item.title"></button-badge>
         </Row>
-        <Row>
-          时间
+        <Row style="marginTop:10px">
+          时间:
+          <button-badge v-for="item in dateBadgeList" :title="item.title" :number="item.number" :key="item.title"></button-badge>
         </Row>
         <Row>
           编号：
@@ -136,6 +138,9 @@ export default {
           h: 900
         }
       ],
+      stateBadgeList: [{ title: '全部' }, { title: '未支付', number: 12 }, { title: '未发货', number: 12 }, { title: '待收货', number: 12 }],
+      classBadgeList: [{ title: '全部' }, { title: '未支付', number: 12 }, { title: '未发货', number: 12 }, { title: '待收货', number: 12 }],
+      dateBadgeList: [{ title: '全部' }, { title: '今天' }, { title: '昨天' }, { title: '本周' }, { title: '本月' }, { title: '本季度' }, { title: '本年' }],
       value: 'w',
       mData: {
       },

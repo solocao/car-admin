@@ -21,7 +21,7 @@
       </i-col>
     </Row>
     <div class="sat-map-wrap">
-      <div class="z-map-title">问题故障点地图聚合显示</div>
+      <div class="z-map-title">运营车辆地图聚合显示</div>
       <sta-map></sta-map>
     </div>
   </div>
@@ -48,10 +48,10 @@ export default {
       inforCardData: [
         { title: '用户总数', icon: 'ios-people', count: 0, color: '#2d8cf0' },
         { title: '今日新增用户', icon: 'ios-person-add', count: 0, color: '#03a9f4' },
-        { title: '累计问题', icon: 'md-help-circle', count: 0, color: '#ff9900' },
-        { title: '用户申诉', icon: 'md-locate', count: 0, color: '#19be6b' },
+        { title: '累计任务', icon: 'md-help-circle', count: 0, color: '#ff9900' },
+        { title: '用户在途', icon: 'md-locate', count: 0, color: '#19be6b' },
         { title: '奖励比数', icon: 'logo-yen', count: 0, color: '#ed3f14' },
-        { title: '今日产生问题', icon: 'md-information-circle', count: 0, color: '#673ab7' }
+        { title: '今日产生任务', icon: 'md-information-circle', count: 0, color: '#673ab7' }
       ],
       pieData: [
         { value: 335, name: '机械设备' },
