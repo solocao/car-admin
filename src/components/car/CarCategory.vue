@@ -9,17 +9,22 @@
       </div>
     </div>
     <div class="c-content">
-      <div>一汽-大众奥迪</div>
-      <div>
-        啊沙发上
+      <div class="c-title">一汽-大众奥迪</div>
+      <div class="items-wraper">
+        <car-item v-for="i in 9"></car-item>
+      </div>
+      <div class="c-title">Audi Sport</div>
+      <div class="items-wraper">
+        <car-item v-for="i in 9"></car-item>
       </div>
     </div>
 
   </div>
 </template>
 <script>
+import CarItem from '_c/car/CarItem.vue'
 export default {
-
+  components: { CarItem }
 }
 </script>
 
@@ -27,24 +32,40 @@ export default {
 .car-category {
   position: relative;
   width: 100%;
+
   .c-sider {
     width: 88px;
     float: left;
     text-align: center;
     padding-top: 10px;
-    border-right: 1px solid #ccd3e4;
     background-color: #fafbfc;
     .c-logo {
       width: 50px;
       height: 50px;
     }
     .c-name {
-      font-size: 12px;
+      a {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: -5px;
+      }
     }
   }
-  .c-content {
-    background: yellowgreen;
-    margin-left: 88px;
+}
+
+.c-content {
+  margin-left: 88px;
+  border-left: 1px solid #e7eaec;
+  .c-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3b5998;
+    margin-left: 20px;
+    padding-top: 10px;
+  }
+  .items-wraper {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 </style>
