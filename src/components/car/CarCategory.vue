@@ -27,22 +27,11 @@
           {{brand.name}}
         </div>
         <div class="items-wraper">
-          <car-edit-item></car-edit-item>
-          <car-item></car-item>
+          <car-edit-item :sub_brand_id="brand._id"></car-edit-item>
+          <car-item v-for="car in brand.car" :key="car._id" :name="car.name" :img="car.img"></car-item>
         </div>
-
       </div>
-
-      <!-- <div class="c-title">一汽-大众奥迪</div>
-      <div class="items-wraper">
-        <car-item v-for="i in 9"></car-item>
-      </div>
-      <div class="c-title">Audi Sport</div>
-      <div class="items-wraper">
-        <car-item v-for="i in 9"></car-item>
-      </div> -->
     </div>
-
   </div>
 </template>
 <script>

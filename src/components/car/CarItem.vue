@@ -1,11 +1,26 @@
 <template>
   <div class="car-item">
     <div class="car-inner">
-      奥迪A3
-      <img src="//car2.autoimg.cn/cardfs/product/g19/M15/AC/7A/s_autohomecar__wKgFWFoAKRCAIW4kAAhC9eEHcg0466.jpg" alt="">
+      {{name}}
+      <img :src="img" alt="">
     </div>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    name: {
+      type: String,
+      default: 'demo车辆'
+    },
+    img: {
+      type: String,
+      default: null
+    }
+  }
+}
+</script>
+
 <style lang="less" scoped>
 .car-item {
   width: 160px;
@@ -17,6 +32,7 @@
     align-items: center;
     padding-bottom: 10px;
     border: 1px solid white;
+    cursor: pointer;
 
     &:hover {
       border: 1px solid #047eff;

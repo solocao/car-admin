@@ -12,8 +12,9 @@
           <Input v-model="name" placeholder="请输入车型名称"></Input>
         </FormItem>
         <FormItem label="汽车图片" prop="name">
-          <car-upload :img="img"></car-upload>
+          <car-upload :img.sync="img"></car-upload>
         </FormItem>
+        {{img}}
       </Form>
       <div slot="footer">
         <Button @click="cancel">取消</Button>
@@ -26,6 +27,12 @@
 import CarUpload from '_c/upload/CarUpload.vue'
 export default {
   components: { CarUpload },
+  props: {
+    sub_brand_id: {
+      type: String,
+      default: null
+    }
+  },
   data () {
     return {
       modal: false,
@@ -37,8 +44,33 @@ export default {
     cancel () {
       this.modal = false
     },
-    ok () {
-      this.modal = false
+    valid () {
+      if (this.name == null) {
+        this.$Message.warning('请输入车型名称')
+        return false
+      }
+      if (this.img == null) {
+        this.$Message.warning('请上传图片')
+        return false
+      }
+      return true
+    },
+    async  ok () {
+      if (this.valid()) {
+        const params = {
+          url: 'car',
+          payload: {
+            sub_brand_id: this.sub_brand_id,
+            name: this.name,
+            img: this.img
+          },
+          auth: true
+        }
+        const result = await this.post(params)
+        if (result.code === 1) {
+          this.modal = false
+        }
+      }
     }
 
   }
