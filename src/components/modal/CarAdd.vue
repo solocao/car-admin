@@ -29,14 +29,14 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       name: null,
       logo: null
     }
   },
   methods: {
-    validate() {
+    validate () {
       if (this.name == null) {
         this.$Message.warning('请输入品牌名称')
         return false
@@ -48,7 +48,7 @@ export default {
       return true
     },
     // 确定提交
-    async ok() {
+    async ok () {
       if (this.validate()) {
         const params = {
           url: 'car/brand',
@@ -63,7 +63,7 @@ export default {
       }
     },
     // 取消
-    cancel() {
+    cancel () {
       this.modal = false
     }
   }

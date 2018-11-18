@@ -9,23 +9,14 @@
             <span class="c-btn">新增品牌</span>
           </div>
           <div class="category-list">
-            <car-category></car-category>
-
+            <car-category :list="cat" v-for="cat in item.list" :key="cat._id"></car-category>
           </div>
         </div>
       </div>
-      <div class="car-wraper">
+      <div v-if="false" class="car-wraper">
         <div>
           <div class="category-initial">A</div>
           <div class="category-list">
-            <car-category></car-category>
-            <car-category></car-category>
-          </div>
-        </div>
-        <div>
-          <div class="category-initial">B</div>
-          <div class="category-list">
-            <car-category></car-category>
             <car-category></car-category>
           </div>
         </div>
