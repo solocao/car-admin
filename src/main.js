@@ -13,12 +13,13 @@ import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
 
-import { get, post, upload } from './api/index.js'
+import { get, post, put, upload } from './api/index.js'
 
 Vue.use(VuePreview)
 // 全局请求数据
 Vue.prototype.get = get
 Vue.prototype.post = post
+Vue.prototype.put = put
 Vue.prototype.upload = upload
 
 // import '@/mock'

@@ -35,6 +35,30 @@ export const get = (params) => {
   })
 }
 
+export const put = (params) => {
+  const { url, payload, auth } = params
+
+  let authHeader = {}
+  // 需要验证
+  if (auth) {
+    authHeader = {
+      headers: {
+        authorization: store.state.user.info.auth
+      }
+    }
+  }
+
+  // 去除没用数据包括null
+  Object.keys(payload).map(x => {
+    if (payload[x] === null || payload[x] === 'null' || payload[x] === '') {
+      delete payload[x]
+    }
+  })
+  return axios.put(url, qs.stringify(payload), authHeader).then(x => x.data).catch(function (err) {
+    console.log(JSON.stringify(err))
+  })
+}
+
 export const post = (params) => {
   const { url, payload, auth } = params
   let authHeader = {}

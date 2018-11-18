@@ -1,7 +1,7 @@
 <template>
   <div class="car-upload">
     <Upload :data="path" action="http://api.caowei.wang/ali-oss/upload/img" :on-success="handleSuccess" :on-remove="handRemove">
-      <div class="car-upload" v-if="cover==null">
+      <div class="car-upload" v-if="img==null">
         <div>
           <Icon :size="30" type="ios-cloud-upload-outline" />
         </div>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div v-else class="car-img">
-        <img :src="cover" alt="">
+        <img :src="img" alt="">
       </div>
     </Upload>
   </div>
@@ -26,7 +26,6 @@ export default {
   data () {
     return {
       url: null,
-      cover: null,
       path: {
         // 汽车品牌图片保存文件路径
         path: 'car/item'
@@ -38,14 +37,14 @@ export default {
     handleSuccess (res, file) {
       if (res.code === 1) {
         this.url = res.data.url
-        this.cover = res.data.cover
+        this.img = res.data.cover
         this.$emit('update:img', this.url)
       }
     },
     // 删除文件
     handRemove (file) {
       this.url = null
-      this.cover = null
+      this.img = null
       this.$emit('update:img', null)
     }
   }
