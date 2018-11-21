@@ -35,50 +35,29 @@
         </Row>
       </div>
     </Card>
-
     <Card>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
-    <Modal v-model="modal" title="编辑用户信息">
-      <Form :model="form" :label-width="60">
-        <FormItem label="头像">
-          <img class="z-header" :src="form.avatar" alt="">
-        </FormItem>
-        <FormItem label="登录账号">
-          <Input :readonly="nameDisable" placeholder="请输入登录账号" v-model="form.name"></Input>
-        </FormItem>
-        <FormItem label="昵称">
-          <Input v-model="form.nickname"></Input>
-        </FormItem>
-        <FormItem label="微信ID">
-          <Input v-model="form.openid"></Input>
-        </FormItem>
-
-        <FormItem label="手机号">
-          <Input v-model="form.mobile"></Input>
-        </FormItem>
-      </Form>
-      <div slot="footer">
-        <Button type="default" @click="modalHide">取消</Button>
-        <Button type="primary" @click="userUpdate">确定</Button>
-      </div>
-    </Modal>
+    <verify-check :show.sync="verifyShow" :data="verifyData"></verify-check>
   </div>
 </template>
 <script>
-
+import VerifyCheck from '@c/drawer/VerifyCheck'
 import UserCard from '@/components/user/UserCard'
 import { timeS, roleName } from '@/libs/help.js'
 export default {
   name: 'tables_page',
   components: {
-    UserCard
+    UserCard,
+    VerifyCheck
   },
   data () {
     return {
       total: 0,
       page: 1,
+      verifyShow: false,
+      verifyData: null,
       columns: [
         {
           title: '姓名',
@@ -111,7 +90,7 @@ export default {
           width: 100,
           render: (h, params) => {
             return <div>
-              <i-button size="small" type="primary" style="margin-left:6px" onClick={() => this.openModal(params.row)}>查看</i-button>
+              <i-button size="small" type="primary" style="margin-left:6px" onClick={() => this.openDrawer(params.row)}>查看</i-button>
             </div>
           }
         }
@@ -158,23 +137,10 @@ export default {
     modalHide () {
       this.modal = false
     },
-    // 打开模态框
-    openModal (row) {
-      this.modal = true
-      const { _id, name, nickname, avatar, openid, mobile } = row
-      if (name == '') {
-        this.nameDisable = false
-      } else {
-        this.nameDisable = true
-      }
-      this.form = {
-        upd_user_id: _id,
-        name,
-        nickname,
-        avatar,
-        openid,
-        mobile
-      }
+    // 打开侧边详细
+    openDrawer (row) {
+      this.verifyData = row
+      this.verifyShow = true
     },
 
     // 清空搜索条件
