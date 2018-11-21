@@ -185,7 +185,24 @@ export default [
       }
     ]
   },
-
+  // 用户认证
+  {
+    path: '/user/verify',
+    name: '用户认证',
+    component: Main,
+    tabMenu: 'user',
+    children: [
+      {
+        path: 'list',
+        name: 'verify_list',
+        meta: {
+          icon: 'ios-navigate',
+          title: '认证列表'
+        },
+        component: () => import('@/view/user/VerifyList.vue')
+      }
+    ]
+  },
   // 车辆
   {
     path: '/car',
