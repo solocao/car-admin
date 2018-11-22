@@ -83,7 +83,7 @@ export default {
           }
         },
         {
-          title: '安全类型/检查类型',
+          title: '活动类型/检查类型',
           key: 'safe',
           render: (h, params) => {
             const { safe_type: safeType, check_type: checkType } = params.row.hitch

@@ -92,7 +92,7 @@ export default {
   },
 
   mounted () {
-    this.getStatistic()
+    // this.getStatistic()
   }
 }
 </script>

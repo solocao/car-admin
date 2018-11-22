@@ -82,16 +82,26 @@ export default [
 
   // 广告列表
   {
-    path: '/ad',
+    path: '/active',
+    name: '出行活动',
     component: Main,
-    tabMenu: 'ad',
+    tabMenu: 'active',
     children: [
       {
-        path: 'list',
-        name: 'list',
+        path: 'add',
+        name: 'normal_list',
         meta: {
           icon: 'ios-navigate',
-          title: '广告列表'
+          title: '新增活动'
+        },
+        component: () => import('@v/active/normal/add.vue')
+      },
+      {
+        path: 'list1',
+        name: 'list1',
+        meta: {
+          icon: 'ios-navigate',
+          title: '活动列表'
         },
         component: () => import('@/view/ad/adList.vue')
       },
@@ -99,9 +109,10 @@ export default [
   },
   // 活动列表
   {
-    path: '/ad',
+    path: '/active',
+    name: '会员管理',
     component: Main,
-    tabMenu: 'ad',
+    tabMenu: 'active',
     children: [
       {
         path: 'list',
@@ -115,9 +126,9 @@ export default [
     ]
   },
   {
-    path: '/ad',
+    path: '/active',
     component: Main,
-    tabMenu: 'ad',
+    tabMenu: 'active',
     children: [
       {
         path: 'class',
@@ -555,7 +566,7 @@ export default [
         name: 'safe',
         meta: {
           icon: 'ios-body',
-          title: '安全类型'
+          title: '活动类型'
         },
         component: () => import('@/view/setting/safe.vue')
       }

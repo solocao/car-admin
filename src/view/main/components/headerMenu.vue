@@ -5,20 +5,20 @@
       <Icon type="ios-paper" />
       首页
       </MenuItem>
-      <!-- 广告 -->
+      <!-- 活动 -->
       <Submenu name="2">
         <template slot="title">
-          <span @click="()=>{this.menuSwitch('ad')}">
+          <span @click="()=>{this.menuSwitch('active')}">
             <Icon type="logo-buffer" />
-            广告
+            活动
           </span>
         </template>
-        <MenuGroup title="图片分类">
+        <MenuGroup title="出行活动">
           <MenuItem name="2-1">新增和启动</MenuItem>
           <MenuItem name="2-2">活跃分析</MenuItem>
           <MenuItem name="2-3">时段分析</MenuItem>
         </MenuGroup>
-        <MenuGroup title="视频分类">
+        <MenuGroup title="签到活动">
           <MenuItem name="2-4">用户留存</MenuItem>
           <MenuItem name="2-5">流失用户</MenuItem>
         </MenuGroup>

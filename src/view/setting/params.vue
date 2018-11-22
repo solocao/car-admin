@@ -23,18 +23,18 @@
           </Card>
         </div>
       </TabPane>
-      <TabPane label="安全类型">
+      <TabPane label="活动类型">
         <div class="safe-wrap">
-          <div class="item new-one" @click="()=>{ value=null;openModal('安全类型 新增栏目')}
+          <div class="item new-one" @click="()=>{ value=null;openModal('活动类型 新增栏目')}
            ">
             新增栏目
           </div>
           <Card v-for="safe in safeListData" :key="safe._id" class="item" :title="safe.name" icon="ios-options" :padding="0">
             <div slot="extra">
               <ButtonGroup size="small">
-                <Button type="error" @click="()=>{safe_id=safe._id;value='删除后不可恢复,是否确定删除';openModal('安全类型 栏目 删除')}">删除</Button>
-                <Button type="primary" @click="()=>{value=null;safe_id=safe._id;openModal('安全类型 选择项 新增')}">新增</Button>
-                <Button type="info" @click="()=>{value=safe.name;safe_id=safe._id;openModal('安全类型 栏目名称 编辑')}">编辑</Button>
+                <Button type="error" @click="()=>{safe_id=safe._id;value='删除后不可恢复,是否确定删除';openModal('活动类型 栏目 删除')}">删除</Button>
+                <Button type="primary" @click="()=>{value=null;safe_id=safe._id;openModal('活动类型 选择项 新增')}">新增</Button>
+                <Button type="info" @click="()=>{value=safe.name;safe_id=safe._id;openModal('活动类型 栏目名称 编辑')}">编辑</Button>
                 <Button @click="safeList">刷新</Button>
               </ButtonGroup>
             </div>
@@ -42,7 +42,7 @@
               <Cell v-for="item in safe.nodes" :title="item.name" :key="item._id">
                 <div slot="extra">
                   <ButtonGroup size="small">
-                    <Button @click="()=>{ safe_id=safe._id;node_id=item._id;value=item.name;openModal('安全类型 选择项 编辑')}">编辑</Button>
+                    <Button @click="()=>{ safe_id=safe._id;node_id=item._id;value=item.name;openModal('活动类型 选择项 编辑')}">编辑</Button>
                     <Button>删除</Button>
                   </ButtonGroup>
                 </div>
@@ -240,19 +240,19 @@ export default {
         this.checkUpdate()
         return
       }
-      if (this.title == '安全类型 新增栏目') {
+      if (this.title == '活动类型 新增栏目') {
         this.safeAddRoot()
       }
-      if (this.title == '安全类型 选择项 新增') {
+      if (this.title == '活动类型 选择项 新增') {
         this.safeNodeAdd()
       }
-      if (this.title == '安全类型 栏目名称 编辑') {
+      if (this.title == '活动类型 栏目名称 编辑') {
         this.safeRootName()
       }
-      if (this.title == '安全类型 选择项 编辑') {
+      if (this.title == '活动类型 选择项 编辑') {
         this.safeNodeName()
       }
-      if (this.title == '安全类型 栏目 删除') {
+      if (this.title == '活动类型 栏目 删除') {
         this.safeRootDelete()
       }
     }

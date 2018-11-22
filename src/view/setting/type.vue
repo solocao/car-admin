@@ -209,19 +209,19 @@ export default {
         this.checkUpdate()
         return
       }
-      if (this.title == '安全类型 新增栏目') {
+      if (this.title == '活动类型 新增栏目') {
         this.safeAddRoot()
       }
-      if (this.title == '安全类型 选择项 新增') {
+      if (this.title == '活动类型 选择项 新增') {
         this.safeNodeAdd()
       }
-      if (this.title == '安全类型 栏目名称 编辑') {
+      if (this.title == '活动类型 栏目名称 编辑') {
         this.safeRootName()
       }
-      if (this.title == '安全类型 选择项 编辑') {
+      if (this.title == '活动类型 选择项 编辑') {
         this.safeNodeName()
       }
-      if (this.title == '安全类型 栏目 删除') {
+      if (this.title == '活动类型 栏目 删除') {
         this.safeRootDelete()
       }
     }

@@ -23,7 +23,7 @@
           <Col :span="6">
           <span class="z-label">项目部门:</span>
           <div class="z-content">
-            <Input v-model="searchForm.departname" placeholder="输入安全类型关键字" />
+            <Input v-model="searchForm.departname" placeholder="输入活动类型关键字" />
           </div>
           </Col>
           <Col :span="6">
@@ -37,25 +37,25 @@
           <Col :span="6">
           <span class="z-label">编号:</span>
           <div class="z-content">
-            <Input v-model="searchForm._id" placeholder="输入安全类型关键字" />
+            <Input v-model="searchForm._id" placeholder="输入活动类型关键字" />
           </div>
           </Col>
           <Col :span="6">
-          <span class="z-label">安全类型:</span>
+          <span class="z-label">活动类型:</span>
           <div class="z-content">
-            <Input v-model="searchForm.safe_type" placeholder="输入安全类型关键字" />
+            <Input v-model="searchForm.safe_type" placeholder="输入活动类型关键字" />
           </div>
           </Col>
           <Col :span="6">
           <span class="z-label">检查类型:</span>
           <div class="z-content">
-            <Input v-model="searchForm.check_type" placeholder="输入安全类型关键字" />
+            <Input v-model="searchForm.check_type" placeholder="输入活动类型关键字" />
           </div>
           </Col>
           <Col :span="6">
           <span class="z-label">地址:</span>
           <div class="z-content">
-            <Input v-model="searchForm.address" placeholder="输入安全类型关键字" />
+            <Input v-model="searchForm.address" placeholder="输入活动类型关键字" />
           </div>
           </Col>
         </Row>
@@ -152,7 +152,7 @@ export default {
           }
         },
         {
-          title: '安全类型/检查类型',
+          title: '活动类型/检查类型',
           key: 'safe',
           width: 180,
           render: (h, params) => {

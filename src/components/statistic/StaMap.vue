@@ -61,7 +61,7 @@ export default {
     }
   },
   mounted () {
-    setTimeout(this.createCluster, 200)
+    // setTimeout(this.createCluster, 200)
   }
 }
 </script>

@@ -55,7 +55,7 @@
               <span>{{data.hitch.toname}}</span>
             </div>
             <div class="item">
-              <span class="title">安全类型:</span>
+              <span class="title">活动类型:</span>
               <span>{{data.hitch.safe_type}}</span>
             </div>
           </div>

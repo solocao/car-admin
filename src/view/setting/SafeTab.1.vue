@@ -1,6 +1,6 @@
 <template>
   <div class="safe-wrap">
-    <div class="item new-one" @click="openModal('安全类型 新增栏目')">
+    <div class="item new-one" @click="openModal('活动类型 新增栏目')">
       新增栏目{{safeListData}}
     </div>
 
@@ -79,7 +79,7 @@ export default {
     },
 
     ok () {
-      if (this.title == '安全类型 新增栏目') {
+      if (this.title == '活动类型 新增栏目') {
         this.safeAddRoot()
       }
     },
