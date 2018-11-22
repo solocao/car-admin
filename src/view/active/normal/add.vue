@@ -14,38 +14,16 @@
           发布
         </p>
         <p class="margin-top-10">
-          <Icon type="android-time"></Icon>&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp; 态：
+          <span class="fb-title">状态:</span>
           <Select size="small" style="width:90px" value="草稿">
             <Option v-for="item in articleStateList" :value="item.value" :key="item.value">{{ item.value }}</Option>
           </Select>
         </p>
+
         <p class="margin-top-10">
-          <Icon type="eye"></Icon>&nbsp;&nbsp;公开度：&nbsp;
-          <b>{{ Openness }}</b>
-          <Button v-show="!editOpenness" size="small" @click="handleEditOpenness" type="text">修改</Button>
-          <transition name="openness-con">
-            <div v-show="editOpenness" class="openness-radio-con">
-              <RadioGroup v-model="currentOpenness" vertical>
-                <Radio label="公开">
-                  公开
-                  <Checkbox v-show="currentOpenness === '公开'" v-model="topArticle">在首页置顶这篇文章</Checkbox>
-                </Radio>
-                <Radio label="密码">
-                  密码
-                  <Input v-show="currentOpenness === '密码'" style="width:120px" size="small" placeholder="请输入密码" />
-                </Radio>
-                <Radio label="私密"></Radio>
-              </RadioGroup>
-              <div>
-                <Button type="primary" @click="handleSaveOpenness">确认</Button>
-                <Button type="ghost" @click="cancelEditOpenness">取消</Button>
-              </div>
-            </div>
-          </transition>
-        </p>
-        <p class="margin-top-10">
-          <span v-if="publishTimeType === 'immediately'">立即发布</span>
-          <span v-else>定时：{{ publishTime }}</span>
+          <span class="fb-title" v-if="publishTimeType === 'immediately'">立即发布:</span>
+          <span class="fb-title" v-if="publishTimeType !== 'immediately'">定时:</span>
+          <span v-if="publishTimeType !== 'immediately'">{{ publishTime }}</span>
           <Button v-show="!editPublishTime" size="small" @click="handleEditPublishTime" type="text">修改</Button>
           <transition name="publish-time">
             <div v-show="editPublishTime" class="publish-time-picker-con">
@@ -54,7 +32,7 @@
               </div>
               <div class="margin-top-10">
                 <Button type="primary" @click="handleSavePublishTime">确认</Button>
-                <Button type="ghost" @click="cancelEditPublishTime">取消</Button>
+                <Button @click="cancelEditPublishTime" style="marginLeft:10px">取消</Button>
               </div>
             </div>
           </transition>
@@ -106,7 +84,7 @@ export default {
   components: {
     ContentForm
   },
-  data() {
+  data () {
     return {
       content: '<h2>I am Example</h2>',
       editorOption: {
@@ -150,14 +128,14 @@ export default {
   },
   methods: {
     // 获取分类列表树
-    async categoryList() {
+    async categoryList () {
       const params = {
         url: 'category/list',
         payload: {}
       }
       const result = await this.post(params)
       const data = result.data
-      function nodeTree(tree) {
+      function nodeTree (tree) {
         tree.forEach(e => {
           e.title = e.name
           e.expand = true
@@ -171,50 +149,50 @@ export default {
       nodeTree(data)
       this.classificationList = data
     },
-    editArticlePath() {
+    editArticlePath () {
       this.editLink = !this.editLink
       this.editPathButtonType = this.editPathButtonType === 'ghost' ? 'success' : 'ghost'
       this.editPathButtonText = this.editPathButtonText === '编辑' ? '完成' : '编辑'
     },
-    handleEditOpenness() {
+    handleEditOpenness () {
       this.editOpenness = !this.editOpenness
     },
-    handleSaveOpenness() {
+    handleSaveOpenness () {
       this.Openness = this.currentOpenness
       this.editOpenness = false
     },
-    cancelEditOpenness() {
+    cancelEditOpenness () {
       this.currentOpenness = this.Openness
       this.editOpenness = false
     },
-    handleEditPublishTime() {
+    handleEditPublishTime () {
       this.editPublishTime = !this.editPublishTime
     },
-    handleSavePublishTime() {
+    handleSavePublishTime () {
       this.publishTimeType = 'timing'
       this.editPublishTime = false
     },
-    cancelEditPublishTime() {
+    cancelEditPublishTime () {
       this.publishTimeType = 'immediately'
       this.editPublishTime = false
     },
-    setPublishTime(datetime) {
+    setPublishTime (datetime) {
       this.publishTime = datetime
     },
-    setClassificationInAll(selectedArray) {
+    setClassificationInAll (selectedArray) {
       this.classificationFinalSelected = selectedArray.map(item => {
         return item.title
       })
       localStorage.classificationSelected = JSON.stringify(this.classificationFinalSelected) // 本地存储所选目录列表
     },
-    setClassificationInOffen(selectedArray) {
+    setClassificationInOffen (selectedArray) {
       this.classificationFinalSelected = selectedArray
     },
-    handleAddNewTag() {
+    handleAddNewTag () {
       this.addingNewTag = !this.addingNewTag
     },
 
-    handlePreview() {
+    handlePreview () {
       if (this.canPublish()) {
         if (this.publishTimeType === 'immediately') {
           let date = new Date()
@@ -234,10 +212,10 @@ export default {
         })
       }
     },
-    handleSaveDraft() {
+    handleSaveDraft () {
 
     },
-    async handlePublish() {
+    async handlePublish () {
       if (!this.$refs.form.validForm) {
         return false
       }
@@ -246,7 +224,7 @@ export default {
       const params = {
         url: '/article/add',
         payload: Object.assign({}, formData, {
-          category: JSON.stringify(this.$refs.categoryTree.getCheckedNodes().map(x => { return x._id }))        }),
+          category: JSON.stringify(this.$refs.categoryTree.getCheckedNodes().map(x => { return x._id })) }),
         auth: true
       }
       const result = await this.post(params)
@@ -265,18 +243,18 @@ export default {
         })
       }
     },
-    handleSelectTag() {
+    handleSelectTag () {
       localStorage.tagsList = JSON.stringify(this.articleTagSelected) // 本地存储文章标签列表
     }
   },
   computed: {
-    completeUrl() {
+    completeUrl () {
       let finalUrl = this.fixedLink + this.articlePath
       localStorage.finalUrl = finalUrl // 本地存储完整文章路径
       return finalUrl
     }
   },
-  mounted() {
+  mounted () {
     // this.categoryList()
     this.classificationList = [
       {
@@ -495,5 +473,10 @@ export default {
   height: 0;
   margin-top: 0;
   padding: 0px 0;
+}
+
+.fb-title {
+  width: 68px;
+  display: inline-block;
 }
 </style>
