@@ -1,6 +1,25 @@
 <template>
-  <div>
-    <quill-editor v-model="content" ref="myQuillEditor" :options="editorOption" @ready="onEditorReady($event)">
+  <div style="height:350px">
+    <quill-editor v-model="content" ref="myQuillEditor" style="height:300px" :options="editorOption" @ready="onEditorReady($event)">
+      <div id="toolbar" slot="toolbar">
+        <!-- Add a bold button -->
+        <button class="ql-bold">Bold</button>
+        <button class="ql-italic">Italic</button>
+        <!-- Add font size dropdown -->
+        <select class="ql-size">
+          <option value="small"></option>
+          <!-- Note a missing, thus falsy value, is used to reset to default -->
+          <option selected></option>
+          <option value="large"></option>
+          <option value="huge"></option>
+        </select>
+        <select class="ql-font">
+          <option selected="selected"></option>
+          <option value="serif"></option>
+          <option value="monospace"></option>
+        </select>
+      </div>
+
     </quill-editor>
   </div>
 </template>
@@ -36,15 +55,7 @@ export default {
               return res.info
             }
           },
-          toolbar: {
-            container: container,
-            handlers: {
-              'image': function () {
-                console.log(this.quill.id)
-                QuillWatch.emit(this.quill.id)
-              }
-            }
-          }
+          toolbar: '#toolbar'
         }
       }
 
@@ -68,3 +79,10 @@ export default {
 
 }
 </script>
+
+<style lang="less" scoped>
+.ql-container {
+  min-height: 300px !important;
+  background: red;
+}
+</style>
