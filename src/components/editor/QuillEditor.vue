@@ -20,7 +20,7 @@ export default {
   components: {
     quillEditor
   },
-  data() {
+  data () {
     return {
       content: '',
       editorOption: {
@@ -51,16 +51,16 @@ export default {
     }
   },
   methods: {
-    onEditorBlur(quill) {
+    onEditorBlur (quill) {
       console.log('editor blur!', quill)
     },
-    onEditorFocus(quill) {
+    onEditorFocus (quill) {
       console.log('editor focus!', quill)
     },
-    onEditorReady(quill) {
+    onEditorReady (quill) {
       console.log('editor ready!', quill)
     },
-    onEditorChange({ quill, html, text }) {
+    onEditorChange ({ quill, html, text }) {
       console.log('editor change!', quill, html, text)
       this.content = html
     }

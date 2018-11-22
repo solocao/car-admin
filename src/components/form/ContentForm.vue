@@ -4,16 +4,13 @@
       <FormItem prop="title" label="活动标题">
         <Input v-model="form.title" />
       </FormItem>
-      <FormItem label="时间范围">
-        <Input v-model="form.keyword" />
+      <FormItem label="活动时间">
+        <DatePicker type="daterange" :options="options2" placement="bottom-end" placeholder="请选择活动时间" style="width: 520px"></DatePicker>
       </FormItem>
-      <FormItem label="活动描述">
-        <Input v-model="form.description" />
+      <FormItem label="活动简介">
+        <Input v-model="form.title" />
       </FormItem>
-      <FormItem label="关键字">
-        <Input v-model="form.keyword" />
-      </FormItem>
-      <FormItem label="商品图片">
+      <FormItem label="展示图片">
         <upload-card ref="uploadCard"></upload-card>
       </FormItem>
     </Form>
@@ -30,7 +27,7 @@ export default {
     UploadCard,
     QuillEditor
   },
-  data () {
+  data() {
     return {
       // 活动内容
       form: {
@@ -55,6 +52,34 @@ export default {
         // 公开状态 -1私密，0需要密码，1公开
         public: 1
       },
+      options2: {
+        shortcuts: [
+          {
+            text: '一星期',
+            value() {
+              const start = new Date()
+              const end = start.getTime() + 3600 * 1000 * 24 * 7
+              return [start, end]
+            }
+          },
+          {
+            text: '一个月',
+            value() {
+              const start = new Date()
+              const end = start.getTime() - 3600 * 1000 * 24 * 30
+              return [start, end]
+            }
+          },
+          {
+            text: '三个月',
+            value() {
+              const start = new Date()
+              const end = start.getTime() - 3600 * 1000 * 24 * 90
+              return [start, end]
+            }
+          }
+        ]
+      },
       tags: [],
       // 验证条件
       ruleValidate: {
@@ -69,11 +94,11 @@ export default {
     }
   },
   methods: {
-    avtiveTag (t) {
+    avtiveTag(t) {
       t.active = !t.active
     },
     // 验证表单数据是否填写完成
-    validForm () {
+    validForm() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.$Message.success('Success!')
@@ -85,7 +110,7 @@ export default {
       })
     },
     // 获取form表单信息
-    getForm () {
+    getForm() {
       // 获取图片
       this.form.img_list = this.$refs.uploadCard.getImageList()
       // 活动标签
@@ -100,7 +125,7 @@ export default {
       return formCory
     },
     // 设置form表单信息
-    setForm (form) {
+    setForm(form) {
       console.log('看看表单信息')
       console.log(form)
       // 设置图片
@@ -119,7 +144,7 @@ export default {
     },
 
     // 允许发布之前的权限验证
-    canPublish () {
+    canPublish() {
       this.avtiveTags = this.tags.filter(x => x.active === true)
       if (this.avtiveTags.length === 0) {
         this.$Message.error('请选择活动标签')
@@ -139,7 +164,7 @@ export default {
     }
 
   },
-  mounted () {
+  mounted() {
   }
 }
 </script>
