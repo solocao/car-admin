@@ -5,16 +5,16 @@
         <Input v-model="form.title" placeholder="请输入活动标题" />
       </FormItem>
       <FormItem label="活动时间">
-        <DatePicker type="daterange" :options="dateOptions" placement="bottom-end" placeholder="请选择活动时间" style="width: 520px"></DatePicker>
+        <DatePicker type="daterange" :options="dateOptions" placement="bottom-end" placeholder="请选择活动时间" style="width: 526px"></DatePicker>
       </FormItem>
       <FormItem label="活动简介">
         <Input v-model="form.brief" placeholder="请输入活动简介" />
       </FormItem>
       <FormItem label="活动封面">
-        <upload-card ref="uploadCard"></upload-card>
+        <image-upload></image-upload>
       </FormItem>
       <FormItem label="展示图片">
-        <upload-card ref="uploadCard"></upload-card>
+        <image-upload></image-upload>
       </FormItem>
     </Form>
     <div class="margin-top-20">
@@ -24,9 +24,13 @@
 </template>
 <script>
 import UploadCard from '@c/upload/UploadCard.vue'
+
+import ImageUpload from '@components/upload/ImageUpload.vue'
+
 import QuillEditor from '@components/editor/QuillEditor'
 export default {
   components: {
+    ImageUpload,
     UploadCard,
     QuillEditor
   },

@@ -34,6 +34,7 @@ module.exports = {
       .set('_c', resolve('src/components'))
       .set('@c', resolve('src/components'))
       .set('@components', resolve('src/components'))
+      .set('@config', resolve('src/config'))
       .set('@v', resolve('src/view'))
       .set('@style', resolve('src/style'))
       .set('_conf', resolve('config'))

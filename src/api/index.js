@@ -1,16 +1,12 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../store'
-import config from '../config.js'
-
-console.log(config)
+import config from '@config'
 
 axios.defaults.timeout = 5000
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 axios.defaults.baseURL = config.apiUrl
-
-// axios.defaults.baseURL = 'http://wx.caowei.wang'
 
 // axios.defaults.withCredentials = true
 
