@@ -1,10 +1,10 @@
 <template>
   <div class="image-upload">
-    <!-- <div>
-      <img class="up-image" src='https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2645095865,1734395446&fm=11&gp=0.jpg' alt="">
-    </div> -->
-
-    <Upload action="//jsonplaceholder.typicode.com/posts/">
+    <div class="up-image" v-for="(img, index) in uploadList" :key="index">
+      <Icon class="delete-img" type="md-close-circle" size="20" color="#ababab" @click="deleteImg(index)" />
+      <img :src="img" alt="">
+    </div>
+    <Upload v-if="uploadList.length<this.maxNum" :action="uploadUrl" :data="uploadPath" :on-success="uploadSuccess" :show-upload-list="false">
       <div class="update-click" @click="aaaa">
         <Icon type="md-image" size="50" color="#ababab" />
         <div class="up-bold">上传图片</div>
@@ -14,39 +14,91 @@
 </template>
 <script>
 import config from '@config'
+import dayjs from 'dayjs'
 export default {
-
+  props: {
+    // 最大支持图片数量
+    maxNum: {
+      type: Number,
+      default: 1
+    }
+  },
   data () {
     return {
-      default_img: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2645095865,1734395446&fm=11&gp=0.jpg'
+      uploadUrl: config.apiUrl + '/ali-oss/upload/img',
+      uploadPath: {
+        path: 'verify/' + dayjs().format('YYYY-MM-DD')
+      },
+      uploadList: []
     }
   },
   methods: {
-    aaaa () {
-      console.log(config)
+    uploadSuccess (response) {
+      if (response.code === 1) {
+        this.$Message.info('图片上传成功')
+        this.uploadList.push(response.data.url)
+        console.log(this.uploadList)
+      }
+    },
+    // 根据索引 删除图片
+    deleteImg (index) {
+      this.uploadList.splice(index, 1)
+    },
+    // 获取图片
+    getImg () {
+      return this.uploadList
     }
+  },
+  mounted () {
+    console.log('看看config')
+    console.log(this.uploadUrl)
   }
 }
 </script>
 
 <style lang="less" scoped>
 .image-upload {
+  display: flex;
+  flex-wrap: wrap;
+
   .up-image {
-    width: 180px;
-    height: 120px;
+    width: 150px;
+    height: 100px;
     border-radius: 6px;
-    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    margin-right: 10px;
+    overflow: hidden;
+    position: relative;
+    &:hover {
+      .delete-img {
+        visibility: visible;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .delete-img {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      cursor: pointer;
+      visibility: hidden;
+    }
   }
   .update-click {
     width: 150px;
     height: 100px;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0px 0px 4px gray;
+    box-shadow: 0px 0px 2px gray;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
 
     .up-bold {
       font-size: 16px;
