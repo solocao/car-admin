@@ -62,7 +62,7 @@ export const post = (params) => {
   if (auth) {
     authHeader = {
       headers: {
-        authorization: store.state.user.info.auth
+        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YmVhOGU3NjIxYTg2ZDYzZWM3ZTg0MjkiLCJleHAiOjE1NzM5NzA3MDEsImlhdCI6MTU0Mjg2NjcwMX0.cxIyMqTkoftV306OnoerWpfnk5OiswHJdmZVwx8Yi8U' || store.state.user.info.auth
       }
     }
   }

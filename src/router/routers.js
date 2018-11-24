@@ -89,7 +89,7 @@ export default [
     children: [
       {
         path: 'add',
-        name: 'normal_list',
+        name: 'normal_add',
         meta: {
           icon: 'ios-navigate',
           title: '新增活动'
@@ -97,13 +97,13 @@ export default [
         component: () => import('@v/active/normal/add.vue')
       },
       {
-        path: 'list1',
-        name: 'list1',
+        path: 'list',
+        name: 'normal_list',
         meta: {
           icon: 'ios-navigate',
           title: '活动列表'
         },
-        component: () => import('@/view/ad/adList.vue')
+        component: () => import('@view/active/normal/list.vue')
       },
     ]
   },

@@ -13,6 +13,8 @@ import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
 
+import '@/style/common.less'
+
 import { get, post, put, upload } from './api/index.js'
 
 Vue.use(VuePreview)

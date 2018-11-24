@@ -83,8 +83,9 @@ export default {
         title: [{ required: true, message: '活动标题不能为空', trigger: 'blur' }],
         date_range: [{ required: true, type: 'array', message: '活动时间不能为空', trigger: 'change' },
           { validator (rule, value, callback, source, options) {
-            const errors = ['活动时间不能为空']
-            if (value[0] === '') { callback(errors) }
+            const errors = []
+            if (value[0] === '') { errors.push('活动时间不能为空') }
+            callback(errors)
           } }],
         brief: [
           { required: true, message: '活动简介不能为空', trigger: 'blur' }
@@ -101,8 +102,8 @@ export default {
   methods: {
 
     // 验证表单
-    valid () {
-      this.$refs.form.validate((valid) => {
+    async  valid () {
+      return this.$refs.form.validate((valid) => {
         if (valid) {
           return true
         } else {
@@ -124,21 +125,16 @@ export default {
     },
     // 设置form表单信息
     set (form) {
-      console.log('看看表单信息')
-      console.log(form)
-      // 设置图片
-      this.$refs.uploadCard.setImageList(form.img_list)
-      // id
-      this.form._id = form._id
+      // 活动标题
+      this.form.title = '测试活动'
       // 标题
-      this.form.title = form.title
-      // 关键词
-      this.form.keyword = form.keyword
-      // 描述
-      this.form.description = form.description
-      // 内容
-      this.form.content = form.content
-      // 分类 form.category
+      this.form.brief = '测试活动简介'
+
+      // 封面图片
+      this.form.cover_img = ['http://hehecms.oss-cn-hangzhou.aliyuncs.com/verify…5%A7%202018-11-19%20%E4%B8%8B%E5%8D%884.15.16.png']
+      this.form.show_img = ['http://hehecms.oss-cn-hangzhou.aliyuncs.com/verify…5%A7%202018-11-19%20%E4%B8%8B%E5%8D%884.15.16.png']
+
+      this.form.content = '活动内容'
     }
 
   },
