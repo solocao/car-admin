@@ -1,20 +1,21 @@
 <template>
-  <div class="article-content-form">
+  <div class="active-form">
+    {{form.cover_img}}
     <Form ref="form" :model="form" :label-width="80" :rules="ruleValidate">
-      <FormItem prop="title" label="活动标题">
+      <FormItem label="活动标题" prop="title">
         <Input v-model="form.title" placeholder="请输入活动标题" />
       </FormItem>
-      <FormItem label="活动时间">
-        <DatePicker type="daterange" :options="dateOptions" placement="bottom-end" placeholder="请选择活动时间" style="width: 526px"></DatePicker>
+      <FormItem label="活动时间" prop="date_range">
+        <DatePicker v-model="form.date_range" type="daterange" :options="dateOptions" placement="bottom-end" placeholder="请选择活动时间" style="width: 526px"></DatePicker>
       </FormItem>
-      <FormItem label="活动简介">
+      <FormItem label="活动简介" prop="brief">
         <Input v-model="form.brief" placeholder="请输入活动简介" />
       </FormItem>
-      <FormItem label="活动封面">
-        <image-upload></image-upload>
+      <FormItem label="活动封面" prop="cover_img">
+        <image-upload :img.sync="form.cover_img"></image-upload>
       </FormItem>
-      <FormItem label="展示图片">
-        <image-upload></image-upload>
+      <FormItem label="展示图片" prop="show_img">
+        <image-upload :img.sync="form.show_img" :maxNum="5"></image-upload>
       </FormItem>
     </Form>
     <div class="margin-top-20">
@@ -42,6 +43,8 @@ export default {
         _id: null,
         // 活动标题
         title: null,
+        // 活动时间
+        date_range: null,
         // 活动简介
         brief: null,
         // 活动封面图
@@ -80,22 +83,30 @@ export default {
       tags: [],
       // 验证条件
       ruleValidate: {
-        title: [
-          { required: true, message: '活动标题不能为空', trigger: 'blur' }
+        title: [{ required: true, message: '活动标题不能为空', trigger: 'blur' }],
+        date_range: [{ required: true, type: 'array', message: '活动时间不能为空', trigger: 'change' },
+          { validator (rule, value, callback, source, options) {
+            const errors = ['活动时间不能为空']
+            if (value[0] === '') { callback(errors) }
+          } }],
+        brief: [
+          { required: true, message: '活动简介不能为空', trigger: 'blur' }
         ],
-        city: [
-          { required: true, message: 'Please select the city', trigger: 'change' }
+        cover_img: [
+          { required: true, type: 'array', min: 1, message: '请上传活动封面', trigger: 'blur' }
+        ],
+        show_img: [
+          { required: true, type: 'array', min: 1, message: '请上传展示图片', trigger: 'blur' }
         ]
       }
-
     }
   },
   methods: {
     avtiveTag (t) {
       t.active = !t.active
     },
-    // 验证表单数据是否填写完成
-    validForm () {
+    // 验证表单
+    valid () {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.$Message.success('Success!')
@@ -166,6 +177,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.article-content-form {
+.active-form {
 }
 </style>

@@ -4,7 +4,7 @@
     <Row>
       <Col span="17">
       <Card>
-        <content-form ref="form"></content-form>
+        <active-form ref="form"></active-form>
       </Card>
       </Col>
       <Col span="7" class="padding-left-10">
@@ -19,7 +19,6 @@
             <Option v-for="item in articleStateList" :value="item.value" :key="item.value">{{ item.value }}</Option>
           </Select>
         </p>
-
         <p class="margin-top-10">
           <span class="fb-title" v-if="publishTimeType === 'immediately'">立即发布:</span>
           <span class="fb-title" v-if="publishTimeType !== 'immediately'">定时:</span>
@@ -42,7 +41,7 @@
             <Button @click="handleSaveDraft">保存草稿</Button>
           </span>
           <span class="publish-button">
-            <Button @click="handlePublish" :loading="publishLoading" type="primary">发布</Button>
+            <Button @click="publicAcitve" :loading="publishLoading" type="primary">发布活动</Button>
           </span>
         </Row>
       </Card>
@@ -77,16 +76,15 @@
 </template>
 
 <script>
-import ContentForm from '@c/form/ContentForm.vue'
+import ActiveForm from '@c/form/ActiveForm.vue'
 
 export default {
   name: 'artical-publish',
   components: {
-    ContentForm
+    ActiveForm
   },
   data () {
     return {
-      content: '<h2>I am Example</h2>',
       editorOption: {
         // some quill options
       },
@@ -191,28 +189,8 @@ export default {
     handleAddNewTag () {
       this.addingNewTag = !this.addingNewTag
     },
-
-    handlePreview () {
-      if (this.canPublish()) {
-        if (this.publishTimeType === 'immediately') {
-          let date = new Date()
-          let year = date.getFullYear()
-          let month = date.getMonth() + 1
-          let day = date.getDate()
-          let hour = date.getHours()
-          let minute = date.getMinutes()
-          let second = date.getSeconds()
-          localStorage.publishTime = year + ' 年 ' + month + ' 月 ' + day + ' 日 -- ' + hour + ' : ' + minute + ' : ' + second
-        } else {
-          localStorage.publishTime = this.publishTime // 本地存储发布时间
-        }
-        localStorage.content = tinymce.activeEditor.getContent()
-        this.$router.push({
-          name: 'preview'
-        })
-      }
-    },
-    handleSaveDraft () {
+    // 保存草稿
+    saveActiveDraft () {
 
     },
     async handlePublish () {
@@ -242,6 +220,10 @@ export default {
           duration: 3
         })
       }
+    },
+    // 发布活动
+    async publicAcitve () {
+      this.$refs.form.valid()
     },
     handleSelectTag () {
       localStorage.tagsList = JSON.stringify(this.articleTagSelected) // 本地存储文章标签列表

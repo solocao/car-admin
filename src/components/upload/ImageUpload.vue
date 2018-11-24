@@ -5,7 +5,7 @@
       <img :src="img" alt="">
     </div>
     <Upload v-if="uploadList.length<this.maxNum" :action="uploadUrl" :data="uploadPath" :on-success="uploadSuccess" :show-upload-list="false">
-      <div class="update-click" @click="aaaa">
+      <div class="update-click">
         <Icon type="md-image" size="50" color="#ababab" />
         <div class="up-bold">上传图片</div>
       </div>
@@ -17,6 +17,10 @@ import config from '@config'
 import dayjs from 'dayjs'
 export default {
   props: {
+    // 需要改变的img
+    img: {
+      type: Array
+    },
     // 最大支持图片数量
     maxNum: {
       type: Number,
@@ -29,6 +33,7 @@ export default {
       uploadPath: {
         path: 'verify/' + dayjs().format('YYYY-MM-DD')
       },
+      // 上传列表
       uploadList: []
     }
   },
@@ -49,9 +54,10 @@ export default {
       return this.uploadList
     }
   },
-  mounted () {
-    console.log('看看config')
-    console.log(this.uploadUrl)
+  watch: {
+    uploadList (val) {
+      this.$emit('update:img', val)
+    }
   }
 }
 </script>
@@ -67,6 +73,7 @@ export default {
     border-radius: 6px;
     box-shadow: 0px 0px 2px gray;
     margin-right: 10px;
+    margin-top: 10px;
     overflow: hidden;
     position: relative;
     &:hover {
@@ -99,6 +106,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+    margin-top: 10px;
 
     .up-bold {
       font-size: 16px;
