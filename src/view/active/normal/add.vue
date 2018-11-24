@@ -21,7 +21,7 @@
         </p>
         <p class="margin-top-10">
           <span class="fb-title" v-if="publishTimeType === 'immediately'">立即发布:</span>
-          <span class="fb-title" v-if="publishTimeType !== 'immediately'">定时:</span>
+          <span class="fb-title" v-if="publishTimeType !== 'immediately'">定时发布:</span>
           <span v-if="publishTimeType !== 'immediately'">{{ publishTime }}</span>
           <Button v-show="!editPublishTime" size="small" @click="handleEditPublishTime" type="text">修改</Button>
           <transition name="publish-time">
@@ -83,7 +83,7 @@ export default {
   components: {
     ActiveForm
   },
-  data () {
+  data() {
     return {
       editorOption: {
         // some quill options
@@ -126,14 +126,14 @@ export default {
   },
   methods: {
     // 获取分类列表树
-    async categoryList () {
+    async categoryList() {
       const params = {
         url: 'category/list',
         payload: {}
       }
       const result = await this.post(params)
       const data = result.data
-      function nodeTree (tree) {
+      function nodeTree(tree) {
         tree.forEach(e => {
           e.title = e.name
           e.expand = true
@@ -147,53 +147,53 @@ export default {
       nodeTree(data)
       this.classificationList = data
     },
-    editArticlePath () {
+    editArticlePath() {
       this.editLink = !this.editLink
       this.editPathButtonType = this.editPathButtonType === 'ghost' ? 'success' : 'ghost'
       this.editPathButtonText = this.editPathButtonText === '编辑' ? '完成' : '编辑'
     },
-    handleEditOpenness () {
+    handleEditOpenness() {
       this.editOpenness = !this.editOpenness
     },
-    handleSaveOpenness () {
+    handleSaveOpenness() {
       this.Openness = this.currentOpenness
       this.editOpenness = false
     },
-    cancelEditOpenness () {
+    cancelEditOpenness() {
       this.currentOpenness = this.Openness
       this.editOpenness = false
     },
-    handleEditPublishTime () {
+    handleEditPublishTime() {
       this.editPublishTime = !this.editPublishTime
     },
-    handleSavePublishTime () {
+    handleSavePublishTime() {
       this.publishTimeType = 'timing'
       this.editPublishTime = false
     },
-    cancelEditPublishTime () {
+    cancelEditPublishTime() {
       this.publishTimeType = 'immediately'
       this.editPublishTime = false
     },
-    setPublishTime (datetime) {
+    setPublishTime(datetime) {
       this.publishTime = datetime
     },
-    setClassificationInAll (selectedArray) {
+    setClassificationInAll(selectedArray) {
       this.classificationFinalSelected = selectedArray.map(item => {
         return item.title
       })
       localStorage.classificationSelected = JSON.stringify(this.classificationFinalSelected) // 本地存储所选目录列表
     },
-    setClassificationInOffen (selectedArray) {
+    setClassificationInOffen(selectedArray) {
       this.classificationFinalSelected = selectedArray
     },
-    handleAddNewTag () {
+    handleAddNewTag() {
       this.addingNewTag = !this.addingNewTag
     },
     // 保存草稿
-    saveActiveDraft () {
+    saveActiveDraft() {
 
     },
-    async handlePublish () {
+    async handlePublish() {
       if (!this.$refs.form.validForm) {
         return false
       }
@@ -202,7 +202,7 @@ export default {
       const params = {
         url: '/article/add',
         payload: Object.assign({}, formData, {
-          category: JSON.stringify(this.$refs.categoryTree.getCheckedNodes().map(x => { return x._id })) }),
+          category: JSON.stringify(this.$refs.categoryTree.getCheckedNodes().map(x => { return x._id }))        }),
         auth: true
       }
       const result = await this.post(params)
@@ -222,21 +222,24 @@ export default {
       }
     },
     // 发布活动
-    async publicAcitve () {
-      this.$refs.form.valid()
+    async publicAcitve() {
+      if (this.$refs.form.valid()) {
+        this.$refs.form.get()
+
+      }
     },
-    handleSelectTag () {
+    handleSelectTag() {
       localStorage.tagsList = JSON.stringify(this.articleTagSelected) // 本地存储文章标签列表
     }
   },
   computed: {
-    completeUrl () {
+    completeUrl() {
       let finalUrl = this.fixedLink + this.articlePath
       localStorage.finalUrl = finalUrl // 本地存储完整文章路径
       return finalUrl
     }
   },
-  mounted () {
+  mounted() {
     // this.categoryList()
     this.classificationList = [
       {

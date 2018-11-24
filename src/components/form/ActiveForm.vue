@@ -1,6 +1,6 @@
 <template>
   <div class="active-form">
-    {{form.cover_img}}
+    {{form.content}}
     <Form ref="form" :model="form" :label-width="80" :rules="ruleValidate">
       <FormItem label="活动标题" prop="title">
         <Input v-model="form.title" placeholder="请输入活动标题" />
@@ -19,20 +19,16 @@
       </FormItem>
     </Form>
     <div class="margin-top-20">
-      <quill-editor></quill-editor>
+      <quill-editor :content.sync="form.content"></quill-editor>
     </div>
   </div>
 </template>
 <script>
-import UploadCard from '@c/upload/UploadCard.vue'
-
 import ImageUpload from '@components/upload/ImageUpload.vue'
-
 import QuillEditor from '@components/editor/QuillEditor'
 export default {
   components: {
     ImageUpload,
-    UploadCard,
     QuillEditor
   },
   data () {
@@ -50,7 +46,8 @@ export default {
         // 活动封面图
         cover_img: null,
         // 活动展示图
-        show_img: null
+        show_img: null,
+        content: null
       },
       dateOptions: {
         shortcuts: [
@@ -58,7 +55,7 @@ export default {
             text: '一星期',
             value () {
               const start = new Date()
-              const end = start.getTime() + 3600 * 1000 * 24 * 7
+              const end = new Date(start.getTime() + 3600 * 1000 * 24 * 7)
               return [start, end]
             }
           },
@@ -66,7 +63,7 @@ export default {
             text: '一个月',
             value () {
               const start = new Date()
-              const end = start.getTime() - 3600 * 1000 * 24 * 30
+              const end = new Date(start.getTime() + 3600 * 1000 * 24 * 30)
               return [start, end]
             }
           },
@@ -74,7 +71,7 @@ export default {
             text: '三个月',
             value () {
               const start = new Date()
-              const end = start.getTime() - 3600 * 1000 * 24 * 90
+              const end = new Date(start.getTime() + 3600 * 1000 * 24 * 90)
               return [start, end]
             }
           }
@@ -102,38 +99,31 @@ export default {
     }
   },
   methods: {
-    avtiveTag (t) {
-      t.active = !t.active
-    },
+
     // 验证表单
     valid () {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
           return true
         } else {
-          this.$Message.error('Fail!')
+          this.$Message.error('请完善活动内容')
           return false
         }
       })
     },
-    // 获取form表单信息
-    getForm () {
-      // 获取图片
-      this.form.img_list = this.$refs.uploadCard.getImageList()
-      // 活动标签
-      this.form.tag = JSON.stringify(this.tags.filter(x => x.active === true).map(x => { return x._id }))
-      // 获取活动内容
-      let formCory = JSON.parse(JSON.stringify(this.form))
-      const key = Object.keys(formCory).forEach(x => {
-        if (formCory[x] === null || formCory[x] === '' || formCory[x] === [] || formCory[x] === '[]') {
-          delete formCory[x]
-        }
-      })
-      return formCory
+    // 获取form表单内容
+    get () {
+      let formCopy = JSON.parse(JSON.stringify(this.form))
+      const { date_range } = formCopy
+      delete formCopy.date_range
+      formCopy.start_at = date_range[0]
+      formCopy.end_at = date_range[1]
+      formCopy.cover_img = formCopy.cover_img[0]
+      formCopy.show_img = JSON.stringify(formCopy.show_img)
+      return formCopy
     },
     // 设置form表单信息
-    setForm (form) {
+    set (form) {
       console.log('看看表单信息')
       console.log(form)
       // 设置图片
@@ -149,26 +139,6 @@ export default {
       // 内容
       this.form.content = form.content
       // 分类 form.category
-    },
-
-    // 允许发布之前的权限验证
-    canPublish () {
-      this.avtiveTags = this.tags.filter(x => x.active === true)
-      if (this.avtiveTags.length === 0) {
-        this.$Message.error('请选择活动标签')
-        return false
-      }
-      this.activeCatogories = this.$refs.categoryTree.getCheckedNodes()
-      if (this.activeCatogories.length === 0) {
-        this.$Message.error('请选择活动分类')
-        return false
-      }
-      if (this.title.length === 0) {
-        this.$Message.error('请输入活动标题')
-        return false
-      } else {
-        return true
-      }
     }
 
   },

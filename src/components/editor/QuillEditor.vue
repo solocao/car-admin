@@ -1,6 +1,6 @@
 <template>
   <div style="height:350px">
-    <quill-editor v-model="content" ref="myQuillEditor" style="height:300px" :options="editorOption" @ready="onEditorReady($event)">
+    <quill-editor ref="myQuillEditor" style="height:300px" :options="editorOption" @ready="onEditorReady($event)" @change="onEditorChange">
       <div id="toolbar" slot="toolbar">
         <!-- Add a bold button -->
         <button class="ql-bold">Bold</button>
@@ -36,12 +36,16 @@ Quill.register('modules/ImageExtend', ImageExtend)
 Quill.register('modules/imageResize', ImageResize)
 
 export default {
+  props: {
+    content: {
+      type: String
+    }
+  },
   components: {
     quillEditor
   },
   data () {
     return {
-      content: '',
       editorOption: {
         modules: {
           imageResize: true,
@@ -72,8 +76,7 @@ export default {
       console.log('editor ready!', quill)
     },
     onEditorChange ({ quill, html, text }) {
-      console.log('editor change!', quill, html, text)
-      this.content = html
+      this.$emit('update:content', html)
     }
   }
 
@@ -83,6 +86,5 @@ export default {
 <style lang="less" scoped>
 .ql-container {
   min-height: 300px !important;
-  background: red;
 }
 </style>
