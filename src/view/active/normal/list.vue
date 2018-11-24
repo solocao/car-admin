@@ -39,25 +39,26 @@
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
-    <verify-check :show.sync="verifyShow" :data="verifyData"></verify-check>
+    <active-drawer :show.sync="activeShow" :data="activeData"></active-drawer>
   </div>
 </template>
 <script>
-import VerifyCheck from '@c/drawer/VerifyCheck'
+
+import ActiveDrawer from '@components/drawer/ActiveDrawer'
 import UserCard from '@/components/user/UserCard'
 import { timeS, roleName } from '@/libs/help.js'
 export default {
   name: 'tables_page',
   components: {
     UserCard,
-    VerifyCheck
+    ActiveDrawer
   },
   data () {
     return {
       total: 0,
       page: 1,
-      verifyShow: false,
-      verifyData: null,
+      activeShow: false,
+      activeData: null,
       columns: [
         {
           title: '封面图片',
@@ -150,8 +151,8 @@ export default {
     },
     // 打开侧边详细
     openDrawer (row) {
-      this.verifyData = row
-      this.verifyShow = true
+      this.activeData = row
+      this.activeShow = true
     },
 
     // 清空搜索条件
