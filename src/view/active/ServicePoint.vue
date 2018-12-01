@@ -3,13 +3,13 @@
     <Card :bordered="false">
       <p slot="title">服务网点</p>
       <div slot="extra" class="z-btn">
-        <Button type="default" style="marginRight:10px" size="small" @click="searchClear">刷新</Button>
+        <Button type="default" style="marginRight:10px" size="small" @click="spList">刷新</Button>
         <Button type="primary" size="small" @click="visible=true">新增</Button>
       </div>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
-    <Modal v-model="visible" title="Welcome">
+    <Modal v-model="visible" title="服务网点新增">
       <service-point-form ref="form"></service-point-form>
       <div slot="footer">
         <Button @click="cancel">取消</Button>
@@ -32,8 +32,8 @@ export default {
           key: 'name'
         },
         {
-          title: '活动名称',
-          key: 'title'
+          title: '服务点地址',
+          key: 'address'
         },
         {
           title: '活动简介',
@@ -71,7 +71,7 @@ export default {
     }
   },
   methods: {
-    async  spList () {
+    async spList () {
       const params = {
         url: 'service-point/list',
         payload: {
@@ -85,10 +85,27 @@ export default {
         this.tableData = result.data
       }
     },
-    ok () {
-      if (this.$refs.form.valid()) {
-        alert('哈哈哈')
+    // 成功后保存
+    async ok () {
+      const valid = await this.$refs.form.valid()
+      if (!valid) {
+        return false
       }
+
+      const params = {
+        url: 'service-point/add',
+        payload: this.$refs.form.get(),
+        auth: true
+      }
+
+      const result = await this.post(params)
+      if (result.code === 1) {
+        this.spList()
+      }
+    },
+    // 取消
+    cancel () {
+      this.visible = false
     }
   },
   mounted () {

@@ -7,7 +7,7 @@
     <Upload v-if="uploadList.length<this.maxNum" :action="uploadUrl" :data="uploadPath" :on-success="uploadSuccess" :show-upload-list="false">
       <div class="update-click">
         <Icon type="md-image" size="50" color="#ababab" />
-        <div class="up-bold">上传图片</div>
+        <div class="up-bold"></div>
       </div>
     </Upload>
   </div>

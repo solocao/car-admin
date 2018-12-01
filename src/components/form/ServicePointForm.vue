@@ -1,22 +1,22 @@
 <template>
-<div class="service-point-form">
+  <div class="service-point-form">
     <Form ref="form" :model="form" :label-width="86" :rules="ruleValidate">
       <FormItem label="服务点名称" prop="name">
         <Input v-model="form.name" placeholder="服务点名称" />
       </FormItem>
       <FormItem label="服务点地址" prop="address">
-          <Input v-model="form.address" placeholder="请输入服务点地址" />
+        <Input v-model="form.address" placeholder="请输入服务点地址" />
       </FormItem>
       <FormItem label="服务点图片" prop="img">
-        <image-upload :img.sync="form.img"></image-upload>
+        <image-upload :img.sync="form.img" path='service'></image-upload>
       </FormItem>
     </Form>
-</div>
+  </div>
 </template>
 <script>
 import ImageUpload from '@components/upload/ImageUpload'
 export default {
-  data () {
+  data() {
     return {
       form: {
         // 服务点名称
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     // 验证表单
-    async valid () {
+    async valid() {
       return this.$refs.form.validate((valid) => {
         if (valid) {
           return true
@@ -53,7 +53,7 @@ export default {
       })
     },
     // 获取form表单内容
-    get () {
+    get() {
       let formCopy = JSON.parse(JSON.stringify(this.form))
       formCopy.img = formCopy.img[0]
       return formCopy
