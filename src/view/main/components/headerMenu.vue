@@ -14,9 +14,11 @@
           </span>
         </template>
         <MenuGroup title="出行活动">
+
           <MenuItem name="2-1">新增和启动</MenuItem>
           <MenuItem name="2-2">活跃分析</MenuItem>
-          <MenuItem name="2-3">时段分析</MenuItem>
+          <MenuItem name="2-3">服务网点</MenuItem>
+
         </MenuGroup>
         <MenuGroup title="签到活动">
           <MenuItem name="2-4">用户留存</MenuItem>
@@ -26,13 +28,14 @@
           <MenuItem name="2-6">用户留存</MenuItem>
           <MenuItem name="2-7">流失用户</MenuItem>
         </MenuGroup>
+
       </Submenu>
       <!-- 会员 -->
       <Submenu name="3">
         <template slot="title">
           <span @click="()=>{this.menuSwitch('user')}">
             <Icon type="ios-people" />
-            会员
+            用户
           </span>
         </template>
         <MenuGroup title="租赁商">

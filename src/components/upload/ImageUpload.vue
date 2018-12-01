@@ -21,6 +21,11 @@ export default {
     img: {
       type: Array
     },
+    // 保存地址
+    path: {
+      type: String,
+      default: 'verify'
+    },
     // 最大支持图片数量
     maxNum: {
       type: Number,
@@ -31,7 +36,7 @@ export default {
     return {
       uploadUrl: config.apiUrl + '/ali-oss/upload/img',
       uploadPath: {
-        path: 'verify/' + dayjs().format('YYYY-MM-DD')
+        path: `${this.path}/${dayjs().format('YYYY-MM-DD')}`
       },
       // 上传列表
       uploadList: []

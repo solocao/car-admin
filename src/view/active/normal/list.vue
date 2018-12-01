@@ -53,7 +53,7 @@ export default {
     UserCard,
     ActiveDrawer
   },
-  data () {
+  data() {
     return {
       total: 0,
       page: 1,
@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     // 活动列表
-    async activeList () {
+    async activeList() {
       const params = {
         url: 'active/list',
         payload: {
@@ -146,17 +146,17 @@ export default {
       }
     },
 
-    modalHide () {
+    modalHide() {
       this.modal = false
     },
     // 打开侧边详细
-    openDrawer (row) {
+    openDrawer(row) {
       this.activeData = row
       this.activeShow = true
     },
 
     // 清空搜索条件
-    searchClear () {
+    searchClear() {
       this.roleSelect = 'all'
       this.searchForm = {
         name: null,
@@ -167,17 +167,17 @@ export default {
       this.verifyList()
     },
     // 时间选择
-    selectDate (date) {
+    selectDate(date) {
       if (date !== undefined) {
         this.searchForm.date_range = date
       }
     },
-    pageChange (page) {
+    pageChange(page) {
       this.page = page
       this.userList()
     },
     // 更新用户信息
-    async userUpdate () {
+    async userUpdate() {
       const copyForm = JSON.parse(JSON.stringify(this.form))
       // 如果账号名称是已经存在的了，就不需要更新了
       if (this.nameDisable) {
@@ -198,7 +198,7 @@ export default {
       this.modal = false
     }
   },
-  mounted () {
+  mounted() {
     this.activeList()
   }
 }

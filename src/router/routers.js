@@ -107,6 +107,24 @@ export default [
       },
     ]
   },
+  // 服务网点
+  {
+    path: '/active',
+    name: '出行活动',
+    component: Main,
+    tabMenu: 'active',
+    children: [
+      {
+        path: 'service/point',
+        name: 'service_point',
+        meta: {
+          icon: 'ios-navigate',
+          title: '服务网点'
+        },
+        component: () => import('@v/active/ServicePoint.vue')
+      },
+    ]
+  },
   // 活动列表
   {
     path: '/active',
