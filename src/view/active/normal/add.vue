@@ -15,7 +15,7 @@
         </p>
         <p class="margin-top-10 fb-p">
           <span class="fb-title">数量:</span>
-          <InputNumber class="fb-content" :max="10" :min="1" v-model="count"></InputNumber>
+          <InputNumber class="fb-content" :min="1" v-model="count"></InputNumber>
         </p>
         <p class="margin-top-10 fb-p">
           <span class="fb-title">单价:</span>
@@ -27,8 +27,8 @@
         </p>
         <p class="margin-top-10 fb-p">
           <span class="fb-title">状态:</span>
-          <Select class="fb-content" value="草稿">
-            <Option v-for="item in articleStateList" :value="item.value" :key="item.value">{{ item.value }}</Option>
+          <Select class="fb-content" v-model="state">
+            <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.name }}</Option>
           </Select>
         </p>
         <Row class="margin-top-20 publish-button-con">
@@ -55,10 +55,14 @@ export default {
   },
   data () {
     return {
+      // 状态 草稿 正式
+      state: 0,
+
       // 数量
       count: 100,
       // 价格
       price: 100,
+
       // 标题
       title: '',
       tags: null,
@@ -70,11 +74,7 @@ export default {
       editLink: false,
       editPathButtonType: 'ghost',
       editPathButtonText: '编辑',
-      articleStateList: [{ value: '草稿' }, { value: '正式' }],
-      editOpenness: false,
-      Openness: '公开',
-      currentOpenness: '公开',
-      topArticle: false,
+      stateList: [{ value: 0, name: '草稿' }, { value: 1, name: '正式' }],
       publishTime: '',
       publishTimeType: 'immediately',
       editPublishTime: false, // 是否正在编辑发布时间
@@ -87,83 +87,30 @@ export default {
     }
   },
   methods: {
-    editArticlePath () {
-      this.editLink = !this.editLink
-      this.editPathButtonType = this.editPathButtonType === 'ghost' ? 'success' : 'ghost'
-      this.editPathButtonText = this.editPathButtonText === '编辑' ? '完成' : '编辑'
-    },
-    handleEditOpenness () {
-      this.editOpenness = !this.editOpenness
-    },
-    handleSaveOpenness () {
-      this.Openness = this.currentOpenness
-      this.editOpenness = false
-    },
-    cancelEditOpenness () {
-      this.currentOpenness = this.Openness
-      this.editOpenness = false
-    },
-    handleEditPublishTime () {
-      this.editPublishTime = !this.editPublishTime
-    },
-    handleSavePublishTime () {
-      this.publishTimeType = 'timing'
-      this.editPublishTime = false
-    },
-    cancelEditPublishTime () {
-      this.publishTimeType = 'immediately'
-      this.editPublishTime = false
-    },
-    setPublishTime (datetime) {
-      this.publishTime = datetime
-    },
-    // 保存草稿
-    saveActiveDraft () {
-
-    },
-    async handlePublish () {
-      if (!this.$refs.form.validForm) {
-        return false
-      }
-      const formData = this.$refs.form.getForm()
-      this.publishLoading = true
-      const params = {
-        url: '/article/add',
-        payload: Object.assign({}, formData, {
-          category: JSON.stringify(this.$refs.categoryTree.getCheckedNodes().map(x => { return x._id })) }),
-        auth: true
-      }
-      const result = await this.post(params)
-      this.publishLoading = false
-      if (result.code === 1) {
-        this.$Notice.success({
-          title: '发送成功',
-          desc: '文章《' + this.title + '》保存成功',
-          duration: 3
-        })
-      } else {
-        this.$Notice.success({
-          title: '发送失败',
-          desc: '请联系管理员',
-          duration: 3
-        })
-      }
-    },
     // 发布活动
     async publicAcitve () {
       const valid = await this.$refs.form.valid()
-      if (valid) {
-        const payload = this.$refs.form.get()
-        const params = {
-          url: 'active',
-          payload: payload,
-          auth: true
-        }
-        const result = await this.post(params)
-        if (result.code === 1) {
-          this.$Message.info('保存成功')
-        }
+      if (!valid) {
+        return false
       }
+      const payload = this.$refs.form.get()
+      payload.state = this.state
+      payload.count = this.count
+      payload.price = this.price
+      const params = {
+        url: 'active',
+        payload: payload,
+        auth: true
+      }
+      const result = await this.post(params)
+      if (result.code === 1) {
+        this.$Message.info('保存成功')
+      }
+    },
+
+    // 保存草稿
+    saveActiveDraft () {
+
     }
   },
 
@@ -192,41 +139,12 @@ export default {
     opacity: 1;
   }
 
-  .openness-radio-con {
-    margin-left: 40px;
-    padding-left: 10px;
-    height: 130px;
-    border-left: 1px dashed #ebe9f3;
-    overflow: hidden;
-  }
-
   .publish-time-picker-con {
     margin-left: 40px;
     padding-left: 10px;
     height: 100px;
     border-left: 1px dashed #ebe9f3;
     overflow: hidden;
-  }
-
-  .openness-con-enter {
-    height: 0;
-  }
-
-  .openness-con-enter-active,
-  .openness-con-leave-active {
-    transition: height 0.3s;
-  }
-
-  .openness-con-enter-to {
-    height: 130px;
-  }
-
-  .openness-con-leave {
-    height: 130px;
-  }
-
-  .openness-con-leave-to {
-    height: 0;
   }
 
   .publish-button-con {
