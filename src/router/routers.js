@@ -80,7 +80,7 @@ export default [
   },
 
 
-  // 广告列表
+  // 出行活动
   {
     path: '/active',
     name: '出行活动',
@@ -105,12 +105,21 @@ export default [
         },
         component: () => import('@view/active/normal/list.vue')
       },
+      {
+        path: 'detail',
+        name: 'normal_detail',
+        meta: {
+          icon: 'ios-navigate',
+          title: '活动详情'
+        },
+        component: () => import('@view/active/normal/detail.vue')
+      },
     ]
   },
   // 服务网点
   {
     path: '/active',
-    name: '出行活动',
+    name: '服务网点',
     component: Main,
     tabMenu: 'active',
     children: [
