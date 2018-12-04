@@ -223,6 +223,24 @@ export default [
       }
     ]
   },
+  // 租赁商
+  {
+    path: '/lease',
+    name: '租赁商',
+    component: Main,
+    tabMenu: 'user',
+    children: [
+      {
+        path: 'list',
+        name: 'lease_user_list',
+        meta: {
+          icon: 'ios-navigate',
+          title: '用户列表'
+        },
+        component: () => import('@/view/lease/UserList.vue')
+      }
+    ]
+  },
   // 用户认证
   {
     path: '/user/verify',
