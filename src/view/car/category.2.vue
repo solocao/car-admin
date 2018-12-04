@@ -6,12 +6,14 @@
         <Button type="primary" size="small" @click="userList">新增品牌</Button>
       </div>
       <div class="car-wraper">
-        <div class="c-category">
-          <div v-for="i in 2">ad</div>
-        </div>
-        <div class="c-detail">
-          asff
-
+        <div v-for="item in carlist" :key="item._id">
+          <div class="category-initial">
+            <span> {{item.initial}}</span>
+            <span class="c-btn">折叠/展开</span>
+          </div>
+          <div class="category-list">
+            <car-category :list="cat" v-for="cat in item.list" :key="cat._id"></car-category>
+          </div>
         </div>
       </div>
     </Card>
@@ -57,31 +59,32 @@ export default {
 <style lang="less" scoped>
   .car-category {
     font-size: 14px;
-    height: 100%;
-    position: relative;
     .car-card {
-      height: 100%;
-      .car-wraper {
-        background: red;
-        position: absolute;
-        top: 51px;
-        bottom: 0px;
-
-        width: 100%;
-        flex: 1;
-        display: flex;
-
-        .c-category {
-          width: 200px;
-          height: 100%;
-          background: yellow;
-        }
-        .c-detail {
-          height: 100%;
-          flex: 1;
-          background: green;
-        }
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .car-wraper {
+    }
+    .category-initial {
+      height: 30px;
+      line-height: 30px;
+      border: solid 1px #047eff;
+      border-top: solid 2px #047eff;
+      color: #047eff;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 0px 10px;
+      vertical-align: middle;
+      display: flex;
+      justify-content: space-between;
+      .c-btn {
+        font-size: 12px;
+        color: #047eff;
+        cursor: pointer;
       }
     }
+  }
+
+  .category-list {
   }
 </style>

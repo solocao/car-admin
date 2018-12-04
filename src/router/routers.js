@@ -187,7 +187,7 @@ export default [
     ]
   },
 
-  // 会员
+  // 用户 普通用户
   {
     path: '/user',
     name: '会员管理',
@@ -223,7 +223,7 @@ export default [
       }
     ]
   },
-  // 租赁商
+  // 用户 租赁商
   {
     path: '/lease',
     name: '租赁商',
@@ -247,6 +247,34 @@ export default [
           title: '租赁商列表'
         },
         component: () => import('@/view/lease/UserList.vue')
+      }
+    ]
+  },
+
+  // 用户 广告主
+  {
+    path: '/advertiser',
+    name: '广告主',
+    component: Main,
+    tabMenu: 'user',
+    children: [
+      {
+        path: 'user/add',
+        name: 'advertiser_user_add',
+        meta: {
+          icon: 'ios-navigate',
+          title: '新增广告主'
+        },
+        component: () => import('@/view/advertiser/UserAdd.vue')
+      },
+      {
+        path: 'list',
+        name: 'advertiser_user_list',
+        meta: {
+          icon: 'ios-navigate',
+          title: '广告主列表'
+        },
+        component: () => import('@/view/advertiser/UserList.vue')
       }
     ]
   },
