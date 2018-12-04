@@ -208,7 +208,7 @@ export default [
         name: 'lease',
         meta: {
           icon: 'ios-navigate',
-          title: '租赁商'
+          title: '租赁商管理'
         },
         component: () => import('@/view/user/UserLease.vue')
       },
@@ -231,11 +231,20 @@ export default [
     tabMenu: 'user',
     children: [
       {
+        path: 'user/add',
+        name: 'lease_user_add',
+        meta: {
+          icon: 'ios-navigate',
+          title: '新增租赁商'
+        },
+        component: () => import('@/view/lease/UserAdd.vue')
+      },
+      {
         path: 'list',
         name: 'lease_user_list',
         meta: {
           icon: 'ios-navigate',
-          title: '用户列表'
+          title: '租赁商列表'
         },
         component: () => import('@/view/lease/UserList.vue')
       }
