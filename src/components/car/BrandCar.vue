@@ -1,20 +1,14 @@
 <template>
   <div class="brand-car">
-
-    <!-- <div class="c-operater">
-        <Poptip title="新增子品牌">
-          <span>
-            点击新增子品牌
-          </span>
-          <div slot="content">
-            <Input size="small" v-model="name" placeholder="请输入子品牌名称" style="width: 120px" />
-            <Button type="primary" size="small" class="ml10" @click="addSubBrand()">确定</Button>
-          </div>
-        </Poptip>
-      </div> -->
-
     <div class="brand-title">
       <span> {{brand.name}}</span>
+      <Poptip placement="right">
+        <span class="brand-delete">删除</span>
+        <div slot="content">
+          <span>是否确认删除该品牌</span>
+          <Button type="primary" size="small" class="ml10" @click="deleteSubBrand(brand._id)">确定</Button>
+        </div>
+      </Poptip>
     </div>
     <div class="items-wraper">
       <car-edit-item :sub_brand_id="brand._id"></car-edit-item>
@@ -36,6 +30,9 @@ export default {
     brand: {
       type: Object,
       default: null
+    },
+    getCarBybrand: {
+      type: Function
     }
   },
   data () {
@@ -60,6 +57,20 @@ export default {
       }
       console.log('看看结果')
       console.log(result)
+    },
+    // 彻底删除 子品牌
+    async  deleteSubBrand (subId) {
+      const params = {
+        url: 'car/brand/sub/delete',
+        payload: {
+          sub_id: subId
+        },
+        auth: true
+      }
+      const result = await this.post(params)
+      if (result.code === 1) {
+        this.getCarBybrand()
+      }
     }
 
   }
@@ -78,6 +89,13 @@ export default {
       color: #3b5998;
       margin-left: 10px;
       padding-top: 10px;
+
+      .brand-delete {
+        margin-left: 10px;
+        font-size: 12px;
+        color: grey;
+        cursor: pointer;
+      }
     }
     .items-wraper {
       display: flex;

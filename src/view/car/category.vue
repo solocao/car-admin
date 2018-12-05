@@ -21,7 +21,11 @@
         <!-- 右侧详情 -->
         <div class="c-detail">
           <div class="c-header">
-            <span class="c-name"> {{category.name}}</span>
+            <span class="c-name">
+              <span>
+                {{category.name}}
+              </span>
+            </span>
             <Poptip placement="left">
               <span class="c-ope">
                 新增子品牌
@@ -33,7 +37,7 @@
               </div>
             </Poptip>
           </div>
-          <brand-car :brand="brand" v-for="(brand,index) in brandList" :key="index"></brand-car>
+          <brand-car :brand="brand" :getCarBybrand="getCarBybrand" v-for="(brand,index) in brandList" :key="index"></brand-car>
         </div>
       </div>
     </Card>
@@ -80,18 +84,16 @@ export default {
     // 切换汽车分类
     switchCategory (category) {
       this.category = category
-      this.getCarBybrand(category._id)
+      this.getCarBybrand()
     },
-    //
-    async getCarBybrand (brandId) {
+    // 获取一个分类汽车详情
+    async getCarBybrand () {
       const params = {
-        url: `car/${brandId}`,
+        url: `car/${this.category._id}`,
         payload: {},
         auth: true
       }
       const result = await this.get(params)
-      console.log('看看结果')
-      console.log(result)
       if (result.code === 1) {
         this.brandList = result.data
       }
