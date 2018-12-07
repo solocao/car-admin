@@ -31,7 +31,7 @@ export default {
       type: Object,
       default: null
     },
-    getCarBybrand: {
+    getCarByCategory: {
       type: Function
     }
   },
@@ -69,7 +69,7 @@ export default {
       }
       const result = await this.post(params)
       if (result.code === 1) {
-        this.getCarBybrand()
+        this.getCarByCategory()
       }
     }
 

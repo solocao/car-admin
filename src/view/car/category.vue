@@ -12,7 +12,7 @@
             <div class="c-cate">
               {{item.initial}}
             </div>
-            <div class="c-brand" v-for="(category,index) in item.category" :key="index">
+            <div class="c-category-list" v-for="(category,index) in item.category" :key="index">
               <div class="c-show" @click="switchCategory(category)">
                 <img :src="category.logo" alt="">
                 <span> {{category.name}}</span>
@@ -27,7 +27,7 @@
           </div>
         </div>
         <!-- 右侧详情 -->
-        <div class="c-detail" v-if="brandList.length!==0">
+        <div class="c-detail">
           <div class="c-header">
             <span class="c-name">
               <span>
@@ -41,11 +41,11 @@
               <!-- 删除 -->
               <div slot="content">
                 <Input size="small" v-model="name" placeholder="请输入子品牌名称" style="width: 120px" />
-                <Button type="primary" size="small" class="ml10" @click="addSubBrand()">确定</Button>
+                <Button type="primary" size="small" class="ml10" @click="addBrand()">确定</Button>
               </div>
             </Poptip>
           </div>
-          <brand-car :brand="brand" :getCarBybrand="getCarBybrand" v-for="(brand,index) in brandList" :key="index"></brand-car>
+          <category-car :brand="brand" :getCarByCategory="getCarByCategory" v-for="(brand,index) in brandList" :key="index"></category-car>
         </div>
       </div>
     </Card>
@@ -60,11 +60,11 @@
 </template>
 <script>
 import CarBrandAdd from '_c/modal/CarBrandAdd'
-import BrandCar from '@components/car/BrandCar'
+import CategoryCar from '@components/car/CategoryCar'
 import CategoryAdd from '@components/modal/car/CategoryAdd.vue'
 export default {
   components: {
-    BrandCar,
+    CategoryCar,
     CarBrandAdd,
     CategoryAdd
   },
@@ -98,10 +98,10 @@ export default {
     // 切换汽车分类
     switchCategory (category) {
       this.category = category
-      this.getCarBybrand()
+      this.getCarByCategory()
     },
     // 获取一个分类汽车详情
-    async getCarBybrand () {
+    async getCarByCategory () {
       const params = {
         url: `car/${this.category._id}`,
         payload: {},
@@ -112,12 +112,12 @@ export default {
         this.brandList = result.data
       }
     },
-    // 新增子品牌
-    async  addSubBrand () {
+    // 新详细品牌
+    async  addBrand () {
       const params = {
-        url: 'car/brand/sub',
+        url: 'car/brand',
         payload: {
-          list_id: this.category._id,
+          category_id: this.category._id,
           name: this.name
         },
         auth: true
@@ -169,7 +169,7 @@ export default {
             padding-left: 10px;
           }
 
-          .c-brand {
+          .c-category-list {
             background: white;
             height: 40px;
             display: flex;
