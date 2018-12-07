@@ -3,23 +3,31 @@
     <Card :bordered="false" class="car-card" :padding="0">
       <p slot="title">品牌分类</p>
       <div slot="extra" class="z-btn">
-        <Button type="primary" size="small" @click="userList">新增品牌</Button>
+        <Button type="primary" size="small" @click="categoryAddModal=true">新增品牌</Button>
       </div>
       <div class="car-wraper">
         <!-- 左侧分类 -->
         <div class="c-category">
-          <div v-for="(category,index) in categoryList" :key="index">
+          <div v-for="(item,index) in categoryList" :key="index">
             <div class="c-cate">
-              {{category.initial}}
+              {{item.initial}}
             </div>
-            <div class="c-brand" v-for="(cate,index) in category.list" :key="index" @click="switchCategory(cate)">
-              <img :src="cate.logo" alt="">
-              <span> {{cate.name}}</span>
+            <div class="c-brand" v-for="(category,index) in item.category" :key="index">
+              <div class="c-show" @click="switchCategory(category)">
+                <img :src="category.logo" alt="">
+                <span> {{category.name}}</span>
+              </div>
+              <div class="c-edit">
+                <ButtonGroup>
+                  <Button size="small" icon="md-close"></Button>
+                  <Button size="small" icon="md-create"></Button>
+                </ButtonGroup>
+              </div>
             </div>
           </div>
         </div>
         <!-- 右侧详情 -->
-        <div class="c-detail">
+        <div class="c-detail" v-if="brandList.length!==0">
           <div class="c-header">
             <span class="c-name">
               <span>
@@ -42,15 +50,23 @@
       </div>
     </Card>
     <car-brand-add></car-brand-add>
+    <div>
+      <category-add :visiable.sync="categoryAddModal"></category-add>
+      <Modal v-model="modal1" title="是否确认删除品牌" @on-ok="categoryDelete" @on-cancel="cancel">
+        <p>确认删除</p>
+      </Modal>
+    </div>
   </div>
 </template>
 <script>
 import CarBrandAdd from '_c/modal/CarBrandAdd'
 import BrandCar from '@components/car/BrandCar'
+import CategoryAdd from '@components/modal/car/CategoryAdd.vue'
 export default {
   components: {
     BrandCar,
-    CarBrandAdd
+    CarBrandAdd,
+    CategoryAdd
   },
   data () {
     return {
@@ -61,13 +77,13 @@ export default {
       category: {
         name: null
       },
-      name: null
-
+      name: null,
+      categoryAddModal: false
     }
   },
   methods: {
-    // 获取汽车列表
-    async getCarList () {
+    // 获取汽车品牌列表
+    async getCategoryList () {
       const params = {
         url: '/car/category/list',
         payload: {},
@@ -77,8 +93,6 @@ export default {
 
       if (result.code === 1) {
         this.categoryList = result.data
-        console.log('看看车辆')
-        console.log(this.carlist)
       }
     },
     // 切换汽车分类
@@ -113,10 +127,14 @@ export default {
         this.$Message.info(result.msg)
         this.brandList = result.data.brand
       }
+    },
+    // 删除汽车分类
+    async categoryDelete () {
+
     }
   },
   created () {
-    this.getCarList()
+    this.getCategoryList()
   }
 
 }
@@ -156,10 +174,22 @@ export default {
             height: 40px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             cursor: pointer;
-            img {
-              width: 40px;
-              height: 40px;
+            .c-show {
+              height: 100%;
+              display: flex;
+              align-items: center;
+              flex: 1;
+              img {
+                width: 40px;
+                height: 40px;
+              }
+            }
+            .c-edit {
+              padding: 2px;
+              background: #9e9e9e3b;
+              border-radius: 2px;
             }
           }
         }
