@@ -1,5 +1,5 @@
 <template>
-  <div class="brand-car">
+  <div class="category-car">
     <div class="brand-title">
       <span> {{brand.name}}</span>
       <Poptip placement="right">
@@ -11,7 +11,7 @@
       </Poptip>
     </div>
     <div class="items-wraper">
-      <car-edit-item :sub_brand_id="brand._id"></car-edit-item>
+      <car-edit-item :brand_id="brand._id" :getCarByCategory="getCarByCategory"></car-edit-item>
       <car-item v-for="car in brand.car" :key="car._id" :name="car.name" :img="car.img" :car_id="car._id"></car-item>
     </div>
   </div>
@@ -59,11 +59,11 @@ export default {
       console.log(result)
     },
     // 彻底删除 子品牌
-    async  deleteSubBrand (subId) {
+    async  deleteSubBrand (brandId) {
       const params = {
-        url: 'car/brand/sub/delete',
+        url: 'car/brand/delete',
         payload: {
-          sub_id: subId
+          brand_id: brandId
         },
         auth: true
       }
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .brand-car {
+  .category-car {
     position: relative;
     width: 100%;
     border-bottom: 1px solid #e1e3e8;

@@ -7,14 +7,16 @@
       <div> 新增车型</div>
     </div>
     <Modal v-model="modal" title="新增车型">
-      <Form ref="formValidate" :label-width="80">
-        <FormItem label="名称" prop="name">
-          <Input v-model="name" placeholder="请输入车型名称"></Input>
+      <Form ref="form" :model="form" :label-width="80" :rules="ruleValidate">
+        <FormItem label="汽车名称" prop="name">
+          <Input v-model="form.name" placeholder="请输入车型名称"></Input>
         </FormItem>
-        <FormItem label="汽车图片" prop="name">
-          <car-upload :img.sync="img"></car-upload>
+        <FormItem label="汽车图片" prop="img">
+          <image-upload :img.sync="form.img" path='car/category'></image-upload>
         </FormItem>
-        {{img}}
+        <FormItem label="款式年份" prop="batch">
+          <car-batch-select ref="batchSelect"></car-batch-select>
+        </FormItem>
       </Form>
       <div slot="footer">
         <Button @click="cancel">取消</Button>
@@ -24,79 +26,104 @@
   </div>
 </template>
 <script>
-import CarUpload from '_c/upload/CarUpload.vue'
+import ImageUpload from '@components/upload/ImageUpload'
+import CarBatchSelect from '@components/car/CarBatchSelect'
+
 export default {
-  components: { CarUpload },
+  components: { ImageUpload, CarBatchSelect },
   props: {
-    sub_brand_id: {
+    brand_id: {
       type: String,
       default: null
+    },
+    getCarByCategory: {
+      type: Function
     }
   },
-  data () {
+  data() {
     return {
       modal: false,
       name: null,
-      img: null
+      img: null,
+      form: {
+        name: null,
+        img: null,
+        batch_at: []
+      },
+      // 验证条件
+      ruleValidate: {
+        name: [{ required: true, message: '汽车名称', trigger: 'blur' }],
+        img: [
+          { required: true, type: 'array', min: 1, message: '请上传汽车图片', trigger: 'blur' }
+        ]
+      }
     }
   },
   methods: {
-    cancel () {
+    // 取消
+    cancel() {
       this.modal = false
     },
-    valid () {
-      if (this.name == null) {
-        this.$Message.warning('请输入车型名称')
-        return false
-      }
-      if (this.img == null) {
-        this.$Message.warning('请上传图片')
-        return false
-      }
-      return true
+    // 验证表单
+    async  valid() {
+      return this.$refs.form.validate((valid) => {
+        if (valid) {
+          return true
+        } else {
+          this.$Message.error('请完善汽车信息')
+          return false
+        }
+      })
     },
-    async  ok () {
-      if (this.valid()) {
-        const params = {
-          url: 'car',
-          payload: {
-            sub_brand_id: this.sub_brand_id,
-            name: this.name,
-            img: this.img
-          },
-          auth: true
-        }
-        const result = await this.post(params)
-        if (result.code === 1) {
-          this.modal = false
-        }
+    // 确认提交
+    async  ok() {
+      const valid = await this.valid()
+      if (!valid) {
+        return false
       }
+      const params = {
+        url: 'car',
+        payload: {
+          brand_id: this.brand_id,
+          name: this.form.name,
+          img: this.form.img[0],
+          batch_at: this.$refs.batchSelect.get()
+        },
+        auth: true
+      }
+      const result = await this.post(params)
+      if (result.code === 1) {
+        this.getCarByCategory()
+        this.modal = false
+      }
+    },
+    tagClick() {
+      alert('哈哈哈')
     }
-
   }
 }
 </script>
 
 <style lang="less" scoped>
-.car-item {
-  width: 160px;
-  padding: 10px;
+  .car-item {
+    width: 160px;
+    padding: 10px;
 
-  .car-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 10px;
-    border: 1px solid #047eff;
-    cursor: pointer;
-
-    .add-icon {
-      width: 120px;
-      height: 90px;
+    .car-inner {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      padding-bottom: 10px;
+      border: 1px solid #047eff;
+      cursor: pointer;
+
+      .add-icon {
+        width: 120px;
+        height: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
-}
 </style>
