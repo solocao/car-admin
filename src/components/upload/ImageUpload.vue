@@ -17,7 +17,7 @@ import config from '@config'
 import dayjs from 'dayjs'
 export default {
   props: {
-    // 需要改变的img
+    // 需要改变的img,传给上层的
     img: {
       type: Array
     },
@@ -32,7 +32,7 @@ export default {
       default: 1
     }
   },
-  data () {
+  data() {
     return {
       uploadUrl: config.apiUrl + '/ali-oss/upload/img',
       uploadPath: {
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    uploadSuccess (response) {
+    uploadSuccess(response) {
       if (response.code === 1) {
         this.$Message.info('图片上传成功')
         this.uploadList.push(response.data.url)
@@ -51,73 +51,88 @@ export default {
       }
     },
     // 根据索引 删除图片
-    deleteImg (index) {
+    deleteImg(index) {
       this.uploadList.splice(index, 1)
     },
     // 获取图片
-    getImg () {
+    getImg() {
       return this.uploadList
     }
   },
   watch: {
-    uploadList (val) {
-      this.$emit('update:img', val)
+    uploadList(val) {
+      if (this.maxNum == 1) {
+        this.$emit('update:img', val[0])
+      } else {
+        this.$emit('update:img', val)
+      }
+    },
+
+    img: {
+      handler(val, oldVal) {
+        if (this.maxNum == 1 && val !== undefined) {
+          this.uploadList.push(val)
+        }
+      },
+      // deep: true,
+      immediate: true
     }
+
   }
 }
 </script>
 
 <style lang="less" scoped>
-.image-upload {
-  display: flex;
-  flex-wrap: wrap;
+  .image-upload {
+    display: flex;
+    flex-wrap: wrap;
 
-  .up-image {
-    width: 150px;
-    height: 100px;
-    border-radius: 6px;
-    box-shadow: 0px 0px 2px gray;
-    margin-right: 10px;
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    &:hover {
+    .up-image {
+      width: 150px;
+      height: 100px;
+      border-radius: 6px;
+      box-shadow: 0px 0px 2px gray;
+      margin-right: 10px;
+      margin-top: 10px;
+      overflow: hidden;
+      position: relative;
+      &:hover {
+        .delete-img {
+          visibility: visible;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
       .delete-img {
-        visibility: visible;
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        cursor: pointer;
+        visibility: hidden;
       }
     }
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-
-    .delete-img {
-      position: absolute;
-      right: 4px;
-      top: 4px;
+    .update-click {
+      width: 150px;
+      height: 100px;
+      border-radius: 6px;
       cursor: pointer;
-      visibility: hidden;
-    }
-  }
-  .update-click {
-    width: 150px;
-    height: 100px;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0px 0px 2px gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    margin-top: 10px;
+      box-shadow: 0px 0px 2px gray;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      margin-top: 10px;
 
-    .up-bold {
-      font-size: 16px;
-      font-weight: bold;
-      color: #ababab;
+      .up-bold {
+        font-size: 16px;
+        font-weight: bold;
+        color: #ababab;
+      }
     }
   }
-}
 </style>

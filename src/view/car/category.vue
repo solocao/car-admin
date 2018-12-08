@@ -3,7 +3,7 @@
     <Card :bordered="false" class="car-card" :padding="0">
       <p slot="title">品牌分类</p>
       <div slot="extra" class="z-btn">
-        <Button type="primary" size="small" @click="categoryAddModal=true">新增品牌</Button>
+        <Button type="primary" size="small" @click="categoryModal=true">新增品牌</Button>
       </div>
       <div class="car-wraper">
         <!-- 左侧分类 -->
@@ -20,7 +20,7 @@
               <div class="c-edit">
                 <ButtonGroup>
                   <Button size="small" icon="md-close"></Button>
-                  <Button size="small" icon="md-create"></Button>
+                  <Button size="small" icon="md-create" @click="openCategoryEditModal"></Button>
                 </ButtonGroup>
               </div>
             </div>
@@ -51,7 +51,7 @@
     </Card>
     <car-brand-add></car-brand-add>
     <div>
-      <category-add :visiable.sync="categoryAddModal"></category-add>
+      <category-modal :visiable.sync="categoryModal" :type="categoryModalType" :form="categoryModalForm"></category-modal>
       <!-- <Modal v-model="modal" title="是否确认删除品牌" @on-ok="categoryDelete" @on-cancel="cancel">
         <p>确认删除</p>
       </Modal> -->
@@ -61,12 +61,12 @@
 <script>
 import CarBrandAdd from '_c/modal/CarBrandAdd'
 import CategoryCar from '@components/car/CategoryCar'
-import CategoryAdd from '@components/modal/car/CategoryAdd.vue'
+import CategoryModal from '@components/modal/car/CategoryModal.vue'
 export default {
   components: {
     CategoryCar,
     CarBrandAdd,
-    CategoryAdd
+    CategoryModal
   },
   data () {
     return {
@@ -78,10 +78,17 @@ export default {
         name: null
       },
       name: null,
-      categoryAddModal: false,
+      // ------------------------是否显示模态框
+      categoryModal: false,
+      // 模态框类型 add edit
+      categoryModalType: 'add',
+      // 数据
+      categoryModalForm: null,
+      // -------------------------是否显示模态框
       modal: false
     }
   },
+
   methods: {
     // 获取汽车品牌列表
     async getCategoryList () {
@@ -132,6 +139,11 @@ export default {
     // 删除汽车分类
     async categoryDelete () {
 
+    },
+    openCategoryEditModal () {
+      this.categoryModal = true
+      this.categoryModalType = 'edit'
+      this.categoryModalForm = this.category
     }
   },
   created () {
