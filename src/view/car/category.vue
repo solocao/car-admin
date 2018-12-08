@@ -143,7 +143,7 @@ export default {
     openCategoryEditModal () {
       this.categoryModal = true
       this.categoryModalType = 'edit'
-      this.categoryModalForm = this.category
+      this.categoryModalForm = JSON.parse(JSON.stringify(this.category))
     }
   },
   created () {

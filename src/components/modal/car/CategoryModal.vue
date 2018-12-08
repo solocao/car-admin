@@ -46,6 +46,7 @@ export default {
       ruleValidate: {
         name: [{ required: true, message: '请输入品牌名称', trigger: 'blur' }],
         logo: [
+          { required: true },
           { validator (rule, value, callback, source, options) {
             const errors = []
             if (value === undefined) { errors.push('请上传图片') }

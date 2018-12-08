@@ -18,9 +18,7 @@ import dayjs from 'dayjs'
 export default {
   props: {
     // 需要改变的img,传给上层的
-    img: {
-      type: Array
-    },
+    img: {},
     // 保存地址
     path: {
       type: String,
@@ -32,7 +30,7 @@ export default {
       default: 1
     }
   },
-  data() {
+  data () {
     return {
       uploadUrl: config.apiUrl + '/ali-oss/upload/img',
       uploadPath: {
@@ -43,7 +41,7 @@ export default {
     }
   },
   methods: {
-    uploadSuccess(response) {
+    uploadSuccess (response) {
       if (response.code === 1) {
         this.$Message.info('图片上传成功')
         this.uploadList.push(response.data.url)
@@ -51,16 +49,16 @@ export default {
       }
     },
     // 根据索引 删除图片
-    deleteImg(index) {
+    deleteImg (index) {
       this.uploadList.splice(index, 1)
     },
     // 获取图片
-    getImg() {
+    getImg () {
       return this.uploadList
     }
   },
   watch: {
-    uploadList(val) {
+    uploadList (val) {
       if (this.maxNum == 1) {
         this.$emit('update:img', val[0])
       } else {
@@ -69,9 +67,9 @@ export default {
     },
 
     img: {
-      handler(val, oldVal) {
+      handler (val, oldVal) {
         if (this.maxNum == 1 && val !== undefined) {
-          this.uploadList.push(val)
+          this.uploadList = [val]
         }
       },
       // deep: true,
