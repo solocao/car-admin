@@ -19,7 +19,7 @@
               </div>
               <div class="c-edit">
                 <ButtonGroup>
-                  <Button size="small" icon="md-close"></Button>
+                  <Button size="small" icon="md-close" @click="openCategoryDeleteModal(category._id)"></Button>
                   <Button size="small" icon="md-create" @click="openCategoryEditModal"></Button>
                 </ButtonGroup>
               </div>
@@ -52,9 +52,9 @@
     <car-brand-add></car-brand-add>
     <div>
       <category-modal :visiable.sync="categoryModal" :type="categoryModalType" :form="categoryModalForm"></category-modal>
-      <!-- <Modal v-model="modal" title="是否确认删除品牌" @on-ok="categoryDelete" @on-cancel="cancel">
-        <p>确认删除</p>
-      </Modal> -->
+      <Modal v-model="modal" title="操作" @on-ok="categoryDelete" @on-cancel="cancel">
+        <p>是否确认删除品牌</p>
+      </Modal>
     </div>
   </div>
 </template>
@@ -85,6 +85,7 @@ export default {
       // 数据
       categoryModalForm: null,
       // -------------------------是否显示模态框
+      deleteCategoryId: null,
       modal: false
     }
   },
@@ -137,13 +138,28 @@ export default {
       }
     },
     // 删除汽车分类
-    async categoryDelete () {
+    async categoryDelete (category) {
+      const params = {
+        url: 'car/category',
+        payload: {
+          category_id: this.deleteCategoryId
+        },
+        auth: true
+      }
 
+      const result = await this.delete(params)
+      if (result.code == 1) {
+
+      }
     },
     openCategoryEditModal () {
       this.categoryModal = true
       this.categoryModalType = 'edit'
       this.categoryModalForm = JSON.parse(JSON.stringify(this.category))
+    },
+    openCategoryDeleteModal (categoryId) {
+      this.deleteCategoryId = categoryId
+      this.modal = true
     }
   },
   created () {

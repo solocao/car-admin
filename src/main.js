@@ -15,7 +15,7 @@ import '@/assets/icons/iconfont.css'
 
 import '@/style/common.less'
 
-import { get, post, put, upload } from './api/index.js'
+import { get, post, put, upload, deleteAlias } from './api/index.js'
 
 Vue.use(VuePreview)
 // 全局请求数据
@@ -23,6 +23,7 @@ Vue.prototype.get = get
 Vue.prototype.post = post
 Vue.prototype.put = put
 Vue.prototype.upload = upload
+Vue.prototype.delete = deleteAlias
 
 // import '@/mock'
 // 实际打包时应该不引入mock
