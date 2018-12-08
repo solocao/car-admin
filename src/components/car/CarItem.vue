@@ -1,16 +1,19 @@
 <template>
   <div class="car-item" @click="edit">
     <div class="car-inner">
-      {{name}}
-      <img :src="img" alt="">
+      {{data.name}}
+      <img :src="data.img" alt="">
     </div>
-    <Modal v-model="modal" title="车型编辑">
-      <Form ref="formValidate" :label-width="80">
-        <FormItem label="名称" prop="name">
-          <Input v-model="name" placeholder="请输入车型名称"></Input>
+    <Modal v-model="modal" title="编辑车辆">
+      <Form ref="form" :model="form" :label-width="80" :rules="ruleValidate">
+        <FormItem label="汽车名称" prop="name">
+          <Input v-model="form.name" placeholder="请输入车型名称"></Input>
         </FormItem>
-        <FormItem label="汽车图片" prop="name">
-          <car-upload :img.sync="img"></car-upload>
+        <FormItem label="汽车图片" prop="img">
+          <image-upload :img.sync="form.img" path='car/category'></image-upload>
+        </FormItem>
+        <FormItem label="款式年份" prop="batch">
+          <car-batch-select ref="batchSelect" :batch="data.batch_at"></car-batch-select>
         </FormItem>
       </Form>
       <div slot="footer">
@@ -21,32 +24,38 @@
   </div>
 </template>
 <script>
-import CarUpload from '_c/upload/CarUpload.vue'
+import ImageUpload from '@components/upload/ImageUpload'
+import CarBatchSelect from '@components/car/CarBatchSelect'
 export default {
   components: {
-    CarUpload
+    ImageUpload,
+    CarBatchSelect
   },
   props: {
-    car_id: {
-      type: String,
-      default: null
-    },
-    name: {
-      type: String,
-      default: 'demo车辆'
-    },
-    img: {
-      type: String,
-      default: null
+    data: {
+      type: Object
     }
   },
   data () {
     return {
-      modal: false
+      modal: false,
+      form: {
+        name: null,
+        img: null
+      },
+      // 验证条件
+      ruleValidate: {
+        name: [{ required: true, message: '汽车名称', trigger: 'blur' }],
+        img: [
+          { required: true, type: 'array', min: 1, message: '请上传汽车图片', trigger: 'blur' }
+        ]
+      }
     }
   },
   methods: {
     edit () {
+      this.form = this.data
+      console.log(this.form)
       this.modal = true
     },
     cancel () {
@@ -54,12 +63,14 @@ export default {
     },
     // 提交
     async ok () {
+      // 更新汽车
       const params = {
         url: 'car',
         payload: {
-          car_id: this.car_id,
-          img: this.img,
-          name: this.name
+          car_id: this.form._id,
+          img: this.form.img,
+          name: this.form.name,
+          batch_at: this.$refs.batchSelect.get(0)
         },
         auth: true
       }
@@ -70,29 +81,30 @@ export default {
       console.log(result)
     }
   }
+
 }
 </script>
 
 <style lang="less" scoped>
-.car-item {
-  width: 160px;
-  padding: 10px;
+  .car-item {
+    width: 160px;
+    padding: 10px;
 
-  .car-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 10px;
-    border: 1px solid white;
-    cursor: pointer;
+    .car-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 10px;
+      border: 1px solid white;
+      cursor: pointer;
 
-    &:hover {
-      border: 1px solid #047eff;
-    }
-    img {
-      width: 120px;
-      height: 90px;
+      &:hover {
+        border: 1px solid #047eff;
+      }
+      img {
+        width: 120px;
+        height: 90px;
+      }
     }
   }
-}
 </style>

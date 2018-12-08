@@ -52,9 +52,9 @@
     <car-brand-add></car-brand-add>
     <div>
       <category-add :visiable.sync="categoryAddModal"></category-add>
-      <Modal v-model="modal1" title="是否确认删除品牌" @on-ok="categoryDelete" @on-cancel="cancel">
+      <!-- <Modal v-model="modal" title="是否确认删除品牌" @on-ok="categoryDelete" @on-cancel="cancel">
         <p>确认删除</p>
-      </Modal>
+      </Modal> -->
     </div>
   </div>
 </template>
@@ -78,7 +78,8 @@ export default {
         name: null
       },
       name: null,
-      categoryAddModal: false
+      categoryAddModal: false,
+      modal: false
     }
   },
   methods: {

@@ -4,17 +4,21 @@
     <span class="batch-tag" :class="{active:item.select}" v-for="(item,index) in batchList" :key="index" @click="switchActive(index)">
       {{item.name}}
     </span>
-    <button @click="get">saf</button>
   </div>
 </template>
 <script>
 export default {
+  props: {
+    batch: {
+      type: Array
+    }
+  },
   data () {
     return {
       batchList: [
         {
           name: '2018年款',
-          select: true
+          select: false
         }, {
           name: '2017年款',
           select: false
@@ -89,7 +93,21 @@ export default {
         return x.name
       })
       return JSON.stringify(select)
+    },
+    // 设置默认值
+    set () {
+      if (this.batch.length === 0) {
+        return false
+      }
+      this.batchList.forEach(x => {
+        if (this.batch.includes(x.name)) {
+          x.select = true
+        }
+      })
     }
+  },
+  mounted () {
+    this.set(this.batch)
   }
 }
 </script>

@@ -12,7 +12,7 @@
     </div>
     <div class="items-wraper">
       <car-edit-item :brand_id="brand._id" :getCarByCategory="getCarByCategory"></car-edit-item>
-      <car-item v-for="car in brand.car" :key="car._id" :name="car.name" :img="car.img" :car_id="car._id"></car-item>
+      <car-item v-for="car in brand.car" :key="car._id" :data="car"></car-item>
     </div>
   </div>
 

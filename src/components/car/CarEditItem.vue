@@ -6,7 +6,7 @@
       </div>
       <div> 新增车型</div>
     </div>
-    <Modal v-model="modal" title="新增车型">
+    <Modal v-model="modal" title="新增车辆">
       <Form ref="form" :model="form" :label-width="80" :rules="ruleValidate">
         <FormItem label="汽车名称" prop="name">
           <Input v-model="form.name" placeholder="请输入车型名称"></Input>
@@ -40,7 +40,7 @@ export default {
       type: Function
     }
   },
-  data() {
+  data () {
     return {
       modal: false,
       name: null,
@@ -61,11 +61,11 @@ export default {
   },
   methods: {
     // 取消
-    cancel() {
+    cancel () {
       this.modal = false
     },
     // 验证表单
-    async  valid() {
+    async  valid () {
       return this.$refs.form.validate((valid) => {
         if (valid) {
           return true
@@ -76,7 +76,7 @@ export default {
       })
     },
     // 确认提交
-    async  ok() {
+    async  ok () {
       const valid = await this.valid()
       if (!valid) {
         return false
@@ -97,7 +97,7 @@ export default {
         this.modal = false
       }
     },
-    tagClick() {
+    tagClick () {
       alert('哈哈哈')
     }
   }
