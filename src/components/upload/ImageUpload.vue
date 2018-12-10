@@ -68,7 +68,7 @@ export default {
 
     img: {
       handler (val, oldVal) {
-        if (this.maxNum == 1 && val !== undefined) {
+        if (this.maxNum == 1 && val !== undefined && val !== null) {
           this.uploadList = [val]
         }
       },

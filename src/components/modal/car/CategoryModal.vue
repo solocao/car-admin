@@ -95,9 +95,6 @@ export default {
         auth: true
       }
 
-      console.log(formCopy)
-
-      return 'afaf'
       // 新增
       if (this.type == 'add') {
         const result = await this.post(params)

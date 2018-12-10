@@ -3,7 +3,7 @@
     <Card :bordered="false" class="car-card" :padding="0">
       <p slot="title">品牌分类</p>
       <div slot="extra" class="z-btn">
-        <Button type="primary" size="small" @click="categoryModal=true">新增品牌</Button>
+        <Button type="primary" size="small" @click="openCategoryAddModal">新增品牌</Button>
       </div>
       <div class="car-wraper">
         <!-- 左侧分类 -->
@@ -68,7 +68,7 @@ export default {
     CarBrandAdd,
     CategoryModal
   },
-  data () {
+  data() {
     return {
       carlist: [],
       categoryList: [],
@@ -83,7 +83,10 @@ export default {
       // 模态框类型 add edit
       categoryModalType: 'add',
       // 数据
-      categoryModalForm: null,
+      categoryModalForm: {
+        name: null,
+        logo: null
+      },
       // -------------------------是否显示模态框
       deleteCategoryId: null,
       modal: false
@@ -92,7 +95,7 @@ export default {
 
   methods: {
     // 获取汽车品牌列表
-    async getCategoryList () {
+    async getCategoryList() {
       const params = {
         url: '/car/category/list',
         payload: {},
@@ -105,12 +108,12 @@ export default {
       }
     },
     // 切换汽车分类
-    switchCategory (category) {
+    switchCategory(category) {
       this.category = category
       this.getCarByCategory()
     },
     // 获取一个分类汽车详情
-    async getCarByCategory () {
+    async getCarByCategory() {
       const params = {
         url: `car/${this.category._id}`,
         payload: {},
@@ -122,7 +125,7 @@ export default {
       }
     },
     // 新详细品牌
-    async  addBrand () {
+    async  addBrand() {
       const params = {
         url: 'car/brand',
         payload: {
@@ -138,7 +141,7 @@ export default {
       }
     },
     // 删除汽车分类
-    async categoryDelete (category) {
+    async categoryDelete(category) {
       const params = {
         url: 'car/category',
         payload: {
@@ -152,17 +155,28 @@ export default {
 
       }
     },
-    openCategoryEditModal () {
+    // 打开大品牌编辑模态框
+    openCategoryEditModal() {
       this.categoryModal = true
       this.categoryModalType = 'edit'
       this.categoryModalForm = JSON.parse(JSON.stringify(this.category))
     },
-    openCategoryDeleteModal (categoryId) {
+    // 打开大品牌新增模态框
+    openCategoryAddModal() {
+      this.categoryModal = true
+      this.categoryModalType = 'add'
+      this.categoryModalForm = {
+        name: null,
+        logo: null
+      }
+    },
+    // 打开大品牌删除模态框
+    openCategoryDeleteModal(categoryId) {
       this.deleteCategoryId = categoryId
       this.modal = true
     }
   },
-  created () {
+  created() {
     this.getCategoryList()
   }
 
