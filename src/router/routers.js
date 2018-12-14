@@ -237,7 +237,7 @@ export default [
           icon: 'ios-navigate',
           title: '新增租赁商'
         },
-        component: () => import('@/view/lease/UserAdd.vue')
+        component: () => import('@/view/user/lease/add.vue')
       },
       {
         path: 'list',
@@ -246,7 +246,7 @@ export default [
           icon: 'ios-navigate',
           title: '租赁商列表'
         },
-        component: () => import('@/view/lease/UserList.vue')
+        component: () => import('@/view/user/lease/list.vue')
       }
     ]
   },
