@@ -40,7 +40,7 @@ export default {
       type: Function
     }
   },
-  data () {
+  data() {
     return {
       modal: false,
       name: null,
@@ -55,23 +55,22 @@ export default {
         name: [{ required: true, message: '汽车名称', trigger: 'blur' }],
         img: [
           { required: true, message: '请上传图片', trigger: 'blur' },
-          { validator (rule, value, callback, source, options) {
-            const errors = []
-            console.log(value)
-            if (value === undefined) { errors.push('请上传图片') }
-            callback(errors)
-          } }
+          {            validator(rule, value, callback, source, options) {
+              const errors = []
+              if (value === undefined) { errors.push('请上传图片') }
+              callback(errors)
+            }          }
         ]
       }
     }
   },
   methods: {
     // 取消
-    cancel () {
+    cancel() {
       this.modal = false
     },
     // 验证表单
-    async  valid () {
+    async  valid() {
       return this.$refs.form.validate((valid) => {
         if (valid) {
           return true
@@ -82,7 +81,7 @@ export default {
       })
     },
     // 确认提交
-    async  ok () {
+    async  ok() {
       const valid = await this.valid()
       if (!valid) {
         return false

@@ -225,13 +225,13 @@ export default [
   },
   // 用户 租赁商
   {
-    path: '/lease',
+    path: '/user',
     name: '租赁商',
     component: Main,
     tabMenu: 'user',
     children: [
       {
-        path: 'user/add',
+        path: 'lease/add',
         name: 'lease_user_add',
         meta: {
           icon: 'ios-navigate',
@@ -240,7 +240,7 @@ export default [
         component: () => import('@/view/user/lease/add.vue')
       },
       {
-        path: 'list',
+        path: 'lease/list',
         name: 'lease_user_list',
         meta: {
           icon: 'ios-navigate',
