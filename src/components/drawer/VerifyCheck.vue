@@ -22,7 +22,8 @@
         </div>
         <div class="item">
           <span class="title">车型:</span>
-          <span>{{data.car_model}}</span>
+          <div class="vc-brand-name">{{data.car_model.brand_name}}</div>
+          <div>{{data.car_model.car_name}} {{data.car_model.batch_at}}</div>
         </div>
       </div>
 
@@ -43,7 +44,7 @@
         </div>
         <div class="item">
           <span class="title">驾驶证号:</span>
-          <span>待识别</span>
+          <span>{{data.driver_licence}}</span>
         </div>
       </div>
       <div class="two-50-percent">
@@ -53,7 +54,7 @@
         </div>
         <div class="item">
           <span class="title">行驶证号:</span>
-          <span>待识别</span>
+          <span>{{data.driving_licence}}</span>
         </div>
       </div>
       <div class="z-m-item">
