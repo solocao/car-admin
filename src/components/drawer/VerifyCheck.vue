@@ -58,10 +58,16 @@
         </div>
       </div>
       <div class="z-m-item">
+        <span class="z-title">原因:</span>
+        <div>
+          <Input v-model="reason" placeholder="若认证不通过，请输入原因" style="width: 500px" />
+        </div>
+      </div>
+      <div class="z-m-item">
         <span class="z-title">操作:</span>
         <div>
-          <Button type="primary">审核通过</Button>
-          <Button style="marginLeft:10px">审核不通过</Button>
+          <Button type="primary" @click="pass">审核通过</Button>
+          <Button style="marginLeft:10px" @click="refuse">审核不通过</Button>
         </div>
       </div>
 
@@ -77,11 +83,51 @@ export default {
     },
     data: {
       type: Object
+    },
+    refresh: {
+      type: Function
+    }
+  },
+  data() {
+    return {
+      reason: null
     }
   },
   methods: {
     close() {
       this.$emit('update:show', false)
+    },
+    // 审核通过
+    async pass() {
+      const result = await this.post({
+        url: 'verify/pass',
+        payload: {
+          submit_user: this.data.user,
+          verify_id: this.data._id,
+        },
+        auth: true
+      })
+      if (result.code === 1) {
+        this.refresh()
+        this.close()
+      }
+
+    },
+    // 审核不通过
+    async refuse() {
+      const result = await this.post({
+        url: 'verify/refuse',
+        payload: {
+          submit_user: this.data.user,
+          verify_id: this.data._id,
+          reason: this.reason
+        },
+        auth: true
+      })
+      if (result.code === 1) {
+        this.refresh()
+        this.close()
+      }
     }
   }
 

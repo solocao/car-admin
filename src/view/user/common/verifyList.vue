@@ -39,7 +39,7 @@
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
-    <verify-check :show.sync="verifyShow" :data="verifyData"></verify-check>
+    <verify-check :show.sync="verifyShow" :data="verifyData" :refresh="verifyList"></verify-check>
   </div>
 </template>
 <script>
