@@ -54,7 +54,13 @@ export default {
       ruleValidate: {
         name: [{ required: true, message: '汽车名称', trigger: 'blur' }],
         img: [
-          { required: true, type: 'array', min: 1, message: '请上传汽车图片', trigger: 'blur' }
+          { required: true, message: '请上传图片', trigger: 'blur' },
+          { validator (rule, value, callback, source, options) {
+            const errors = []
+            console.log(value)
+            if (value === undefined) { errors.push('请上传图片') }
+            callback(errors)
+          } }
         ]
       }
     }
@@ -86,7 +92,7 @@ export default {
         payload: {
           brand_id: this.brand_id,
           name: this.form.name,
-          img: this.form.img[0],
+          img: this.form.img,
           batch_at: this.$refs.batchSelect.get()
         },
         auth: true
@@ -96,9 +102,6 @@ export default {
         this.getCarByCategory()
         this.modal = false
       }
-    },
-    tagClick () {
-      alert('哈哈哈')
     }
   }
 }

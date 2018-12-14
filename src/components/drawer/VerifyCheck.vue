@@ -12,7 +12,7 @@
         </div>
         <div class="item">
           <span class="title">身份证号:</span>
-          <span>待识别</span>
+          <span>{{data.user_id_number}}</span>
         </div>
       </div>
       <div class="two-50-percent">
@@ -79,7 +79,7 @@ export default {
     }
   },
   methods: {
-    close () {
+    close() {
       this.$emit('update:show', false)
     }
   }
@@ -88,48 +88,48 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.verify-check {
-  width: 100%;
-  display: flex;
-}
-.z-m-item {
-  margin-bottom: 20px;
-  display: flex;
-  .z-title {
-    width: 80px;
-    font-weight: bold;
-    margin-right: 4px;
-  }
-}
-
-.two-50-percent {
-  margin-bottom: 20px;
-  display: flex;
-  width: 100%;
-  .item {
+  .verify-check {
+    width: 100%;
     display: flex;
-    .title {
-      display: block;
+  }
+  .z-m-item {
+    margin-bottom: 20px;
+    display: flex;
+    .z-title {
       width: 80px;
       font-weight: bold;
       margin-right: 4px;
     }
   }
-}
-.two-50-percent :first-child {
-  width: 50%;
-}
-.two-50-percent :last-child {
-  width: 50%;
-}
 
-.v-img {
-  height: 110px !important;
-  border-radius: 6px;
-}
+  .two-50-percent {
+    margin-bottom: 20px;
+    display: flex;
+    width: 100%;
+    .item {
+      display: flex;
+      .title {
+        display: block;
+        width: 80px;
+        font-weight: bold;
+        margin-right: 4px;
+      }
+    }
+  }
+  .two-50-percent :first-child {
+    width: 50%;
+  }
+  .two-50-percent :last-child {
+    width: 50%;
+  }
 
-.ope-btn {
-  display: flex;
-  justify-content: center;
-}
+  .v-img {
+    height: 110px !important;
+    border-radius: 6px;
+  }
+
+  .ope-btn {
+    display: flex;
+    justify-content: center;
+  }
 </style>

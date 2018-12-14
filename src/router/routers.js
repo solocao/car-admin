@@ -190,7 +190,7 @@ export default [
   // 用户 普通用户
   {
     path: '/user',
-    name: '会员管理',
+    name: '普通用户',
     component: Main,
     tabMenu: 'user',
     children: [
@@ -199,18 +199,18 @@ export default [
         name: 'normal',
         meta: {
           icon: 'ios-navigate',
-          title: '普通用户'
+          title: '用户列表'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/view/user/common/list.vue')
       },
       {
-        path: 'lease',
-        name: 'lease',
+        path: 'verify',
+        name: 'verify_list',
         meta: {
           icon: 'ios-navigate',
-          title: '租赁商管理'
+          title: '认证列表'
         },
-        component: () => import('@/view/user/UserLease.vue')
+        component: () => import('@/view/user/common/verifyList.vue')
       },
       {
         path: 'advertiser',

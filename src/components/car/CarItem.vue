@@ -36,7 +36,7 @@ export default {
       type: Object
     }
   },
-  data () {
+  data() {
     return {
       modal: false,
       form: {
@@ -47,22 +47,27 @@ export default {
       ruleValidate: {
         name: [{ required: true, message: '汽车名称', trigger: 'blur' }],
         img: [
-          { required: true, type: 'array', min: 1, message: '请上传汽车图片', trigger: 'blur' }
+          { required: true },
+          {            validator(rule, value, callback, source, options) {
+              const errors = []
+              if (value === undefined) { errors.push('请上传图片') }
+              callback(errors)
+            }          }
         ]
       }
     }
   },
   methods: {
-    edit () {
+    edit() {
       this.form = this.data
       console.log(this.form)
       this.modal = true
     },
-    cancel () {
+    cancel() {
       this.modal = false
     },
     // 提交
-    async ok () {
+    async ok() {
       // 更新汽车
       const params = {
         url: 'car',
