@@ -247,7 +247,16 @@ export default [
           title: '租赁商列表'
         },
         component: () => import('@/view/user/lease/list.vue')
-      }
+      },
+      {
+        path: 'lease/car',
+        name: 'lease_user_car',
+        meta: {
+          icon: 'ios-navigate',
+          title: '租赁商车型库'
+        },
+        component: () => import('@/view/user/lease/car.vue')
+      },
     ]
   },
 
