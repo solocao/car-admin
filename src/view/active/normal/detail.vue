@@ -75,6 +75,14 @@ export default {
           key: 'car_model'
         },
         {
+          title: '进度',
+          key: 'car_model'
+        },
+        {
+          title: '收益',
+          key: 'car_model'
+        },
+        {
           title: '操作',
           key: 'handle',
           width: 100,
