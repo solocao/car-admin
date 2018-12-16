@@ -10,15 +10,13 @@
         <template slot="title">
           <span @click="()=>{this.menuSwitch('active')}">
             <Icon type="logo-buffer" />
-            活动
+            运营
           </span>
         </template>
         <MenuGroup title="出行活动">
-
           <MenuItem name="2-1">新增和启动</MenuItem>
           <MenuItem name="2-2">活跃分析</MenuItem>
           <MenuItem name="2-3">服务网点</MenuItem>
-
         </MenuGroup>
         <MenuGroup title="签到活动">
           <MenuItem name="2-4">用户留存</MenuItem>
@@ -147,7 +145,7 @@
 import { mapMutations } from 'vuex'
 
 export default {
-  data () {
+  data() {
     return {}
   },
 
@@ -155,7 +153,7 @@ export default {
     ...mapMutations([
       'setApp'
     ]),
-    menuSelect (name) {
+    menuSelect(name) {
       switch (parseInt(name)) {
         case 1: this.setApp({ tabMenu: 'home' }); break
         case 2: this.setApp({ tabMenu: 'home1' }); break
@@ -163,7 +161,7 @@ export default {
         case 4: this.setApp({ tabMenu: 'home3' }); break
       }
     },
-    menuSwitch (tabMenu) {
+    menuSwitch(tabMenu) {
       this.setApp({ tabMenu: tabMenu })
     }
   }
@@ -171,21 +169,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header-menu {
-  height: 60px;
-  margin-left: 10px;
+  .header-menu {
+    height: 60px;
+    margin-left: 10px;
 
-  .ivu-menu-item-hover {
-    border-bottom: 3px solid #2d8cf0 !important;
+    .ivu-menu-item-hover {
+      border-bottom: 3px solid #2d8cf0 !important;
+    }
+    .ivu-menu {
+      height: 61px;
+      background: white;
+      border-bottom: 0px solid white;
+    }
   }
-  .ivu-menu {
-    height: 61px;
-    background: white;
-    border-bottom: 0px solid white;
-  }
-}
 
-.menu-hover {
-  cursor: pointer !important;
-}
+  .menu-hover {
+    cursor: pointer !important;
+  }
 </style>

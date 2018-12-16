@@ -43,7 +43,7 @@ export default {
     Example,
     StaMap
   },
-  data () {
+  data() {
     return {
       inforCardData: [
         { title: '用户总数', icon: 'ios-people', count: 0, color: '#2d8cf0' },
@@ -72,7 +72,7 @@ export default {
     }
   },
   methods: {
-    async getStatistic () {
+    async getStatistic() {
       const params = {
         url: 'statistic/index',
         payload: {},
@@ -91,32 +91,32 @@ export default {
     }
   },
 
-  mounted () {
+  mounted() {
     // this.getStatistic()
   }
 }
 </script>
 
 <style lang="less">
-.count-style {
-  font-size: 50px;
-}
-.sat-map-wrap {
-  height: 580px;
-  margin-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 60px;
-  background: white;
-  border-radius: 4px;
-}
-.z-map-title {
-  background: white;
-  font-size: 16px;
-  font-weight: bold;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .count-style {
+    font-size: 50px;
+  }
+  .sat-map-wrap {
+    height: 580px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+    background: white;
+    border-radius: 4px;
+  }
+  .z-map-title {
+    background: white;
+    font-size: 16px;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

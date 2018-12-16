@@ -204,6 +204,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.active-list {
-}
+  .active-list {
+  }
 </style>
