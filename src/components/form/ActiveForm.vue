@@ -7,6 +7,7 @@
       </FormItem>
       <FormItem label="活动时间" prop="date_range">
         <DatePicker v-model="form.date_range" type="daterange" :options="dateOptions" placement="bottom-end" placeholder="请选择活动时间" style="width: 526px"></DatePicker>
+        <span v-if="form.clock_days!==null" style="marginLeft:20px">累计打卡{{form.clock_days}}天</span>
       </FormItem>
       <FormItem label="免打卡天数" prop="free_day">
         <InputNumber :min="0" v-model="form.free_day" placeholder="请输入免打卡天数" style="width:200px"></InputNumber>
@@ -29,6 +30,7 @@
 <script>
 import ImageUpload from '@components/upload/ImageUpload.vue'
 import QuillEditor from '@components/editor/QuillEditor'
+import dayjs from 'dayjs'
 export default {
   components: {
     ImageUpload,
@@ -44,6 +46,8 @@ export default {
         title: null,
         // 活动时间
         date_range: null,
+        // 累计打卡天数
+        clock_days: null,
         // 免打卡天数
         free_day: 0,
         // 活动简介
@@ -54,6 +58,7 @@ export default {
         show_img: null,
         content: null
       },
+      clock_days: null,
       dateOptions: {
         shortcuts: [
           {
@@ -148,6 +153,16 @@ export default {
       this.form.content = '活动内容'
     }
 
+  },
+  watch: {
+    'form.date_range'(date_range) {
+      if (date_range[0] !== "") {
+        const start_at = dayjs(date_range[0]);
+        const end_at = dayjs(date_range[1]);
+        // 打卡天数
+        this.form.clock_days = end_at.diff(start_at, 'day');
+      }
+    }
   }
 }
 </script>
