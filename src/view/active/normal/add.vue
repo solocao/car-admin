@@ -53,42 +53,26 @@ export default {
   components: {
     ActiveForm
   },
-  data () {
+  data() {
     return {
       // 状态 草稿 正式
       state: 0,
-
       // 数量
       count: 100,
       // 价格
       price: 100,
-
-      // 标题
-      title: '',
-      tags: null,
-      avtiveTags: null,
-      activeCatogories: null,
-      fixedLink: '',
-      articlePath: '',
-      articlePathHasEdited: false,
-      editLink: false,
-      editPathButtonType: 'ghost',
-      editPathButtonText: '编辑',
       stateList: [{ value: 0, name: '草稿' }, { value: 1, name: '正式' }],
-      publishTime: '',
-      publishTimeType: 'immediately',
-      editPublishTime: false, // 是否正在编辑发布时间
       publishLoading: false
     }
   },
   computed: {
-    total () {
+    total() {
       return this.count * this.price
     }
   },
   methods: {
     // 发布活动
-    async publicAcitve () {
+    async publicAcitve() {
       const valid = await this.$refs.form.valid()
       if (!valid) {
         return false
@@ -107,16 +91,11 @@ export default {
         this.$Message.info('保存成功')
       }
     },
-
     // 保存草稿
-    saveActiveDraft () {
+    saveActiveDraft() {
 
     }
   },
-
-  mounted () {
-  }
-
 }
 </script>
 <style lang="less" scoped>
