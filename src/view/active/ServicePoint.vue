@@ -21,7 +21,7 @@
 <script>
 import ServicePointForm from '@components/form/ServicePointForm'
 export default {
-  data () {
+  data() {
     return {
       visible: false,
       total: 0,
@@ -36,25 +36,12 @@ export default {
           key: 'address'
         },
         {
-          title: '活动简介',
-          key: 'brief'
+          title: '纬度',
+          key: 'latitude'
         },
         {
-          title: '车辆颜色',
-          key: 'car_color'
-        },
-        {
-          title: '车型',
-          key: 'car_model'
-        },
-        {
-          title: '日期',
-          key: 'meta',
-          render: (h, params) => {
-            return <div>
-              {params.row.meta.createdAt}
-            </div>
-          }
+          title: '经度',
+          key: 'longitude'
         },
         {
           title: '操作',
@@ -71,7 +58,7 @@ export default {
     }
   },
   methods: {
-    async spList () {
+    async spList() {
       const params = {
         url: 'service-point/list',
         payload: {
@@ -86,29 +73,30 @@ export default {
       }
     },
     // 成功后保存
-    async ok () {
+    async ok() {
       const valid = await this.$refs.form.valid()
       if (!valid) {
         return false
       }
-
       const params = {
         url: 'service-point/add',
         payload: this.$refs.form.get(),
         auth: true
       }
-
       const result = await this.post(params)
       if (result.code === 1) {
+        // 隐藏模态框
+        this.visible = false;
+        this.$refs.form.clear();
         this.spList()
       }
     },
     // 取消
-    cancel () {
-      this.visible = false
+    cancel() {
+      this.visible = false;
     }
   },
-  mounted () {
+  mounted() {
     this.spList()
   },
   components: {

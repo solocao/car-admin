@@ -72,6 +72,16 @@ export default {
     get() {
       let formCopy = JSON.parse(JSON.stringify(this.form))
       return formCopy
+    },
+    // 清空表单数据，恢复默认
+    clear() {
+      this.form = {
+        name: null,
+        address: null,
+        img: null,
+        latitude: null,
+        longitude: null
+      }
     }
   },
   components: {
