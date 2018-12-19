@@ -7,6 +7,15 @@
       <FormItem label="服务点地址" prop="address">
         <Input v-model="form.address" placeholder="请输入服务点地址" />
       </FormItem>
+      <div>经纬度拾取地址
+        https://lbs.qq.com/tool/getpoint
+      </div>
+      <FormItem label="纬度" prop="latitude">
+        <Input v-model="form.latitude" placeholder="请输入服务点纬度（31.968980）" />
+      </FormItem>
+      <FormItem label="经度" prop="longitude">
+        <Input v-model="form.longitude" placeholder="请输入服务点经度（118.786270）" />
+      </FormItem>
       <FormItem label="服务点图片" prop="img">
         <image-upload :img.sync="form.img" path='service'></image-upload>
       </FormItem>
@@ -34,8 +43,15 @@ export default {
       ruleValidate: {
         name: [{ required: true, message: '服务点名称不能为空', trigger: 'blur' }],
         address: [{ required: true, message: '服务点地址不能为空', trigger: 'blur' }],
+        latitude: [{ required: true, message: '请输入纬度', trigger: 'blur' }],
+        longitude: [{ required: true, message: '请输入经度', trigger: 'blur' }],
         img: [
-          { required: true, type: 'array', min: 1, message: '请上传服务点图片', trigger: 'blur' }
+          { required: true, message: '请上传服务点图片', trigger: 'blur' },
+          {            validator(rule, value, callback, source, options) {
+              const errors = []
+              if (value === undefined) { errors.push('请上传服务点图片') }
+              callback(errors)
+            }          }
         ]
       }
     }
@@ -55,7 +71,6 @@ export default {
     // 获取form表单内容
     get() {
       let formCopy = JSON.parse(JSON.stringify(this.form))
-      formCopy.img = formCopy.img[0]
       return formCopy
     }
   },

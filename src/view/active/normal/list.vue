@@ -36,6 +36,7 @@
       </div>
     </Card>
     <Card>
+      <p slot="title">活动列表</p>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
@@ -102,6 +103,7 @@ export default {
           render: (h, params) => {
             return <div>
               <i-button size="small" type="primary" style="margin-left:6px" onClick={() => this.openDrawer(params.row)}>查看</i-button>
+              <i-button size="small" type="primary" style="margin-left:6px" onClick={() => this.openDrawer(params.row)}>运营</i-button>
             </div>
           }
         }
