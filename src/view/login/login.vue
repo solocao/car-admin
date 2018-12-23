@@ -1,5 +1,5 @@
 <style lang="less">
-@import "./login.less";
+  @import "./login.less";
 </style>
 
 <template>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import LoginForm from '_c/login-form'
+import LoginForm from '@components/login-form'
 import { mapActions, mapMutations } from 'vuex'
 const md5 = require('md5')
 export default {
@@ -32,7 +32,7 @@ export default {
     ...mapMutations([
       'set'
     ]),
-    async  handleSubmit ({ userName, password }) {
+    async  handleSubmit({ userName, password }) {
       const params = {
         url: 'user/login',
         payload: {

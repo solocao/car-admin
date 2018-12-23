@@ -15,6 +15,16 @@
       </Input>
     </FormItem>
     <FormItem>
+      <div class="user-option-login">
+        <span class="ivu-input-group-prepend user-pre">
+          <Icon :size="14" type="ios-construct"></Icon>
+        </span>
+        <Select v-model="userModel" class="user-select">
+          <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        </Select>
+      </div>
+    </FormItem>
+    <FormItem>
       <Button @click="handleSubmit" type="primary" long>登录</Button>
     </FormItem>
   </Form>
@@ -45,7 +55,26 @@ export default {
       form: {
         userName: null,
         password: null
-      }
+      },
+      cityList: [
+        {
+          value: 'admin',
+          label: '管理员'
+        },
+        {
+          value: 'advertiser',
+          label: '广告主'
+        },
+        {
+          value: 'lease',
+          label: '租赁商'
+        },
+        {
+          value: 'server',
+          label: '服务点'
+        }
+      ],
+      userModel: 'admin'
     }
   },
   computed: {
@@ -70,3 +99,26 @@ export default {
   }
 }
 </script>
+<style lang="less">
+  .user-option-login {
+    display: flex;
+    height: 35px;
+    overflow: hidden;
+
+    .user-pre {
+      width: 31px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .user-select {
+      flex: 1;
+      .ivu-select-selection {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+    }
+  }
+</style>
+
