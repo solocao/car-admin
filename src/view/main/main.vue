@@ -61,7 +61,7 @@ export default {
     Fullscreen,
     User
   },
-  data () {
+  data() {
     return {
       collapsed: false,
       minLogo,
@@ -71,25 +71,25 @@ export default {
   },
   computed: {
     ...mapState(['user']),
-    roleName () {
-      return roleName(this.user.info.role.class)
+    roleName() {
+      return roleName(this.user.info.role)
     },
-    tagNavList () {
+    tagNavList() {
       return this.$store.state.app.tagNavList
     },
-    tagRouter () {
+    tagRouter() {
       return this.$store.state.app.tagRouter
     },
-    userAvator () {
+    userAvator() {
       return this.$store.state.user.info.avatar
     },
-    cacheList () {
+    cacheList() {
       return this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []
     },
-    menuList () {
+    menuList() {
       return this.$store.getters.menuList
     },
-    local () {
+    local() {
       return this.$store.state.app.local
     }
   },
@@ -103,7 +103,7 @@ export default {
     ...mapActions([
       'handleLogin'
     ]),
-    turnToPage (route) {
+    turnToPage(route) {
       let { name, params, query } = {}
       if (typeof route === 'string') name = route
       else {
@@ -121,10 +121,10 @@ export default {
         query
       })
     },
-    handleCollapsedChange (state) {
+    handleCollapsedChange(state) {
       this.collapsed = state
     },
-    handleCloseTag (res, type, route) {
+    handleCloseTag(res, type, route) {
       let openName = ''
       if (type === 'all') {
         this.turnToPage('home')
@@ -141,17 +141,17 @@ export default {
       this.setTagNavList(res)
       this.$refs.sideMenu.updateOpenName(openName)
     },
-    handleClick (item) {
+    handleClick(item) {
       this.turnToPage(item)
     }
   },
   watch: {
-    '$route' (newRoute) {
+    '$route'(newRoute) {
       this.setBreadCrumb(newRoute.matched)
       this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
     }
   },
-  mounted () {
+  mounted() {
     /**
      * @description 初始化设置面包屑导航和标签导航
      */
@@ -167,28 +167,28 @@ export default {
 </script>
 
 <style lang="less">
-.z-max-logo {
-  width: 166px;
-  background: #0081f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 2px;
-  color: white;
-  overflow: hidden;
-}
-.z-min-logo {
-  margin-left: -2px;
-  width: 20px;
-  background: #0081f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 2px;
-  color: white;
-}
+  .z-max-logo {
+    width: 166px;
+    background: #0081f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 2px;
+    color: white;
+    overflow: hidden;
+  }
+  .z-min-logo {
+    margin-left: -2px;
+    width: 20px;
+    background: #0081f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 2px;
+    color: white;
+  }
 </style>

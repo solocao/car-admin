@@ -1,16 +1,16 @@
-const moment = require('moment')
+const dayjs = require('dayjs');
 
 export const timeS = (time) => {
-  return moment(time).format('YYYY-MM-DD HH:mm:ss')
+  return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
 }
 
 // 判断用户权限对应的名称
 export const roleName = (role) => {
   switch (role) {
-    case 4: return '超级管理员'
-    case 3: return '领导'
-    case 2: return '项目经理'
-    case 1: return '安全生产员'
+    case 'admin': return '管理员'
+    case 'lease': return '租赁商'
+    case 'advertiser': return '广告主'
+    case 'service': return '服务点'
     default: return '普通用户'
   }
 }
