@@ -8,6 +8,7 @@ import iView from 'iview'
 import i18n from '@/locale'
 import config from '@/config'
 import importDirective from '@/directive'
+import accessDirective from '@/directive/access'
 import VuePreview from 'vue-preview'
 import 'iview/dist/styles/iview.css'
 import './index.less'
@@ -33,15 +34,19 @@ if (process.env.NODE_ENV !== 'production') require('@/mock')
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
 })
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+
 /**
  * @description 全局注册应用配置
  */
-Vue.prototype.$config = config
+Vue.prototype.$config = config;
 /**
  * 注册指令
  */
-importDirective(Vue)
+importDirective(Vue);
+accessDirective(Vue)
+
 
 /* eslint-disable no-new */
 new Vue({

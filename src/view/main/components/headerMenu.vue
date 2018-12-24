@@ -6,7 +6,7 @@
       首页
       </MenuItem>
       <!-- 活动 -->
-      <Submenu name="2">
+      <Submenu name="2" v-access="'daeawed'">
         <template slot="title">
           <span @click="()=>{this.menuSwitch('active')}">
             <Icon type="logo-buffer" />
@@ -162,6 +162,7 @@ export default {
       }
     },
     menuSwitch(tabMenu) {
+      // 设置侧边栏
       this.setApp({ tabMenu: tabMenu })
     }
   }

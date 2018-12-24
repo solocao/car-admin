@@ -259,7 +259,6 @@ export default [
       },
     ]
   },
-
   // 用户 广告主
   {
     path: '/advertiser',
