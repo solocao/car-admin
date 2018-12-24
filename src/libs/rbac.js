@@ -1,10 +1,18 @@
-import store from '@/store'
-const roles = ['admin', 'advertiser', 'lease', 'service'];
+import store from '@/store';
+
+const roles = {
+  admin: ['admin', 'advertiser', 'lease', 'service'],
+  advertiser: ['advertiser'],
+  lease: ['lease'],
+  service: ['service']
+}
+
+
+
 const rbac = (role) => {
-  console.log('看看传过来的role值');
-  console.log(role);
-  console.log(store.state.user.info.role);
-  return true;
+  const userRole = store.state.user.info.role;
+  const can = roles[userRole];
+  return can.includes(role);
 }
 
 export default rbac;

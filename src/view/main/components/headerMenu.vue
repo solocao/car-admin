@@ -6,7 +6,7 @@
       首页
       </MenuItem>
       <!-- 活动 -->
-      <Submenu name="2" v-access="'daeawed'">
+      <Submenu name="2" v-access="'admin'">
         <template slot="title">
           <span @click="()=>{this.menuSwitch('active')}">
             <Icon type="logo-buffer" />
@@ -36,26 +36,26 @@
             用户
           </span>
         </template>
-        <MenuGroup title="租赁商" v-access="lease">
+        <MenuGroup title="租赁商" v-access="'lease'">
           <MenuItem name="3-1">新增和启动</MenuItem>
           <MenuItem name="3-2">活跃分析</MenuItem>
           <MenuItem name="3-3">时段分析</MenuItem>
         </MenuGroup>
-        <MenuGroup title="广告主" v-access="advertiser">
+        <MenuGroup title="广告主" v-access="'advertiser'">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
-        <MenuGroup title="普通用户" v-access="consumer">
+        <MenuGroup title="普通用户" v-access="'consumer'">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
-        <MenuGroup title="服务点" v-access="service">
+        <MenuGroup title="服务点" v-access="'service'">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
       <!-- 车辆 -->
-      <Submenu name="4">
+      <Submenu name="4" v-access="'admin'">
         <template slot="title">
           <span @click="()=>{this.menuSwitch('car')}" class="menu-hover">
             <Icon type="ios-car" />
@@ -76,7 +76,7 @@
         </MenuGroup>
       </Submenu>
       <!-- 素材 -->
-      <Submenu name="5">
+      <Submenu name="5" v-access="'admin'">
         <template slot="title">
           <Icon type="md-images" />
           素材
@@ -96,7 +96,7 @@
         </MenuGroup>
       </Submenu>
       <!-- 财务 -->
-      <Submenu name="6">
+      <Submenu name="6" v-access="'admin'">
         <template slot="title">
           <span @click="()=>{this.menuSwitch('finance')}">
             <Icon type="ios-list-box" />
@@ -119,7 +119,7 @@
         </MenuGroup>
       </Submenu>
       <!-- 微信 -->
-      <Submenu name="7">
+      <Submenu name="7" v-access="'admin'">
         <template slot="title">
           <span @click="()=>{this.menuSwitch('weixin')}">
             <Icon type="md-phone-portrait" />
