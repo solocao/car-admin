@@ -40,24 +40,30 @@
     </Card>
     <Card>
       <p slot="title">租赁商列表</p>
+      <div slot="extra" class="z-btn">
+        <Button type="default" style="marginRight:10px" size="small" @click="userList">刷新</Button>
+      </div>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
-    <Modal v-model="modal" title="编辑用户信息">
+    <Modal v-model="visible" title="编辑信息">
       <Form :model="form" :label-width="60">
-        <FormItem label="头像">
-          <img class="z-header" :src="form.avatar" alt="">
-        </FormItem>
         <FormItem label="登录账号">
           <Input :readonly="nameDisable" placeholder="请输入登录账号" v-model="form.name"></Input>
         </FormItem>
-        <FormItem label="昵称">
-          <Input v-model="form.nickname"></Input>
+        <FormItem label="联系人">
+          <Input v-model="form.contact"></Input>
         </FormItem>
-        <FormItem label="微信ID">
-          <Input v-model="form.openid"></Input>
+        <FormItem label="密码">
+          <!-- <Input v-model="form.password" type="password"></Input> -->
+          <i-switch size="large" @on-change="pwdchange">
+            <span slot="open">重置</span>
+            <span slot="close">重置</span>
+          </i-switch>
         </FormItem>
-
+        <FormItem label="新密码" v-if="pwdSwitch">
+          <Input v-model="form.password" type="password"></Input>
+        </FormItem>
         <FormItem label="手机号">
           <Input v-model="form.mobile"></Input>
         </FormItem>
@@ -82,6 +88,8 @@ export default {
     return {
       total: 0,
       page: 1,
+      // 是否采用新密码
+      pwdSwitch: false,
       roleList: [
         {
           value: 'all',
@@ -108,33 +116,35 @@ export default {
         }],
       columns: [
         {
-          title: '用户',
+          title: '租赁商',
           key: 'name',
           render: (h, params) => {
             const { row } = params
-            const { avatar, nickname } = row
-            const img = <img src={avatar}></img>
+            const { logo, name } = row
+            const img = <img src={logo}></img>
             return (<div class="z-name">
               {img}
-              <span>{nickname}</span>
+              <span>{name}</span>
             </div>)
           }
         },
         {
-          title: '登录账号',
-          key: 'name'
-        },
-        {
-          title: '权限等级',
-          key: 'role',
+          title: '联系人',
+          key: 'name',
           render: (h, params) => {
-            return <div>
-              <span>{roleName(params.row.role.class)}</span>
-            </div>
+            const { row } = params
+            const { avatar, contact } = row
+            const img = <img src={avatar}></img>
+            return (<div class="z-name">
+              {img}
+              <span>{contact}</span>
+            </div>)
           }
         },
         {
-          title: '手机号', key: 'mobile'        },
+          title: '手机号',
+          key: 'mobile'
+        },
         {
           title: '注册日期',
           key: 'createTime',
@@ -158,7 +168,7 @@ export default {
         }
       ],
       tableData: [],
-      modal: false,
+      visible: false,
       roleSelect: 'all',
       searchForm: {
         name: null,
@@ -185,8 +195,8 @@ export default {
     },
     // 打开模态框
     openModal(row) {
-      this.modal = true
-      const { _id, name, nickname, avatar, openid, mobile } = row
+      this.visible = true
+      const { _id, name, contact, avatar, openid, mobile } = row
       if (name == '') {
         this.nameDisable = false
       } else {
@@ -195,10 +205,19 @@ export default {
       this.form = {
         upd_user_id: _id,
         name,
-        nickname,
+        contact,
         avatar,
         openid,
         mobile
+      }
+    },
+    // 切换密码
+    pwdchange(state) {
+      if (state) {
+        this.form.password = null
+        this.pwdSwitch = true
+      } else {
+        this.pwdSwitch = false
       }
     },
     // 查询用户列表
@@ -270,7 +289,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .lease-user-list {
     .z-search {
       @label-width: 60px;
