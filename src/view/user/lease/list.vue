@@ -55,7 +55,6 @@
           <Input v-model="form.contact"></Input>
         </FormItem>
         <FormItem label="密码">
-          <!-- <Input v-model="form.password" type="password"></Input> -->
           <i-switch size="large" @on-change="pwdchange">
             <span slot="open">重置</span>
             <span slot="close">重置</span>

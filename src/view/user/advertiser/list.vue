@@ -47,7 +47,7 @@
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
-    <Modal v-model="modal" title="编辑用户信息">
+    <Modal v-model="modal" title="编辑信息">
       <Form :model="form" :label-width="60">
         <FormItem label="头像">
           <img class="z-header" :src="form.avatar" alt="">
@@ -55,13 +55,15 @@
         <FormItem label="登录账号">
           <Input :readonly="nameDisable" placeholder="请输入登录账号" v-model="form.name"></Input>
         </FormItem>
-        <FormItem label="昵称">
-          <Input v-model="form.nickname"></Input>
+        <FormItem label="密码">
+          <i-switch size="large" @on-change="pwdchange">
+            <span slot="open">重置</span>
+            <span slot="close">重置</span>
+          </i-switch>
         </FormItem>
-        <FormItem label="微信ID">
-          <Input v-model="form.openid"></Input>
+        <FormItem label="新密码" v-if="pwdSwitch">
+          <Input v-model="form.password" type="password"></Input>
         </FormItem>
-
         <FormItem label="手机号">
           <Input v-model="form.mobile"></Input>
         </FormItem>
@@ -77,6 +79,7 @@
 
 import UserCard from '@/components/user/UserCard'
 import { timeS, roleName } from '@/libs/help.js'
+const md5 = require('md5')
 export default {
   name: 'tables_page',
   components: {
@@ -86,6 +89,8 @@ export default {
     return {
       total: 0,
       page: 1,
+      // 是否采用新密码
+      pwdSwitch: false,
       roleList: [
         {
           value: 'all',
@@ -162,7 +167,8 @@ export default {
         date_range: null
       },
       form: {
-        user_id: null,
+        // 广告id
+        advertiser_id: null,
         // 登录账号
         name: null,
         avatar: null,
@@ -178,21 +184,24 @@ export default {
     modalHide() {
       this.modal = false
     },
+    // 切换密码
+    pwdchange(state) {
+      this.form.password = null
+      if (state) {
+        this.pwdSwitch = true
+      } else {
+        this.pwdSwitch = false
+      }
+    },
     // 打开模态框
     openModal(row) {
       this.modal = true
-      const { _id, name, nickname, avatar, openid, mobile } = row
-      if (name == '') {
-        this.nameDisable = false
-      } else {
-        this.nameDisable = true
-      }
+      const { _id, name, nickname, avatar, mobile } = row
       this.form = {
-        upd_user_id: _id,
+        advertiser_id: _id,
         name,
         nickname,
         avatar,
-        openid,
         mobile
       }
     },
@@ -236,12 +245,12 @@ export default {
     // 更新用户信息
     async userUpdate() {
       const copyForm = JSON.parse(JSON.stringify(this.form))
-      // 如果账号名称是已经存在的了，就不需要更新了
-      if (this.nameDisable) {
-        delete copyForm.name
+      if (copyForm.password !== null) {
+        copyForm.password = md5(copyForm.password)
       }
+
       const params = {
-        url: 'user/update',
+        url: 'advertiser/user/update',
         payload: copyForm,
         auth: true
       }
