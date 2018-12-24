@@ -79,6 +79,7 @@
 
 import UserCard from '@/components/user/UserCard'
 import { timeS, roleName } from '@/libs/help.js'
+const md5 = require('md5')
 export default {
   name: 'tables_page',
   components: {
@@ -197,13 +198,8 @@ export default {
     openModal(row) {
       this.visible = true
       const { _id, name, contact, avatar, openid, mobile } = row
-      if (name == '') {
-        this.nameDisable = false
-      } else {
-        this.nameDisable = true
-      }
       this.form = {
-        upd_user_id: _id,
+        lease_id: _id,
         name,
         contact,
         avatar,
@@ -213,8 +209,8 @@ export default {
     },
     // 切换密码
     pwdchange(state) {
+      this.form.password = null
       if (state) {
-        this.form.password = null
         this.pwdSwitch = true
       } else {
         this.pwdSwitch = false
@@ -259,13 +255,12 @@ export default {
     },
     // 更新用户信息
     async userUpdate() {
-      const copyForm = JSON.parse(JSON.stringify(this.form))
-      // 如果账号名称是已经存在的了，就不需要更新了
-      if (this.nameDisable) {
-        delete copyForm.name
+      const copyForm = JSON.parse(JSON.stringify(this.form));
+      if (copyForm.password !== null) {
+        copyForm.password = md5(copyForm.password)
       }
       const params = {
-        url: 'user/update',
+        url: 'lease/user/update',
         payload: copyForm,
         auth: true
       }
@@ -276,7 +271,8 @@ export default {
       } else {
         this.$Message.console.error(result.msg)
       }
-      this.modal = false
+      this.pwdSwitch = false
+      this.visible = false
     }
   },
   mounted() {
