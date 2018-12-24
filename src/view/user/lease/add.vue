@@ -113,6 +113,8 @@ export default {
         this.$router.push({
           name: 'user/lease/list'
         })
+      } else {
+        this.$Message.warning(result.msg);
       }
     }
   },
