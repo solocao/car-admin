@@ -1,13 +1,10 @@
-<style lang="less">
-  @import "./login.less";
-</style>
 
 <template>
   <div class="login">
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
-          <login-form @on-success-valid="handleSubmit"></login-form>
+          <login-form @on-success-valid="submit"></login-form>
           <p class="login-tip">输入任意用户名和密码即可</p>
         </div>
       </Card>
@@ -16,7 +13,7 @@
 </template>
 
 <script>
-import LoginForm from '@components/login-form'
+import LoginForm from '@/components/login-form'
 import { mapActions, mapMutations } from 'vuex'
 const md5 = require('md5')
 export default {
@@ -24,15 +21,10 @@ export default {
     LoginForm
   },
   methods: {
-    ...mapActions([
-      'set',
-      'handleLogin',
-      'getUserInfo'
-    ]),
     ...mapMutations([
       'set'
     ]),
-    async  handleSubmit({ userName, password }) {
+    async submit({ userName, password }) {
       const params = {
         url: 'user/login',
         payload: {
@@ -50,18 +42,11 @@ export default {
         this.$Message.error(result.msg)
       }
       console.log(result)
-
-      // this.handleLogin({ userName, password }).then(res => {
-      //   this.getUserInfo().then(res => {
-      //     this.$router.push({
-      //       name: 'home'
-      //     })
-      //   })
-      // })
     }
   }
 }
 </script>
 
-<style>
+<style lang="less">
+  @import "./login.less";
 </style>

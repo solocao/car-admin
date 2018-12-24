@@ -7,17 +7,13 @@ import store from './store'
 import iView from 'iview'
 import i18n from '@/locale'
 import config from '@/config'
-import importDirective from '@/directive'
 import accessDirective from '@/directive/access'
 import VuePreview from 'vue-preview'
 import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
-
 import '@/style/common.less'
-
 import { get, post, put, upload, deleteAlias } from './api/index.js'
-
 Vue.use(VuePreview)
 // 全局请求数据
 Vue.prototype.get = get
@@ -44,7 +40,6 @@ Vue.prototype.$config = config;
 /**
  * 注册指令
  */
-importDirective(Vue);
 accessDirective(Vue)
 
 
