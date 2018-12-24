@@ -20,7 +20,7 @@
           <Icon :size="14" type="ios-construct"></Icon>
         </span>
         <Select v-model="userModel" class="user-select">
-          <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Option v-for="item in roleList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
       </div>
     </FormItem>
@@ -56,7 +56,7 @@ export default {
         userName: null,
         password: null
       },
-      cityList: [
+      roleList: [
         {
           value: 'admin',
           label: '管理员'
