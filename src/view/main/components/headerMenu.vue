@@ -36,16 +36,20 @@
             用户
           </span>
         </template>
-        <MenuGroup title="租赁商">
+        <MenuGroup title="租赁商" v-access="lease">
           <MenuItem name="3-1">新增和启动</MenuItem>
           <MenuItem name="3-2">活跃分析</MenuItem>
           <MenuItem name="3-3">时段分析</MenuItem>
         </MenuGroup>
-        <MenuGroup title="广告主">
+        <MenuGroup title="广告主" v-access="advertiser">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>
-        <MenuGroup title="普通用户">
+        <MenuGroup title="普通用户" v-access="consumer">
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="服务点" v-access="service">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
         </MenuGroup>

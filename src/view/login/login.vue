@@ -24,12 +24,13 @@ export default {
     ...mapMutations([
       'set'
     ]),
-    async submit({ userName, password }) {
+    async submit({ userName, password, role }) {
       const params = {
         url: 'user/login',
         payload: {
           name: userName,
-          password: md5(password)
+          password: md5(password),
+          role: role
         }
       }
       const result = await this.post(params)

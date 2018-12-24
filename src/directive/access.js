@@ -6,7 +6,10 @@ import rbac from '@/libs/rbac'
 const accessDirective = function (Vue) {
   Vue.directive('access', {
     bind: function (el, { value, arg, modifiers }) {
-      if (!rbac(value)) {
+      // 有权限就不需要隐藏
+      if (rbac(value)) {
+
+      } else {
         el.style.display = 'none';
       }
     }
