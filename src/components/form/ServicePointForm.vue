@@ -47,11 +47,13 @@ export default {
         longitude: [{ required: true, message: '请输入经度', trigger: 'blur' }],
         img: [
           { required: true, message: '请上传服务点图片', trigger: 'blur' },
-          {            validator(rule, value, callback, source, options) {
+          {
+            validator(rule, value, callback, source, options) {
               const errors = []
               if (value === undefined) { errors.push('请上传服务点图片') }
               callback(errors)
-            }          }
+            }
+          }
         ]
       }
     }

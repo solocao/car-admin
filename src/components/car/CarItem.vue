@@ -48,11 +48,13 @@ export default {
         name: [{ required: true, message: '汽车名称', trigger: 'blur' }],
         img: [
           { required: true },
-          {            validator(rule, value, callback, source, options) {
+          {
+            validator(rule, value, callback, source, options) {
               const errors = []
               if (value === undefined) { errors.push('请上传图片') }
               callback(errors)
-            }          }
+            }
+          }
         ]
       }
     }

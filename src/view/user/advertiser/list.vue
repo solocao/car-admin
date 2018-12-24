@@ -40,6 +40,10 @@
     </Card>
 
     <Card>
+      <p slot="title">广告主列表</p>
+      <div slot="extra" class="z-btn">
+        <Button type="default" style="marginRight:10px" size="small" @click="userList">刷新</Button>
+      </div>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
@@ -78,7 +82,7 @@ export default {
   components: {
     UserCard
   },
-  data () {
+  data() {
     return {
       total: 0,
       page: 1,
@@ -108,7 +112,7 @@ export default {
         }],
       columns: [
         {
-          title: '用户',
+          title: '广告主',
           key: 'name',
           render: (h, params) => {
             const { row } = params
@@ -125,16 +129,7 @@ export default {
           key: 'name'
         },
         {
-          title: '权限等级',
-          key: 'role',
-          render: (h, params) => {
-            return <div>
-              <span>{roleName(params.row.role.class)}</span>
-            </div>
-          }
-        },
-        {
-          title: '手机号', key: 'mobile' },
+          title: '手机号', key: 'mobile'        },
         {
           title: '注册日期',
           key: 'createTime',
@@ -180,11 +175,11 @@ export default {
     }
   },
   methods: {
-    modalHide () {
+    modalHide() {
       this.modal = false
     },
     // 打开模态框
-    openModal (row) {
+    openModal(row) {
       this.modal = true
       const { _id, name, nickname, avatar, openid, mobile } = row
       if (name == '') {
@@ -202,9 +197,9 @@ export default {
       }
     },
     // 查询用户列表
-    async userList () {
+    async userList() {
       const params = {
-        url: 'advetiser/user/list',
+        url: 'advertiser/user/list',
         payload: {
           page: this.page,
           size: 10
@@ -218,7 +213,7 @@ export default {
       }
     },
     // 清空搜索条件
-    searchClear () {
+    searchClear() {
       this.roleSelect = 'all'
       this.searchForm = {
         name: null,
@@ -229,17 +224,17 @@ export default {
       this.userList()
     },
     // 时间选择
-    selectDate (date) {
+    selectDate(date) {
       if (date !== undefined) {
         this.searchForm.date_range = date
       }
     },
-    pageChange (page) {
+    pageChange(page) {
       this.page = page
       this.userList()
     },
     // 更新用户信息
-    async userUpdate () {
+    async userUpdate() {
       const copyForm = JSON.parse(JSON.stringify(this.form))
       // 如果账号名称是已经存在的了，就不需要更新了
       if (this.nameDisable) {
@@ -260,11 +255,11 @@ export default {
       this.modal = false
     }
   },
-  mounted () {
+  mounted() {
     this.userList()
   },
   watch: {
-    roleSelect (newVal) {
+    roleSelect(newVal) {
       this.userList()
     }
   }

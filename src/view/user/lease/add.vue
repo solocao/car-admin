@@ -73,7 +73,8 @@ export default {
         mobile: [{ required: true, message: '手机号不能为空', trigger: 'blur' }],
         avatar: [
           { required: true, message: '请上传用户头像封面', trigger: 'blur' },
-          {            validator(rule, value, callback, source, options) {
+          {
+            validator(rule, value, callback, source, options) {
               const errors = []
               if (value === undefined) { errors.push('请上传用户头像封面') }
               callback(errors)

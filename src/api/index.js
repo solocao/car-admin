@@ -119,8 +119,6 @@ export const post = (params) => {
       delete payload[x]
     }
   })
-  console.log(payload)
-  console.log(qs.stringify(payload))
   return axios.post(url, qs.stringify(payload), authHeader).then(x => x.data)
 }
 

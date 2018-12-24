@@ -78,7 +78,7 @@ export default {
   components: {
     UserCard
   },
-  data () {
+  data() {
     return {
       total: 0,
       page: 1,
@@ -134,7 +134,7 @@ export default {
           }
         },
         {
-          title: '手机号', key: 'mobile' },
+          title: '手机号', key: 'mobile'        },
         {
           title: '注册日期',
           key: 'createTime',
@@ -180,11 +180,11 @@ export default {
     }
   },
   methods: {
-    modalHide () {
+    modalHide() {
       this.modal = false
     },
     // 打开模态框
-    openModal (row) {
+    openModal(row) {
       this.modal = true
       const { _id, name, nickname, avatar, openid, mobile } = row
       if (name == '') {
@@ -202,7 +202,7 @@ export default {
       }
     },
     // 查询用户列表
-    async userList () {
+    async userList() {
       const params = {
         url: 'user/list',
         payload: {
@@ -235,7 +235,7 @@ export default {
       }
     },
     // 清空搜索条件
-    searchClear () {
+    searchClear() {
       this.roleSelect = 'all'
       this.searchForm = {
         name: null,
@@ -246,17 +246,17 @@ export default {
       this.userList()
     },
     // 时间选择
-    selectDate (date) {
+    selectDate(date) {
       if (date !== undefined) {
         this.searchForm.date_range = date
       }
     },
-    pageChange (page) {
+    pageChange(page) {
       this.page = page
       this.userList()
     },
     // 更新用户信息
-    async userUpdate () {
+    async userUpdate() {
       const copyForm = JSON.parse(JSON.stringify(this.form))
       // 如果账号名称是已经存在的了，就不需要更新了
       if (this.nameDisable) {
@@ -277,37 +277,37 @@ export default {
       this.modal = false
     }
   },
-  mounted () {
+  mounted() {
     this.userList()
   },
   watch: {
-    roleSelect (newVal) {
+    roleSelect(newVal) {
       this.userList()
     }
   }
 }
 </script>
 <style lang="less">
-.user-list {
-  .z-search {
-    @label-width: 60px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    .z-label {
-      width: @label-width;
-      float: left;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    .z-content {
-      margin-left: @label-width + 10px;
-    }
-    .z-btn {
-      display: flex;
-      justify-content: flex-end;
+  .user-list {
+    .z-search {
+      @label-width: 60px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      .z-label {
+        width: @label-width;
+        float: left;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .z-content {
+        margin-left: @label-width + 10px;
+      }
+      .z-btn {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
-}
 </style>

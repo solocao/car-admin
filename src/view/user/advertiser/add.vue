@@ -35,7 +35,7 @@
 import ImageUpload from '@components/upload/ImageUpload.vue'
 const md5 = require('md5')
 export default {
-  data () {
+  data() {
     return {
       // 广告主
       form: {
@@ -60,19 +60,33 @@ export default {
         name: [{ required: true, message: '广告主名称不能为空', trigger: 'blur' }],
         password: [{ required: true, message: '登录密码不能为空', trigger: 'blur' }],
         logo: [
-          { required: true, type: 'array', min: 1, message: '请上传广告主logo', trigger: 'blur' }
+          { required: true, message: '请上传广告主logo', trigger: 'blur' },
+          {
+            validator(rule, value, callback, source, options) {
+              const errors = []
+              if (value === undefined) { errors.push('请上传广告主logo') }
+              callback(errors)
+            }
+          }
         ],
         address: [{ required: true, message: '广告主地址不能为空', trigger: 'blur' }],
         contact: [{ required: true, message: '联系人不能为空', trigger: 'blur' }],
         mobile: [{ required: true, message: '手机号不能为空', trigger: 'blur' }],
         avatar: [
-          { required: true, type: 'array', min: 1, message: '请上传用户头像封面', trigger: 'blur' }
+          { required: true, message: '请上传用户头像封面', trigger: 'blur' },
+          {
+            validator(rule, value, callback, source, options) {
+              const errors = []
+              if (value === undefined) { errors.push('请上传用户头像封面') }
+              callback(errors)
+            }
+          }
         ]
       }
     }
   },
   methods: {
-    valid () {
+    valid() {
       return this.$refs.form.validate((valid) => {
         if (valid) {
           return true
@@ -82,14 +96,12 @@ export default {
         }
       })
     },
-    async submit () {
+    async submit() {
       const valid = await this.valid()
       if (!valid) {
         return false
       }
       const formCopy = JSON.parse(JSON.stringify(this.form))
-      formCopy.logo = formCopy.logo[0]
-      formCopy.avatar = formCopy.avatar[0]
       formCopy.password = md5(formCopy.password)
       const params = {
         url: 'advertiser/user/add',

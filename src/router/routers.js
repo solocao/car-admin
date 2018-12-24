@@ -273,7 +273,7 @@ export default [
           icon: 'ios-navigate',
           title: '新增广告主'
         },
-        component: () => import('@/view/advertiser/UserAdd.vue')
+        component: () => import('@/view/user/advertiser/add.vue')
       },
       {
         path: 'list',
@@ -282,7 +282,7 @@ export default [
           icon: 'ios-navigate',
           title: '广告主列表'
         },
-        component: () => import('@/view/advertiser/UserList.vue')
+        component: () => import('@/view/user/advertiser/list.vue')
       }
     ]
   },

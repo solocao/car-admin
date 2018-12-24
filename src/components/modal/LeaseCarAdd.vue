@@ -63,19 +63,23 @@ export default {
         car_number: [{ required: true, message: '请输入车牌号', trigger: 'blur' }],
         car_model: [
           { required: true, type: 'array', message: '请选择车型', trigger: 'change' },
-          {            validator(rule, value, callback, source, options) {
+          {
+            validator(rule, value, callback, source, options) {
               const errors = []
               if (value === undefined) { errors.push('请选择车型') }
               console.log(errors)
               callback(errors)
-            }          }],
+            }
+          }],
         img: [
           { required: true, message: '请上传图片', trigger: 'blur' },
-          {            validator(rule, value, callback, source, options) {
+          {
+            validator(rule, value, callback, source, options) {
               const errors = []
               if (value === undefined) { errors.push('请上传图片') }
               callback(errors)
-            }          }
+            }
+          }
         ]
       }
     }

@@ -92,11 +92,13 @@ export default {
       ruleValidate: {
         title: [{ required: true, message: '活动标题不能为空', trigger: 'blur' }],
         date_range: [{ required: true, type: 'array', message: '活动时间不能为空', trigger: 'change' },
-        {          validator(rule, value, callback, source, options) {
+        {
+          validator(rule, value, callback, source, options) {
             const errors = []
             if (value[0] === '') { errors.push('活动时间不能为空') }
             callback(errors)
-          }        }],
+          }
+        }],
         brief: [
           { required: true, message: '活动简介不能为空', trigger: 'blur' }
         ],
@@ -104,11 +106,13 @@ export default {
         free_day: [{ required: true, type: 'number', message: '请输入免打卡天数', trigger: 'blur' }],
         cover_img: [
           { required: true, message: '请上传活动封面', trigger: 'blur' },
-          {            validator(rule, value, callback, source, options) {
+          {
+            validator(rule, value, callback, source, options) {
               const errors = []
               if (value === undefined) { errors.push('请上传活动封面') }
               callback(errors)
-            }          }
+            }
+          }
         ],
         show_img: [
           { required: true, type: 'array', min: 1, message: '请上传展示图片', trigger: 'blur' }
