@@ -1,4 +1,4 @@
-import Main from '@/view/main'
+import Main from '@/views/main'
 import parentView from '@/components/parent-view'
 
 /**
@@ -19,7 +19,7 @@ export default [
       title: 'Login - 登录',
       hideInMenu: true
     },
-    component: () => import('@/view/login/login.vue')
+    component: () => import('@/views/login/login.vue')
   },
   {
     path: '/',
@@ -39,7 +39,7 @@ export default [
           title: '首页',
           notCache: true
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import('@/views/single-page/home')
       }
     ]
   },
@@ -56,7 +56,7 @@ export default [
           icon: 'ios-navigate',
           title: '概况'
         },
-        component: () => import('@/view/report/verify.vue')
+        component: () => import('@/views/report/verify.vue')
       },
     ]
   },
@@ -74,7 +74,7 @@ export default [
           icon: 'ios-navigate',
           title: '概况'
         },
-        component: () => import('@/view/report/verify.vue')
+        component: () => import('@/views/report/verify.vue')
       },
     ]
   },
@@ -128,9 +128,18 @@ export default [
         name: 'service_point',
         meta: {
           icon: 'ios-navigate',
-          title: '服务网点'
+          title: '网点列表'
         },
         component: () => import('@v/active/ServicePoint.vue')
+      },
+      {
+        path: 'service/active',
+        name: 'service_active',
+        meta: {
+          icon: 'ios-navigate',
+          title: '贴纸管理'
+        },
+        component: () => import('@/pages/operate/service/active.vue')
       },
     ]
   },
@@ -162,40 +171,6 @@ export default [
       },
     ]
   },
-  // 活动列表
-  {
-    path: '/active',
-    name: '会员管理',
-    component: Main,
-    tabMenu: 'active',
-    children: [
-      {
-        path: 'list',
-        name: 'list',
-        meta: {
-          icon: 'ios-navigate',
-          title: '活动列表'
-        },
-        component: () => import('@/view/ad/adList.vue')
-      },
-    ]
-  },
-  {
-    path: '/active',
-    component: Main,
-    tabMenu: 'active',
-    children: [
-      {
-        path: 'class',
-        name: 'class',
-        meta: {
-          icon: 'ios-navigate',
-          title: '广告分类'
-        },
-        component: () => import('@/view/report/verify.vue')
-      },
-    ]
-  },
   // 订单管理
   {
     path: '/order',
@@ -210,7 +185,7 @@ export default [
           icon: 'ios-navigate',
           title: '订单列表'
         },
-        component: () => import('@/view/order/orderList.vue')
+        component: () => import('@/views/order/orderList.vue')
       },
     ]
   },
@@ -229,7 +204,7 @@ export default [
           icon: 'ios-navigate',
           title: '用户列表'
         },
-        component: () => import('@/view/user/common/list.vue')
+        component: () => import('@/views/user/common/list.vue')
       },
       {
         path: 'verify',
@@ -238,7 +213,7 @@ export default [
           icon: 'ios-navigate',
           title: '认证列表'
         },
-        component: () => import('@/view/user/common/verifyList.vue')
+        component: () => import('@/views/user/common/verifyList.vue')
       },
       {
         path: 'advertiser',
@@ -247,7 +222,7 @@ export default [
           icon: 'ios-navigate',
           title: '广告主'
         },
-        component: () => import('@/view/user/UserAdvertiser.vue')
+        component: () => import('@/views/user/UserAdvertiser.vue')
       }
     ]
   },
@@ -265,7 +240,7 @@ export default [
           icon: 'ios-navigate',
           title: '新增租赁商'
         },
-        component: () => import('@/view/user/lease/add.vue')
+        component: () => import('@/views/user/lease/add.vue')
       },
       {
         path: 'lease/list',
@@ -274,7 +249,7 @@ export default [
           icon: 'ios-navigate',
           title: '租赁商列表'
         },
-        component: () => import('@/view/user/lease/list.vue')
+        component: () => import('@/views/user/lease/list.vue')
       },
       {
         path: 'lease/car',
@@ -283,7 +258,7 @@ export default [
           icon: 'ios-navigate',
           title: '租赁商车型库'
         },
-        component: () => import('@/view/user/lease/car.vue')
+        component: () => import('@/views/user/lease/car.vue')
       },
     ]
   },
@@ -301,7 +276,7 @@ export default [
           icon: 'ios-navigate',
           title: '新增广告主'
         },
-        component: () => import('@/view/user/advertiser/add.vue')
+        component: () => import('@/views/user/advertiser/add.vue')
       },
       {
         path: 'list',
@@ -310,7 +285,7 @@ export default [
           icon: 'ios-navigate',
           title: '广告主列表'
         },
-        component: () => import('@/view/user/advertiser/list.vue')
+        component: () => import('@/views/user/advertiser/list.vue')
       }
     ]
   },
@@ -328,7 +303,7 @@ export default [
           icon: 'ios-navigate',
           title: '认证列表'
         },
-        component: () => import('@/view/user/VerifyList.vue')
+        component: () => import('@/views/user/VerifyList.vue')
       }
     ]
   },
@@ -346,7 +321,7 @@ export default [
           icon: 'ios-navigate',
           title: '品牌分类'
         },
-        component: () => import('@/view/car/category.vue')
+        component: () => import('@/views/car/category.vue')
       }, {
         path: 'list',
         name: 'list',
@@ -354,7 +329,7 @@ export default [
           icon: 'ios-navigate',
           title: '车型列表'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -372,7 +347,7 @@ export default [
           icon: 'ios-navigate',
           title: '车辆分类'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -390,7 +365,7 @@ export default [
           icon: 'ios-navigate',
           title: '提现申请'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -399,7 +374,7 @@ export default [
           icon: 'ios-navigate',
           title: '提现申请'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -416,7 +391,7 @@ export default [
           icon: 'ios-navigate',
           title: '充值记录'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -425,7 +400,7 @@ export default [
           icon: 'ios-navigate',
           title: '资金管理'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -443,7 +418,7 @@ export default [
           icon: 'ios-navigate',
           title: '充值记录'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -452,7 +427,7 @@ export default [
           icon: 'ios-navigate',
           title: '资金管理'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -470,7 +445,7 @@ export default [
           icon: 'ios-navigate',
           title: '首页导航按钮'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -479,7 +454,7 @@ export default [
           icon: 'ios-navigate',
           title: '首页幻灯片'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -488,7 +463,7 @@ export default [
           icon: 'ios-navigate',
           title: '小程序支付配置'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -497,7 +472,7 @@ export default [
           icon: 'ios-navigate',
           title: '小程序配置'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -515,7 +490,7 @@ export default [
           icon: 'ios-navigate',
           title: '首页导航按钮'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -524,7 +499,7 @@ export default [
           icon: 'ios-navigate',
           title: '首页幻灯片'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -533,7 +508,7 @@ export default [
           icon: 'ios-navigate',
           title: '小程序支付配置'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       },
       {
         path: 'normal',
@@ -542,7 +517,7 @@ export default [
           icon: 'ios-navigate',
           title: '小程序配置'
         },
-        component: () => import('@/view/user/UserNormal.vue')
+        component: () => import('@/views/user/UserNormal.vue')
       }
     ]
   },
@@ -564,7 +539,7 @@ export default [
           icon: 'ios-navigate',
           title: '上报审核'
         },
-        component: () => import('@/view/report/verify.vue')
+        component: () => import('@/views/report/verify.vue')
       },
       {
         path: 'report_appeal',
@@ -573,7 +548,7 @@ export default [
           icon: 'ios-navigate',
           title: '申诉处理'
         },
-        component: () => import('@/view/report/appeal.vue')
+        component: () => import('@/views/report/appeal.vue')
       }
     ]
   },
@@ -591,7 +566,7 @@ export default [
         meta: {
           icon: 'md-ionic',
         },
-        component: () => import('@/view/org/rank.vue')
+        component: () => import('@/views/org/rank.vue')
       },
       {
         path: 'depart',
@@ -599,7 +574,7 @@ export default [
         meta: {
           icon: 'ios-ionic-outline',
         },
-        component: () => import('@/view/org/depart.vue')
+        component: () => import('@/views/org/depart.vue')
       }]
   },
   {
@@ -617,7 +592,7 @@ export default [
           icon: 'ios-contacts',
           title: '用户列表'
         },
-        component: () => import('@/view/user/list.vue')
+        component: () => import('@/views/user/list.vue')
       },
       {
         path: 'role_manage',
@@ -626,7 +601,7 @@ export default [
           icon: 'ios-contact',
           title: '用户权限'
         },
-        component: () => import('@/view/user/role.vue')
+        component: () => import('@/views/user/role.vue')
       }
     ]
   },
@@ -647,7 +622,7 @@ export default [
           icon: 'logo-yen',
           title: '设置金额'
         },
-        component: () => import('@/view/reward/SetAmount.vue')
+        component: () => import('@/views/reward/SetAmount.vue')
       },
       {
         path: 'comfirm_send',
@@ -656,7 +631,7 @@ export default [
           icon: 'ios-paper-plane',
           title: '奖励发放'
         },
-        component: () => import('@/view/reward/ComfirmSend.vue')
+        component: () => import('@/views/reward/ComfirmSend.vue')
       }
     ]
   },
@@ -677,7 +652,7 @@ export default [
           icon: 'md-hand',
           title: '检查类别'
         },
-        component: () => import('@/view/setting/type.vue')
+        component: () => import('@/views/setting/type.vue')
       },
       {
         path: 'safe',
@@ -686,7 +661,7 @@ export default [
           icon: 'ios-body',
           title: '活动类型'
         },
-        component: () => import('@/view/setting/safe.vue')
+        component: () => import('@/views/setting/safe.vue')
       }
     ]
   },
@@ -706,7 +681,7 @@ export default [
           icon: 'md-trending-up',
           title: '项目部统计'
         },
-        component: () => import('@/view/statistic/depart.vue')
+        component: () => import('@/views/statistic/depart.vue')
       },
       // {
       //   path: 'drag_list_page',
@@ -715,7 +690,7 @@ export default [
       //     icon: 'ios-infinite',
       //     title: '问题类型'
       //   },
-      //   component: () => import('@/view/components/drag-list/drag-list.vue')
+      //   component: () => import('@/views/components/drag-list/drag-list.vue')
       // }
     ]
   },
@@ -725,7 +700,7 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/401.vue')
+    component: () => import('@/views/error-page/401.vue')
   },
   {
     path: '/500',
@@ -733,7 +708,7 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/500.vue')
+    component: () => import('@/views/error-page/500.vue')
   },
   {
     path: '*',
@@ -741,6 +716,6 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/404.vue')
+    component: () => import('@/views/error-page/404.vue')
   }
 ]

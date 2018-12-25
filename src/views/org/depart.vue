@@ -29,9 +29,9 @@
 
 <script>
 import { timeS } from '@/libs/help.js'
-import bidExpand from '@/view/components/depart/bidExpand.vue'
+import bidExpand from '@/views/components/depart/bidExpand.vue'
 export default {
-  data () {
+  data() {
     return {
       form: {
         _id: null,
@@ -108,14 +108,14 @@ export default {
     bidExpand
   },
   computed: {
-    modelTitle () {
+    modelTitle() {
       return this.mode === 'add' ? '新增 地区项目部门' : '编辑 地区项目部门'
     }
   },
 
   methods: {
     // 显示模型框
-    modalShow (row, type) {
+    modalShow(row, type) {
       if (type === 'add') {
         this.mode = 'add'
         this.form.name = null
@@ -133,7 +133,7 @@ export default {
       }
       this.modal = true
     },
-    ok () {
+    ok() {
       if (this.mode === 'add') {
         this.departAdd()
       } else {
@@ -141,7 +141,7 @@ export default {
       }
     },
     // 获取地区部门
-    async departTree () {
+    async departTree() {
       const params = {
         url: 'depart/list',
         payload: {}
@@ -164,7 +164,7 @@ export default {
       })
       this.tableData = arr
     },
-    async departAdd () {
+    async departAdd() {
       const params = {
         url: 'depart/add',
         payload: {
@@ -182,7 +182,7 @@ export default {
         this.departTree()
       }
     },
-    async rankUpdate () {
+    async rankUpdate() {
       const params = {
         url: 'depart/update',
         payload: {
@@ -200,7 +200,7 @@ export default {
     }
   },
 
-  mounted () {
+  mounted() {
     // this.rankList()
     this.departTree()
   }
@@ -208,18 +208,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tree-show-1 {
-}
-.tree-show-2 {
-  margin-left: 20px;
-}
-.tree-show-3 {
-  margin-left: 40px;
-}
-.tree-show-4 {
-  margin-left: 60px;
-}
-textarea {
-  font-size: 12px !important;
-}
+  .tree-show-1 {
+  }
+  .tree-show-2 {
+    margin-left: 20px;
+  }
+  .tree-show-3 {
+    margin-left: 40px;
+  }
+  .tree-show-4 {
+    margin-left: 60px;
+  }
+  textarea {
+    font-size: 12px !important;
+  }
 </style>

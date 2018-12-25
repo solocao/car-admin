@@ -4,7 +4,7 @@
       <p slot="title">搜索条件</p>
       <div slot="extra" class="z-btn">
         <Button type="default" style="marginRight:10px" size="small" @click="searchClear">清空</Button>
-        <Button type="primary" size="small" @click="userList">搜索</Button>
+        <Button type="primary" size="small" @click="activeList">搜索</Button>
       </div>
       <div>
         <Row>
@@ -37,6 +37,9 @@
     </Card>
     <Card>
       <p slot="title">活动列表</p>
+      <div slot="extra" class="z-btn">
+        <Button type="default" style="marginRight:10px" size="small" @click="userList">刷新</Button>
+      </div>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>
@@ -78,14 +81,6 @@ export default {
         {
           title: '活动简介',
           key: 'brief'
-        },
-        {
-          title: '车辆颜色',
-          key: 'car_color'
-        },
-        {
-          title: '车型',
-          key: 'car_model'
         },
         {
           title: '日期',

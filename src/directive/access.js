@@ -16,4 +16,4 @@ const accessDirective = function (Vue) {
   })
 }
 
-export default accessDirective;
+export default accessDirective

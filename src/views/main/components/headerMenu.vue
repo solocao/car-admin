@@ -15,18 +15,17 @@
         </template>
         <MenuGroup title="出行活动">
           <MenuItem name="2-1">新增活动</MenuItem>
-          <MenuItem name="2-2">活跃分析</MenuItem>
-          <MenuItem name="2-3">服务网点</MenuItem>
+          <MenuItem name="2-2">活动列表</MenuItem>
+          <MenuItem name="2-3">活动详情</MenuItem>
         </MenuGroup>
         <MenuGroup title="系统消息">
           <MenuItem name="2-4">消息列表</MenuItem>
           <MenuItem name="2-5">新增消息</MenuItem>
         </MenuGroup>
-        <MenuGroup title="音频分类">
-          <MenuItem name="2-6">用户留存</MenuItem>
-          <MenuItem name="2-7">流失用户</MenuItem>
+        <MenuGroup title="服务网点">
+          <MenuItem name="2-6">网点列表</MenuItem>
+          <MenuItem name="2-7">贴纸管理</MenuItem>
         </MenuGroup>
-
       </Submenu>
       <!-- 会员 -->
       <Submenu name="3">

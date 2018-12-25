@@ -22,7 +22,7 @@
 <script>
 
 import HitchDetail from '@/components/hitch/HitchDetail.vue'
-import Money from '@/view/reward/Money.vue'
+import Money from '@/views/reward/Money.vue'
 import { timeS } from '@/libs/help.js'
 
 export default {
@@ -258,103 +258,103 @@ export default {
 }
 </script>
 <style lang="less">
-.z-verify {
-  .z-search {
-    margin-bottom: 10px;
-  }
-  .z-modal {
-    height: 80%;
-  }
-}
-.time {
-  font-size: 14px;
-  font-weight: bold;
-}
-.z-m-item {
-  margin: 10px 0px;
-  display: flex;
-  .z-title {
-    width: 80px;
-    font-weight: bold;
-    margin-right: 4px;
-  }
-}
-.my-gallery {
-  display: flex;
-  figure {
-    margin: 5px;
-    img {
-      width: 150px;
-      height: 112.5px;
+  .z-verify {
+    .z-search {
+      margin-bottom: 10px;
+    }
+    .z-modal {
+      height: 80%;
     }
   }
-}
-.report-default {
-  display: inline-block;
-  height: 22px;
-  line-height: 22px;
-  margin: 2px 4px 2px 0;
-  padding: 0 8px;
-  border: 1px solid #e8eaec;
-  border-radius: 3px;
-  background: #f7f7f7;
-  font-size: 12px;
-  vertical-align: middle;
-  opacity: 1;
-  overflow: hidden;
-  cursor: pointer;
-}
-.report-success {
-}
-.report-warning {
-}
+  .time {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .z-m-item {
+    margin: 10px 0px;
+    display: flex;
+    .z-title {
+      width: 80px;
+      font-weight: bold;
+      margin-right: 4px;
+    }
+  }
+  .my-gallery {
+    display: flex;
+    figure {
+      margin: 5px;
+      img {
+        width: 150px;
+        height: 112.5px;
+      }
+    }
+  }
+  .report-default {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin: 2px 4px 2px 0;
+    padding: 0 8px;
+    border: 1px solid #e8eaec;
+    border-radius: 3px;
+    background: #f7f7f7;
+    font-size: 12px;
+    vertical-align: middle;
+    opacity: 1;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .report-success {
+  }
+  .report-warning {
+  }
 
-.z-state-tag0 {
-  color: gray;
-  background: #f6f6f6;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-size: 12px;
-  border: 1px solid #ebebeb;
-}
-.z-state-tag1 {
-  color: white;
-  background: #81c784;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-size: 12px;
-}
-.z-state-tag2 {
-  color: white;
-  background: #4caf50;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-size: 12px;
-}
-.z-state-tag-1 {
-  font-size: 12px;
-  background: #f44336;
-  color: white;
-  border-radius: 2px;
-  padding: 2px 4px;
-}
-.z-state-tag-2 {
-  font-size: 12px;
-  background: #2196f3;
-  color: white;
-  border-radius: 2px;
-  padding: 2px 4px;
-}
-.z-state-tag-3 {
-  font-size: 12px;
-  background: #060606;
-  color: white;
-  border-radius: 2px;
-  padding: 2px 4px;
-}
-.z-appeal-search {
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-}
+  .z-state-tag0 {
+    color: gray;
+    background: #f6f6f6;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+    border: 1px solid #ebebeb;
+  }
+  .z-state-tag1 {
+    color: white;
+    background: #81c784;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .z-state-tag2 {
+    color: white;
+    background: #4caf50;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .z-state-tag-1 {
+    font-size: 12px;
+    background: #f44336;
+    color: white;
+    border-radius: 2px;
+    padding: 2px 4px;
+  }
+  .z-state-tag-2 {
+    font-size: 12px;
+    background: #2196f3;
+    color: white;
+    border-radius: 2px;
+    padding: 2px 4px;
+  }
+  .z-state-tag-3 {
+    font-size: 12px;
+    background: #060606;
+    color: white;
+    border-radius: 2px;
+    padding: 2px 4px;
+  }
+  .z-appeal-search {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+  }
 </style>
