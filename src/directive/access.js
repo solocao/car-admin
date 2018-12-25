@@ -1,7 +1,7 @@
 import rbac from '@/libs/rbac'
 /**
  * access 指令
- * @param {*} Vue 
+ * @param {*} Vue
  */
 const accessDirective = function (Vue) {
   Vue.directive('access', {

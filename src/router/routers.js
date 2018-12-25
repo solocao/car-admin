@@ -215,15 +215,6 @@ export default [
         },
         component: () => import('@/views/user/common/verifyList.vue')
       },
-      {
-        path: 'advertiser',
-        name: 'adnertiser',
-        meta: {
-          icon: 'ios-navigate',
-          title: '广告主'
-        },
-        component: () => import('@/views/user/UserAdvertiser.vue')
-      }
     ]
   },
   // 用户 租赁商
@@ -286,24 +277,6 @@ export default [
           title: '广告主列表'
         },
         component: () => import('@/views/user/advertiser/list.vue')
-      }
-    ]
-  },
-  // 用户认证
-  {
-    path: '/user/verify',
-    name: '用户认证',
-    component: Main,
-    tabMenu: 'user',
-    children: [
-      {
-        path: 'list',
-        name: 'verify_list',
-        meta: {
-          icon: 'ios-navigate',
-          title: '认证列表'
-        },
-        component: () => import('@/views/user/VerifyList.vue')
       }
     ]
   },
