@@ -306,24 +306,6 @@ export default [
       }
     ]
   },
-  // 车辆 车辆分类
-  {
-    path: '/car',
-    name: '车辆信息',
-    component: Main,
-    tabMenu: 'car',
-    children: [
-      {
-        path: 'class',
-        name: 'normal',
-        meta: {
-          icon: 'ios-navigate',
-          title: '车辆分类'
-        },
-        component: () => import('@/views/user/UserNormal.vue')
-      }
-    ]
-  },
   // 财务
   {
     path: '/finance',
