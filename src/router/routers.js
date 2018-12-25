@@ -134,6 +134,34 @@ export default [
       },
     ]
   },
+
+  // 系统消息
+  {
+    path: '/message',
+    name: '系统消息',
+    component: Main,
+    tabMenu: 'active',
+    children: [
+      {
+        path: 'list',
+        name: 'message_list',
+        meta: {
+          icon: 'ios-navigate',
+          title: '消息列表'
+        },
+        component: () => import('@/pages/operate/message/list.vue')
+      },
+      {
+        path: 'add',
+        name: 'message_add',
+        meta: {
+          icon: 'ios-navigate',
+          title: '新增消息'
+        },
+        component: () => import('@/pages/operate/message/add.vue')
+      },
+    ]
+  },
   // 活动列表
   {
     path: '/active',
