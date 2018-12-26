@@ -62,12 +62,8 @@
           <MenuItem name="4-2">车辆类型</MenuItem>
         </MenuGroup>
         <MenuGroup title="视频分类">
-          <MenuItem name="3-4">用户留存</MenuItem>
-          <MenuItem name="3-5">流失用户</MenuItem>
-        </MenuGroup>
-        <MenuGroup title="音频分类">
-          <MenuItem name="3-4">用户留存</MenuItem>
-          <MenuItem name="3-5">流失用户</MenuItem>
+          <MenuItem name="4-4">用户留存</MenuItem>
+          <MenuItem name="4-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
       <!-- 素材 -->
@@ -77,17 +73,13 @@
           素材
         </template>
         <MenuGroup title="图片分类">
-          <MenuItem name="3-1">新增和启动</MenuItem>
-          <MenuItem name="3-2">活跃分析</MenuItem>
-          <MenuItem name="3-3">时段分析</MenuItem>
+          <MenuItem name="5-1">新增和启动</MenuItem>
+          <MenuItem name="5-2">活跃分析</MenuItem>
+          <MenuItem name="5-3">时段分析</MenuItem>
         </MenuGroup>
         <MenuGroup title="视频分类">
-          <MenuItem name="3-4">用户留存</MenuItem>
-          <MenuItem name="3-5">流失用户</MenuItem>
-        </MenuGroup>
-        <MenuGroup title="音频分类">
-          <MenuItem name="3-4">用户留存</MenuItem>
-          <MenuItem name="3-5">流失用户</MenuItem>
+          <MenuItem name="5-4">用户留存</MenuItem>
+          <MenuItem name="5-5">流失用户</MenuItem>
         </MenuGroup>
       </Submenu>
       <!-- 财务 -->
@@ -100,7 +92,7 @@
 
         </template>
         <MenuGroup title="财务操作">
-          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-1">提现申请</MenuItem>
           <MenuItem name="3-2">活跃分析</MenuItem>
           <MenuItem name="3-3">时段分析</MenuItem>
         </MenuGroup>

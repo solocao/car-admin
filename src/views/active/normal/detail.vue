@@ -12,6 +12,9 @@
       <p slot="title">
         参与用户列表
       </p>
+      <div slot="extra" class="z-btn">
+        <Button type="default" style="marginRight:10px" size="small" @click="userList">刷新</Button>
+      </div>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
     </Card>

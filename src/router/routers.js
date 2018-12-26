@@ -94,7 +94,7 @@ export default [
           icon: 'ios-navigate',
           title: '新增活动'
         },
-        component: () => import('@v/active/normal/add.vue')
+        component: () => import('@/views/active/normal/add.vue')
       },
       {
         path: 'list',
@@ -103,7 +103,7 @@ export default [
           icon: 'ios-navigate',
           title: '活动列表'
         },
-        component: () => import('@view/active/normal/list.vue')
+        component: () => import('@/views/active/normal/list.vue')
       },
       {
         path: 'detail',
@@ -112,7 +112,7 @@ export default [
           icon: 'ios-navigate',
           title: '活动详情'
         },
-        component: () => import('@view/active/normal/detail.vue')
+        component: () => import('@/views/active/normal/detail.vue')
       },
     ]
   },
@@ -130,7 +130,7 @@ export default [
           icon: 'ios-navigate',
           title: '网点列表'
         },
-        component: () => import('@v/active/ServicePoint.vue')
+        component: () => import('@/views/active/ServicePoint.vue')
       },
       {
         path: 'service/active',
