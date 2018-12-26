@@ -13,7 +13,7 @@
         参与用户列表
       </p>
       <div slot="extra" class="z-btn">
-        <Button type="default" style="marginRight:10px" size="small" @click="userList">刷新</Button>
+        <Button type="default" style="marginRight:10px" size="small" @click="activeUserList">刷新</Button>
       </div>
       <Table :columns="columns" :data="tableData"></Table>
       <Page style="marginTop: 10px" :total="total" size="small" show-elevator show-total @on-change="pageChange" />
@@ -23,6 +23,7 @@
 <script>
 import InforCard from '_c/info-card'
 import CountTo from '_c/count-to'
+import { timeS } from '@/libs/help.js'
 export default {
   components: {
     InforCard,
@@ -52,30 +53,47 @@ export default {
         },
         {
           title: '参与时间',
-          key: 'join_at'
+          key: 'join_at',
+          render: (h, params) => {
+            const { paste_at } = params.row
+            const pasteAt = timeS(paste_at)
+            return <div>
+              <div>{pasteAt}</div>
+            </div>
+          }
         },
         {
           title: '贴纸时间',
-          key: 'paste_at'
+          key: 'paste_at',
+          render: (h, params) => {
+            const { paste_at } = params.row
+            const pasteAt = timeS(paste_at)
+            return <div>
+              <div>{pasteAt}</div>
+            </div>
+          }
         },
         {
-          title: '贴纸时间',
+          title: '贴纸',
           key: 'paste_img',
           render: (h, params) => {
             const { paste_img } = params.row
             const imgItem = <img src={paste_img}></img>
-            return (<div class="z-table-img">
+            return (<div class="zone-table-img100">
               {imgItem}
             </div>)
           }
         },
         {
-          title: '打卡次数',
-          key: 'car_color'
-        },
-        {
-          title: '车型',
-          key: 'car_model'
+          title: '打卡',
+          key: 'clock',
+          render: (h, params) => {
+            const { clock } = params.row;
+            const count = clock.length;
+            return (<div class="z-table-img">
+              {count}次
+            </div>)
+          }
         },
         {
           title: '进度',
@@ -83,7 +101,13 @@ export default {
         },
         {
           title: '收益',
-          key: 'car_model'
+          key: 'clock_reward',
+          render: (h, params) => {
+            const { clock_reward } = params.row;
+            return (<div class="z-table-img">
+              {clock_reward}元
+            </div>)
+          }
         },
         {
           title: '操作',
@@ -100,12 +124,12 @@ export default {
     }
   },
   methods: {
-    // 活动列表
+    // 参与活动用户的列表
     async activeUserList() {
       const params = {
         url: 'active/in/user',
         payload: {
-          active_id: '5c03d811bb582bd7318a247c',
+          active_id: '5c1a498967aa51690ff92953',
           page: this.page,
           size: 10
         },
