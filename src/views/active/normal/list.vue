@@ -1,6 +1,6 @@
 <template>
   <div class="active-list">
-    <Card :bordered="false" class="z-search">
+    <Card :bordered="false" class="z-search" v-if="false">
       <p slot="title">搜索条件</p>
       <div slot="extra" class="z-btn">
         <Button type="default" style="marginRight:10px" size="small" @click="searchClear">清空</Button>

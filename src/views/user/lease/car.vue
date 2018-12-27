@@ -39,30 +39,15 @@ export default {
           }
         },
         {
-          title: '登录账号',
-          key: 'name'
+          title: '车牌号',
+          key: 'car_number'
         },
-        {
-          title: '权限等级',
-          key: 'role',
-          render: (h, params) => {
-            return <div>
-              <span>{roleName(params.row.role.class)}</span>
-            </div>
-          }
-        },
-        {
-          title: '手机号', key: 'mobile'        },
+
+
         {
           title: '注册日期',
-          key: 'createTime',
-          render: (h, params) => {
-            const { create_at } = params.row
-            const createAt = timeS(create_at)
-            return <div>
-              <div>{createAt}</div>
-            </div>
-          }
+          key: 'create_at',
+
         },
         {
           title: '操作',
